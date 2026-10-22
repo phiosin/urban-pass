@@ -31,6 +31,7 @@ Lasting preferences or rules the user states ("always…", "never…") go into *
 - Never rewrite shared history (`push --force`, rebasing pushed commits, `reset --hard` on others' work).
 - Commit only files you changed for this task. No unrelated reformatting or drive-by refactors.
 - Risky or large changes go on a branch (`feat/<name>`), noted in HANDOFF.md.
+- **Codex:** run each git command as its own shell call (e.g. `git add -A`, then `git commit -m "..."`, then `git push`), never chained with other commands in one call. Standalone git commands are pre-approved (`~/.codex/rules/default.rules`); chained ones hit the sandbox, which protects `.git`.
 
 ## Quality bar
 - Understand before changing: read the surrounding code and follow existing conventions.
