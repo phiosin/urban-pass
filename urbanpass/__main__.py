@@ -107,7 +107,7 @@ def main():
         "generated": dt.datetime.now(dt.timezone.utc).replace(tzinfo=None).strftime("%Y-%m-%dT%H:%MZ"), "city": "Berlin", "wellpass_checked": checked,
         "days": days, "stations": STATIONS, "studios": {k: {kk: vv for kk, vv in v.items() if kk != "gym_id"}
                                   for k, v in studios.items()},
-        "courts": catalog.build_courts(venues, wp, pairs),
+        "courts": catalog.build_courts(venues, wp, pairs, usc.locations()),
         "plus1_places": catalog.build_plus1_places(wp, pairs),
     }
     (out / "index.json").write_text(json.dumps(index, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")

@@ -69,3 +69,14 @@ def classes(date, city_id=BERLIN):
                 "image": html.unescape(_text(r"background-image: url\('([^']+)'\)", block)),
             }
     return sorted(out.values(), key=lambda c: (c["start"], c["venue_name"]))
+
+
+def locations(city_id=BERLIN):
+    """{venue slug: (lat, lng)} from the public studios map."""
+    data = get_json(f"{BASE}/studios-map?city_id={city_id}", AJAX, 7 * DAY) or {}
+    out = {}
+    for v in (data.get("data") or {}).get("venues", []):
+        loc = v.get("location") or {}
+        if v.get("slug") and loc.get("lat") is not None:
+            out[v["slug"]] = (round(loc["lat"], 6), round(loc["lng"], 6))
+    return out

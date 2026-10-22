@@ -25,6 +25,7 @@ GitHub Action "Refresh class data" (run on demand)        GitHub Pages (free)
 - `.github/workflows/refresh-data.yml`: on-demand data refresh (Actions → *Refresh class data* → *Run workflow*), followed by a deploy.
 - `.github/workflows/deploy-pages.yml`: publishes the site whenever the app or data changes on `main`.
 - `dev/index.html`: local preview.
+- Flow: landing page → setup (activity, USC plan, Wellpass +1 only, day) → map. Court/pool activities switch to "access" mode: places where at least one pass gets you in, with an ⓘ panel explaining who covers the fee.
 - Map: [Leaflet](https://leafletjs.com) with OpenStreetMap tiles; U-/S-Bahn stations come from OpenStreetMap via the Overpass API.
 
 ## Run it locally

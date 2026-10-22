@@ -60,9 +60,7 @@
     if (S.plan && platforms.indexOf("USC") >= 0 && platforms.indexOf("Wellpass") < 0 && !planIncludes(place.plans)) return false;
     if (!plus1Matches(place)) return false;
     if (S.district && place.district !== S.district) return false;
-    if (S.acts.length && !(place.activities || []).some(function (a) {
-      return S.acts.some(function (selected) { return String(selected).toLowerCase() === String(a).toLowerCase(); });
-    })) return false;
+    if (S.acts.length && !hasAct(place.activities)) return false;
     var q = S.q.toLowerCase();
     return !q || (place.name + " " + (place.wp_name || "") + " " + (place.district || "") + " " +
       (place.street || "") + " " + (place.activities || []).join(" ")).toLowerCase().indexOf(q) >= 0;
@@ -81,8 +79,24 @@
   // Activities you can do without booking a class (gym floor, pool, courts, walls, sauna).
   var DROPIN = /fitness|gym|swim|squash|tennis|padel|badminton|climb|boulder|sauna|spa|wellness|skat|golf|volleyball|ski/i;
   function isDropIn(a) { return DROPIN.test(a); }
+  // One name per activity across USC ("Padel") and Wellpass ("PADEL", "TABLE_TENNIS").
+  var SYN = { "musculation": "strength training", "dance": "dancing", "cross training": "crosstraining",
+    "boxing sports": "boxing", "martial arts": "martial arts", "swimming pool": "swimming", "swim": "swimming",
+    "indoor cycling": "indoor cycling", "pilates mat": "pilates", "bouldering": "bouldering", "climbing": "climbing" };
+  function normAct(a) { a = String(a || "").toLowerCase().replace(/_/g, " ").replace(/\s+/g, " ").trim(); return SYN[a] || a; }
+  function actLabelOf(a) { a = normAct(a); return a.charAt(0).toUpperCase() + a.slice(1); }
+  function hasAct(list) {
+    return (list || []).some(function (a) { return S.acts.indexOf(normAct(a)) >= 0; });
+  }
+  // Courts, pools, gyms...: no class needed, one pass is enough to get in.
+  function actIcon(a) {
+    a = normAct(a);
+    return /tennis|padel|squash|badminton|pickleball|volleyball/.test(a) ? "🎾 " : /swim/.test(a) ? "🏊 " :
+      /climb|boulder/.test(a) ? "🧗 " : /sauna|spa|wellness/.test(a) ? "♨️ " : /fitness|gym|strength/.test(a) ? "🏋️ " : "";
+  }
+  function accessMode() { return S.acts.length > 0 && S.acts.every(isDropIn); }
   function studioOffers(st) {
-    return S.acts.some(function (a) { return isDropIn(a) && (st.disciplines || []).indexOf(a) >= 0; });
+    return S.acts.some(function (a) { return isDropIn(a) && (st.disciplines || []).map(normAct).indexOf(a) >= 0; });
   }
   function topCategories(classes) {
     var n = {};
@@ -106,7 +120,7 @@
       if (S.wp.indexOf(st.wp_status) < 0) return false;
       if (!planIncludes(c.pl) || !plus1Matches(st)) return false;
       if (S.district && st.district !== S.district) return false;
-      if (!ignoreActs && S.acts.length && S.acts.indexOf(actOf(c)) < 0) return false;
+      if (!ignoreActs && S.acts.length && S.acts.indexOf(normAct(actOf(c))) < 0) return false;
       if (t && (c.s < t[2] || c.s > t[3])) return false;
       if (q && (c.t + " " + c.c + " " + st.name + " " + st.wp_name + " " + st.district).toLowerCase().indexOf(q) < 0) return false;
       return true;
@@ -117,7 +131,8 @@
   function shell() {
     root.innerHTML =
       '<header class="up-top">' +
-        '<div class="up-brand">' + ICON.mark + '<div><h1>Urban Pass</h1><p>Berlin · Urban Sports Club × Wellpass</p></div></div>' +
+        '<div class="up-brand">' + ICON.mark + '<div><h1>Urban Pass</h1><p>Berlin · Urban Sports Club × Wellpass</p></div>' +
+          '<button class="up-setup-btn" data-setup>Change search</button></div>' +
         '<label class="up-search">' + ICON.search + '<input type="search" placeholder="Search classes, studios, districts" aria-label="Search"></label>' +
         '<nav class="up-days" aria-label="Day"></nav>' +
       '</header>' +
@@ -128,6 +143,7 @@
         tabBtn("classes", "Classes") + tabBtn("map", "Map") + tabBtn("studios", "Studios") + tabBtn("info", "About") +
       '</nav>';
     $(".up-search input").addEventListener("input", function (e) { S.q = e.target.value; render(); });
+    $("[data-setup]").addEventListener("click", showSetup);
     root.querySelectorAll(".up-tab").forEach(function (b) {
       b.addEventListener("click", function () { S.tab = b.dataset.tab; render(); window.scrollTo(0, 0); });
     });
@@ -183,7 +199,7 @@
 
   function chipsHtml(day) {
     var nFilters = (S.district ? 1 : 0) + (S.wp.length < 3 ? 1 : 0);
-    var actLabel = !S.acts.length ? "All activities" : S.acts.length === 1 ? S.acts[0] : S.acts[0] + " +" + (S.acts.length - 1);
+    var actLabel = !S.acts.length ? "All activities" : S.acts.length === 1 ? actLabelOf(S.acts[0]) : actLabelOf(S.acts[0]) + " +" + (S.acts.length - 1);
     return chip("acts", actLabel + " ▾", S.acts.length > 0, S.acts.length > 0) +
       (S.index.wellpass_checked ? chip("both", "✓ On both schedules", S.onlyBoth) : "") +
       chip("filters", nFilters ? "Filters · " + nFilters : "Filters", nFilters > 0, nFilters > 0) +
@@ -292,7 +308,7 @@
     var keys = Object.keys(S.index.studios).filter(function (k) {
       var s = S.index.studios[k];
       if (!planIncludes(s.plans) || !plus1Matches(s)) return false;
-      if (S.acts.length && !counts[k] && !S.acts.some(function (a) { return (s.disciplines || []).indexOf(a) >= 0; })) return false;
+      if (S.acts.length && !counts[k] && !hasAct(s.disciplines)) return false;
       return !q || (s.name + " " + s.wp_name + " " + s.district + " " + s.disciplines.join(" ")).toLowerCase().indexOf(q) >= 0;
     }).sort(function (a, b) { return (counts[b] || 0) - (counts[a] || 0) || S.index.studios[a].name.localeCompare(S.index.studios[b].name, "de"); });
     var html = '<div class="up-chips">' + chipsHtml(day) + '</div>' +
@@ -428,11 +444,12 @@
       return '<p style="display:flex;gap:10px"><b style="width:44px;flex:none">' + esc(c.s) + '</b><span>' + esc(c.t) +
         (c.ok === true ? ' <span class="up-badge ok">✓ Wellpass</span>' : "") + '</span></p>';
     }).join("") : '<p>No classes matching your filters on this day.</p>';
-    var dropIn = S.acts.filter(function (a) { return isDropIn(a) && (st.disciplines || []).indexOf(a) >= 0; });
-    if (dropIn.length && !classes.length) rows += '<p><b>Drop-in:</b> ' + esc(dropIn.join(", ")) + ' without a class. Check opening hours with the studio.</p>';
+    var dropIn = S.acts.filter(function (a) { return isDropIn(a) && (st.disciplines || []).map(normAct).indexOf(a) >= 0; });
+    if (dropIn.length && !classes.length) rows += '<p><b>Drop-in:</b> ' + esc(dropIn.map(actLabelOf).join(", ")) + ' without a class. Check opening hours with the studio.</p>';
     var sh = sheet(
       '<h2>' + esc(st.name) + '</h2><div class="up-sub">' + esc(st.street) + ' · ' + esc(st.district) + '</div>' +
       '<div class="up-badges up-place-badges">' + placeBadges(st).join("") + '</div>' +
+      (accessMode() || st.court || dropIn.length ? infoButton() + accessInfo(st) : "") +
       '<div class="up-nearlist">' + nearHtml(st, true) + '</div>' +
       '<div class="up-box"><h3>' + esc(dayLabel(S.date, true)) + '</h3>' + rows + '</div>' +
       '<div class="up-box"><h3>Wellpass</h3><p>' + esc(st.wp_label) + ' · listed as “' + esc(st.wp_name) + '”</p>' +
@@ -446,6 +463,7 @@
       '<a class="up-btn" target="_blank" rel="noopener" href="' + url(mapLink(st)) + '">Directions</a></div>'
     );
     bindSheetLinks(sh);
+    bindInfo(sh);
   }
 
   function openPlace(place, isCourt) {
@@ -455,6 +473,7 @@
     var body = '<h2>' + (isCourt ? '🎾 ' : '') + esc(place.name) + '</h2>' +
       '<div class="up-sub">' + esc([place.street, place.district].filter(Boolean).join(" · ")) + '</div>' +
       '<div class="up-badges up-place-badges">' + coverage + placeBadges(place).join("") + '</div>' +
+      infoButton() + accessInfo(place) +
       (place.activities && place.activities.length ? '<p class="up-place-activities">' + esc(place.activities.join(" · ")) + '</p>' : "") +
       (place.plus1 ? '<div class="up-box"><h3>Wellpass +1</h3><p>The Wellpass member can bring one guest to this place.</p></div>' : "") +
       (place.discount_text ? '<div class="up-box"><h3>Wellpass discount</h3><p>' + esc(place.discount_text) + '</p></div>' : "") +
@@ -466,7 +485,29 @@
       '<div class="up-row">' + (place.usc_url ? '<a class="up-btn ghost" target="_blank" rel="noopener" href="' + url(place.usc_url) + '">Urban Sports Club</a>' : "") +
       (place.wp_url ? wpLink(place, 'Wellpass app') : "") +
       '</div><a class="up-btn ghost" target="_blank" rel="noopener" href="' + url(mapLink(place)) + '">Directions</a>';
-    sheet(body);
+    var sh = sheet(body);
+    bindInfo(sh);
+  }
+
+  function accessInfo(place) {
+    var pf = place.platforms || ["USC", "Wellpass"];
+    var onWp = pf.indexOf("Wellpass") >= 0, onUsc = pf.indexOf("USC") >= 0;
+    var wp = !onWp ? "Not on Wellpass. The Wellpass member pays the venue directly."
+      : place.discount_text ? "Reduced fee: " + place.discount_text
+      : "Included. Check in with the Wellpass app" + (place.external_booking || place.wp_status === "external" ? ", but book via the venue's own app or website." : ".");
+    var usc = !onUsc ? "Not on Urban Sports Club. The USC member pays the venue directly."
+      : (place.plans && place.plans.length ? "Included from the USC " + lowestPlan(place.plans) + " plan" +
+        (S.plan && !planIncludes(place.plans) ? " (not in the " + S.plan + " plan you picked)" : "") + "." : "Included with Urban Sports Club.");
+    return '<div class="up-box up-infobox" hidden><h3>Who covers the entry?</h3>' +
+      '<p><b>Wellpass:</b> ' + esc(wp) + '</p><p><b>Urban Sports Club:</b> ' + esc(usc) + '</p>' +
+      (place.plus1 ? '<p><b>Wellpass +1:</b> the Wellpass member can bring the other person as a guest.</p>' : "") +
+      (place.court ? '<p>Courts are rented per court, so whatever one pass covers lowers the price for everyone playing. Padel and tennis need at least two players.</p>' : "") +
+      '</div>';
+  }
+  function infoButton() { return '<button class="up-info-btn" data-info>ⓘ Who covers the entry?</button>'; }
+  function bindInfo(sh) {
+    var b = sh.el.querySelector("[data-info]"), box = sh.el.querySelector(".up-infobox");
+    if (b && box) b.addEventListener("click", function () { box.hidden = !box.hidden; if (!box.hidden) box.scrollIntoView({ block: "nearest", behavior: "smooth" }); });
   }
 
   function openCourt(place) { openPlace(place, true); }
@@ -475,9 +516,10 @@
   function openActivities() {
     var day = S.days[S.date] || { classes: [] };
     var counts = {}, drop = {};
-    filtered(true).forEach(function (c) { var a = actOf(c); counts[a] = (counts[a] || 0) + 1; });
-    Object.keys(S.index.studios).forEach(function (k) {
-      (S.index.studios[k].disciplines || []).forEach(function (d) { drop[d] = (drop[d] || 0) + 1; });
+    filtered(true).forEach(function (c) { var a = normAct(actOf(c)); counts[a] = (counts[a] || 0) + 1; });
+    allPlaces().forEach(function (pl) {
+      var seen = {};
+      (pl.disciplines || pl.activities || []).forEach(function (d) { d = normAct(d); if (!seen[d]) { seen[d] = 1; drop[d] = (drop[d] || 0) + 1; } });
     });
     var names = Object.keys(counts);
     Object.keys(drop).forEach(function (d) { if (names.indexOf(d) < 0) names.push(d); });
@@ -486,8 +528,8 @@
     function row(a) {
       var on = pick.indexOf(a) >= 0;
       var sub = (counts[a] ? counts[a] + (counts[a] === 1 ? " class" : " classes") : "no classes") +
-        (drop[a] && isDropIn(a) ? " · drop-in at " + drop[a] + " studios" : "");
-      return '<button class="up-act" data-act="' + esc(a) + '" aria-pressed="' + on + '"><span>' + esc(a) +
+        (drop[a] && isDropIn(a) ? " · " + drop[a] + " places, no class needed" : "");
+      return '<button class="up-act" data-act="' + esc(a) + '" aria-pressed="' + on + '"><span>' + esc(actLabelOf(a)) +
         '<small>' + esc(sub) + '</small></span><i>' + (on ? "✓" : "") + '</i></button>';
     }
     var sh = sheet(
@@ -680,6 +722,7 @@
       Object.keys(S.index.studios).forEach(function (k) {
         var st = S.index.studios[k];
         if (by[k] || st.lat == null || !studioOffers(st)) return;
+        if (S.showCourts && st.court) return; // shown as a court pin
         if (!planIncludes(st.plans) || !plus1Matches(st)) return;
         if (S.district && st.district !== S.district) return;
         if (S.wp.indexOf(st.wp_status) < 0) return;
@@ -690,7 +733,7 @@
       });
     }
     var plus1PlaceCount = 0;
-    (S.index.plus1_places || []).filter(function (p) { return placeMatches(p, false); }).forEach(function (p) {
+    (S.plus1Only || accessMode() ? (S.index.plus1_places || []) : []).filter(function (p) { return placeMatches(p, false); }).forEach(function (p) {
       if (p.lat == null) return;
       var m = L.marker([p.lat, p.lng], { icon: pinIcon(0, p.name, true, { plus1: true, external: !!p.external_booking }), title: p.name });
       m.on("click", function () { openPlusPlace(p); });
@@ -698,7 +741,7 @@
       plus1PlaceCount++;
     });
     var courtCount = 0;
-    if (S.showCourts) (S.index.courts || []).filter(function (p) { return placeMatches(p, true); }).forEach(function (p) {
+    if (S.showCourts && (!S.acts.length || accessMode())) (S.index.courts || []).filter(function (p) { return placeMatches(p, true); }).forEach(function (p) {
       if (p.lat == null) return;
       var m = L.marker([p.lat, p.lng], { icon: pinIcon(0, p.name, false, {
         court: true, plus1: !!p.plus1, external: !!p.external_booking
@@ -709,12 +752,13 @@
     });
     M.pins.addLayers(markers);
     var nClasses = Object.keys(by).reduce(function (a, k) { return a + by[k].length; }, 0);
-    $(".up-mapcount").textContent = (markers.length - nDrop) + " studios · " + nClasses + " classes" +
-      (nDrop ? " · " + nDrop + " drop-in" : "") + " · " + dayLabel(S.date, true);
-    if (courtCount || (S.index.plus1_places || []).length) {
-      $(".up-mapcount").textContent = Object.keys(by).length + " studios · " + courtCount + " courts · " + plus1PlaceCount + " Wellpass +1 · " + nClasses + " classes" +
-        (nDrop ? " · " + nDrop + " drop-in" : "") + " · " + dayLabel(S.date, true);
-    }
+    var parts = [];
+    var nStudios = Object.keys(by).length;
+    if (nClasses) parts.push(nClasses + " classes at " + nStudios + " studios");
+    if (courtCount) parts.push(courtCount + " courts");
+    if (nDrop) parts.push(nDrop + " places, no class needed");
+    if (plus1PlaceCount) parts.push(plus1PlaceCount + (S.plus1Only ? " Wellpass +1" : " Wellpass only"));
+    $(".up-mapcount").textContent = (parts.length ? parts.join(" · ") : "Nothing found, try another day or activity") + " · " + dayLabel(S.date) + " " + S.date.slice(8, 10).replace(/^0/, "");
     if (focusMarker) {
       var k = M.focus;
       M.focus = null;
@@ -757,15 +801,115 @@
     } else go();
   });
 
+
+  /* ---------- landing + setup ---------- */
+  function allPlaces() {
+    var out = [];
+    Object.keys(S.index.studios || {}).forEach(function (k) { out.push(S.index.studios[k]); });
+    return out.concat(S.index.courts || [], S.index.plus1_places || []);
+  }
+  function activityOptions() {
+    var n = {};
+    allPlaces().forEach(function (pl) {
+      var seen = {};
+      (pl.disciplines || pl.activities || []).forEach(function (a) {
+        a = normAct(a);
+        if (a && !seen[a]) { seen[a] = 1; n[a] = (n[a] || 0) + 1; }
+      });
+    });
+    return Object.keys(n).sort(function (a, b) { return n[b] - n[a] || a.localeCompare(b, "de"); });
+  }
+
+  function showLanding() {
+    root.classList.remove("up-on-map");
+    root.innerHTML =
+      '<section class="up-landing">' +
+        '<div class="up-landing-top">' + ICON.mark + '<span>Urban Pass</span></div>' +
+        '<h1>Train together, even with different passes.</h1>' +
+        '<p class="up-lead">You have Wellpass, your friend has Urban Sports Club, or the other way round. Urban Pass shows what you can do <b>together</b> in Berlin, on one map.</p>' +
+        '<ul class="up-points">' +
+          '<li><i>✓</i><span><b>Classes on both schedules.</b> Same studio, same time, bookable in both apps.</span></li>' +
+          '<li><i>🎾</i><span><b>Courts, pools and gyms.</b> Places where at least one pass gets you in or lowers the fee.</span></li>' +
+          '<li><i>+1</i><span><b>Wellpass +1.</b> Places where the Wellpass member can bring a guest, no Urban Sports Club needed.</span></li>' +
+        '</ul>' +
+        '<button class="up-btn up-go" data-go>Go</button>' +
+        '<p class="up-fine">Private project. Not affiliated with Urban Sports Club or EGYM Wellpass.</p>' +
+      '</section>';
+    $("[data-go]").addEventListener("click", showSetup);
+  }
+
+  function showSetup() {
+    var opts = activityOptions();
+    var draft = { act: S.acts[0] || "", plan: S.plan, plus1: S.plus1Only, date: S.date || S.index.days[0].date };
+    root.classList.remove("up-on-map");
+    root.innerHTML =
+      '<section class="up-setup">' +
+        '<header class="up-setup-top">' + ICON.mark + '<div><h1>What are you looking for?</h1><p>You can change this later.</p></div></header>' +
+        '<div class="up-step"><h2><b>1</b> Activity</h2>' +
+          '<input class="up-actsearch" type="search" placeholder="Search: yoga, padel, swimming…">' +
+          '<div class="up-seg up-setup-acts"></div><p class="up-hint" hidden></p></div>' +
+        '<div class="up-step up-step-plan"><h2><b>2</b> Your friend\'s Urban Sports Club plan</h2><div class="up-seg up-setup-plan"></div></div>' +
+        '<div class="up-step"><label class="up-switch"><input type="checkbox" data-plus1' + (draft.plus1 ? " checked" : "") + '><span></span>' +
+          '<div><b>Only Wellpass +1 places</b><small>The Wellpass member brings the other person as a guest. No Urban Sports Club needed.</small></div></label></div>' +
+        '<div class="up-step"><h2><b>3</b> Day</h2><div class="up-seg up-setup-days"></div></div>' +
+        '<div class="up-setup-bar"><button class="up-btn" data-show>Show map</button></div>' +
+      '</section>';
+    window.scrollTo(0, 0);
+    var actsEl = $(".up-setup-acts"), hint = $(".up-hint");
+    function drawActs(q) {
+      q = normAct(q || "");
+      var list = q ? opts.filter(function (a) { return a.indexOf(q) >= 0; }) : opts.slice(0, 18);
+      if (draft.act && list.indexOf(draft.act) < 0) list.unshift(draft.act);
+      actsEl.innerHTML = '<button class="up-chip" data-a="" aria-pressed="' + !draft.act + '">Anything</button>' +
+        list.map(function (a) { return '<button class="up-chip" data-a="' + esc(a) + '" aria-pressed="' + (draft.act === a) + '">' + actIcon(a) + esc(actLabelOf(a)) + '</button>'; }).join("") +
+        (q && !list.length ? '<p class="up-sub">No place on either pass offers that right now.</p>' : "");
+      actsEl.querySelectorAll("[data-a]").forEach(function (b) {
+        b.addEventListener("click", function () { draft.act = b.dataset.a; drawActs($(".up-setup .up-actsearch").value); });
+      });
+      hint.hidden = !(draft.act && isDropIn(draft.act));
+      hint.textContent = "No class needed here. You'll see places where at least one of your passes gets you in or lowers the fee. Tap ⓘ on a place to see who covers what.";
+    }
+    function drawPlan() {
+      var el = $(".up-setup-plan");
+      el.innerHTML = [["", "Not sure"]].concat(PLANS.map(function (p) { return [p, p]; })).map(function (x) {
+        return '<button class="up-chip" data-p="' + x[0] + '" aria-pressed="' + (draft.plan === x[0]) + '">' + x[1] + '</button>';
+      }).join("");
+      el.querySelectorAll("[data-p]").forEach(function (b) { b.addEventListener("click", function () { draft.plan = b.dataset.p; drawPlan(); }); });
+      $(".up-step-plan").classList.toggle("up-muted", draft.plus1);
+    }
+    function drawDays() {
+      var el = $(".up-setup-days");
+      el.innerHTML = S.index.days.map(function (d, i) {
+        var label = i === 0 ? "Today" : i === 1 ? "Tomorrow" : dayLabel(d.date) + " " + d.date.slice(8, 10).replace(/^0/, "");
+        return '<button class="up-chip" data-d="' + d.date + '" aria-pressed="' + (draft.date === d.date) + '">' + esc(label) + '</button>';
+      }).join("");
+      el.querySelectorAll("[data-d]").forEach(function (b) { b.addEventListener("click", function () { draft.date = b.dataset.d; drawDays(); }); });
+    }
+    drawActs(""); drawPlan(); drawDays();
+    $(".up-setup .up-actsearch").addEventListener("input", function (e) { drawActs(e.target.value); });
+    $("[data-plus1]").addEventListener("change", function (e) { draft.plus1 = e.target.checked; drawPlan(); });
+    $("[data-show]").addEventListener("click", function () {
+      S.acts = draft.act ? [draft.act] : []; store.set("acts", S.acts);
+      S.plan = draft.plus1 ? "" : draft.plan; store.set("plan", S.plan);
+      S.plus1Only = draft.plus1; store.set("plus1Only", S.plus1Only);
+      if (accessMode()) { S.showCourts = true; store.set("showCourts", true); }
+      S.q = ""; S.tab = "map";
+      shell();
+      selectDay(draft.date);
+    });
+  }
+
   /* ---------- start ---------- */
-  shell();
+  root.innerHTML = '<div class="up-loading">Loading…</div>';
   fetchJSON("index.json").then(function (idx) {
     S.index = idx;
+    S.acts = S.acts.map(normAct);
     var iso = localISO(new Date());
-    var first = idx.days.filter(function (d) { return d.date >= iso; })[0] || idx.days[0];
-    render();
-    selectDay(first.date);
+    idx.days = idx.days.filter(function (d) { return d.date >= iso; }).concat([]);
+    if (!idx.days.length) idx.days = [{ date: iso }];
+    S.date = idx.days[0].date;
+    showLanding();
   }).catch(function () {
-    $(".up-main").innerHTML = '<div class="up-empty"><b>No data yet.</b>The daily update hasn\'t run.</div>';
+    root.innerHTML = '<div class="up-empty"><b>No data yet.</b>The data update hasn\'t run.</div>';
   });
 })();

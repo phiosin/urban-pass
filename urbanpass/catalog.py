@@ -67,7 +67,7 @@ def _wp_place(wp, identifier, platforms):
     }
 
 
-def build_courts(usc_venues, wp_studios, pairs):
+def build_courts(usc_venues, wp_studios, pairs, usc_locations=None):
     """Make one record per shared court plus court venues listed by only one platform."""
     usc_courts = {u["slug"]: u for u in usc_venues
                   if is_court(u.get("disciplines"), u.get("name", ""))}
@@ -103,7 +103,8 @@ def build_courts(usc_venues, wp_studios, pairs):
             continue
         records.append({
             "id": "usc:" + slug, "name": u.get("name", ""), "wp_name": "", "usc_name": u.get("name", ""),
-            "street": u.get("street", ""), "district": u.get("district", ""), "lat": None, "lng": None,
+            "street": u.get("street", ""), "district": u.get("district", ""), "lat": (usc_locations or {}).get(u.get("slug"), (None, None))[0],
+            "lng": (usc_locations or {}).get(u.get("slug"), (None, None))[1],
             "activities": u.get("disciplines") or [], "platforms": ["USC"], "plans": u.get("plans") or [],
             "plus1": False, "discount": False, "discount_text": "", "external_booking": False,
             "booking": "", "website": "", "wp_url": "", "usc_url": "https://urbansportsclub.com/de/venues/" + slug,
