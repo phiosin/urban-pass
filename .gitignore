@@ -11,3 +11,4 @@ __pycache__/
 capture/
 data/raw/
 node_modules/
+.codex-runs/
