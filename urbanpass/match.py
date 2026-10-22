@@ -150,8 +150,9 @@ def confirm_with_wellpass(joint, date, fetch, log=print):
         w = c["wellpass"]
         if w.get("gym_id") not in sessions:
             continue
-        hits = [s for s in sessions[w["gym_id"]] if abs(_minutes(s["start"]) - _minutes(c["start"])) <= 5]
-        # several classes at the same time (e.g. two rooms): prefer the one with a similar name
+        # same start time (±5 min) and a similar name; the best name match wins when rooms overlap
+        hits = [s for s in sessions[w["gym_id"]] if abs(_minutes(s["start"]) - _minutes(c["start"])) <= 5
+                and name_score(s["name"], c["title"]) > 0]
         hits.sort(key=lambda s: -name_score(s["name"], c["title"]))
         w["confirmed"] = bool(hits)
         if hits:

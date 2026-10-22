@@ -63,7 +63,7 @@ These are rough numbers and still include some false matches. The matcher needs 
 
 A one-time recording of the iOS app's traffic showed how the app loads classes:
 
-- **Classes:** `GET https://mwa-api.int.api.egym.com/mwa/api/class-booking/v1/class-session?gymId={id}&from={utc}&to={utc}&status=ACTIVE`. `gymId` is the same `id` as in the public `/v1/gym/overview` list. Each session has `name`, `startDateTime`/`endDateTime` (UTC), `capacity`, `booked`, `instructor` and `gym`.
+- **Classes:** `GET https://mwa-api.int.api.egym.com/mwa/api/class-booking/v1/class-session?gymId={id}&from={utc}&to={utc}&status=ACTIVE`. `gymId` is the studio's `gymUUID` (field `g` in the public `/v1/gym/overview` list, not `id`). Each session has `name`, `startDateTime`/`endDateTime` (UTC), `capacity`, `booked`, `instructor` and `gym`.
 - **Auth:** `Authorization: Bearer <Firebase ID token>` (project `prod-egym-id`, valid for 1 hour). The app gets it like this:
   1. It logs in at `qualitrain.netpulse.com` (session cookie).
   2. It calls `/np/exerciser/{uuid}/externalAccount/egym/qltLocations/sso`, which returns a Firebase custom token.

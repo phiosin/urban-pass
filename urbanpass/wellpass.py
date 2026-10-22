@@ -54,7 +54,7 @@ def berlin():
     for g in studios():
         d = detail(g["slug"])
         if d:
-            d["gym_id"] = g["id"]
+            d["gym_id"] = g.get("g") or g["id"]  # gymUUID: the id the class schedule uses
             d["activities"] = d["activities"] or [a["a"] for a in g.get("ac", [])]
             out.append(d)
     return out
