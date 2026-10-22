@@ -32,4 +32,17 @@ Lasting preferences or rules the user states ("always…", "never…") go into *
 - Default `gpt-6-luna`. Switch to `gpt-6-astra` (`/model`) only for hard problems: tricky algorithms, subtle bugs luna failed on twice, or big design changes. Switch back afterwards.
 
 ## Project specifics
-<!-- How to install, run, test, build/deploy; architecture overview; conventions; user preferences. -->
+- Setup: Python 3.10+; crawler uses only the standard library. Optional `uv` is used in the README commands.
+- Login once: `uv run --no-project --python 3.12 python -m urbanpass.login` (prompts locally; password is not saved).
+- Build data: `uv run --no-project --python 3.12 python -m urbanpass --days 7` (writes `wordpress/urban-pass/data/`).
+- Preview: run `python -m http.server` at the repo root, then open `http://localhost:8000/dev/`.
+- Tests: no automated tests yet.
+- Deploy: GitHub Actions `Refresh class data` is manual; `Deploy site` runs on `main` changes to `wordpress/urban-pass/**` or `web/**`, and can also be run manually. No local build command.
+- Architecture: `urbanpass/` contains Python USC/Wellpass crawlers, auth, matching, station lookup and CLI (`__main__.py`); `wordpress/urban-pass/` holds the shared app JS/CSS, plugin PHP/templates and generated JSON; `web/index.html` is the GitHub Pages shell; `dev/index.html` is the local preview; `.github/workflows/` refreshes data and deploys Pages.
+- Conventions: standard-library Python, browser-native JavaScript/CSS, and a small PHP WordPress wrapper; generated app data is compact JSON. There is no package manifest or frontend build tooling.
+
+### User decisions
+- Hosted free on GitHub Pages: https://phiosin.github.io/urban-pass/ (2026-10-22). Custom domain `pass.orajati.com` was offered and declined for now.
+- Class data refresh is manual only: Actions -> “Refresh class data” -> Run workflow. It needs the GitHub secret `WELLPASS_REFRESH_TOKEN`, set by the user.
+- WordPress.com plan is Premium (`orajati.com`): no plugins, GitHub Deployments or custom JS. Do not suggest WordPress plugin deployment unless the plan is upgraded to Business. Keep `wordpress/urban-pass/` as the shared app source for Pages.
+- The local Wellpass login token lives only in `.secrets/wellpass.json`. Never read or print it.
