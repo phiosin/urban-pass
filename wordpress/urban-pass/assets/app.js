@@ -835,19 +835,8 @@
   function statsHtml() {
     var st = overlapStats();
     if (!st) return "";
-    var bars = [["morning", "Morning", "before 12:00"], ["midday", "Midday", "12–17"], ["evening", "Evening", "after 17:00"]].map(function (x) {
-      var v = st.slots[x[0]], share = v[0] ? v[1] / v[0] : 0;
-      return '<div class="up-bar-row"><span>' + x[1] + '<small>' + x[2] + '</small></span><div class="up-bar-track"><i style="width:' +
-        Math.max(2, Math.round(share * 100)) + '%"></i></div><b>' + pct(share) + '</b></div>';
-    }).join("");
-    var t = st.totals;
-    return '<div class="up-stats">' +
-      '<div class="up-stat-big"><b>' + pct(st.share) + '</b><span>of Urban Sports Club classes in Berlin can also be booked with Wellpass.</span></div>' +
-      '<p class="up-stat-line">About <b>' + fmt(st.usc) + '</b> classes a day, only <b>' + fmt(st.both) + '</b> on both schedules.</p>' +
-      '<div class="up-bars">' + bars + '</div>' +
-      (t ? '<p class="up-stat-line">' + fmt(t.usc_venues) + ' Urban Sports Club venues · ' + fmt(t.wp_studios) + ' Wellpass studios · only <b>' +
-        fmt(t.shared_studios) + '</b> take both (' + pct(t.shared_studios / t.usc_venues) + ' of USC, ' + pct(t.shared_studios / t.wp_studios) + ' of Wellpass).</p>' : "") +
-      '</div>';
+    return '<div class="up-stats"><div class="up-stat-big"><b>' + pct(st.share) + '</b>' +
+      '<span>Only this share of Urban Sports Club classes in Berlin can also be booked with Wellpass.</span></div></div>';
   }
 
   function showFunnel(res) {
@@ -916,14 +905,9 @@
       '<section class="up-landing">' +
         '<div class="up-landing-top">' + ICON.mark + '<span>Urban Pass</span></div>' +
         '<h1>Train together, even with different passes.</h1>' +
-        '<p class="up-lead">You have Wellpass, your friend has Urban Sports Club, or the other way round. Urban Pass shows what you can do <b>together</b> in Berlin, on one map.</p>' +
         statsHtml() +
-        '<ul class="up-points">' +
-          '<li><i>✓</i><span><b>Classes on both schedules.</b> Same studio, same time, bookable in both apps.</span></li>' +
-          '<li><i>🎾</i><span><b>Courts, pools and gyms.</b> Places where at least one pass gets you in or lowers the fee.</span></li>' +
-          '<li><i>+1</i><span><b>Wellpass +1.</b> Places where the Wellpass member can bring a guest, no Urban Sports Club needed.</span></li>' +
-        '</ul>' +
-        '<button class="up-btn up-go" data-go>Go</button>' +
+        '<p class="up-lead">Urban Pass saves you the hassle of cross-checking both apps and shows only what you can book <b>together</b>, on one map.</p>' +
+        '<button class="up-btn up-go" data-go>Find something to do together</button>' +
         '<p class="up-fine">Private project. Not affiliated with Urban Sports Club or EGYM Wellpass.</p>' +
       '</section>';
     $("[data-go]").addEventListener("click", showSetup);

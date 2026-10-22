@@ -255,7 +255,7 @@ body.up-fullscreen { margin: 0; background: #e9e6e0; }
 /* Landing */
 .up-landing { min-height: 100vh; min-height: 100dvh; background: var(--up-navy); color: #fff; padding: calc(28px + env(safe-area-inset-top)) 24px calc(28px + env(safe-area-inset-bottom)); display: flex; flex-direction: column; }
 .up-landing-top { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 18px; }
-.up-landing h1 { font-size: 34px; line-height: 1.1; letter-spacing: -0.03em; margin: 40px 0 14px; color: #fff; }
+.up-landing h1 { font-size: 34px; line-height: 1.1; letter-spacing: -0.03em; margin: 48px 0 22px; color: #fff; }
 .up-lead { color: #c9d2e1; font-size: 16.5px; line-height: 1.5; margin: 0 0 26px; }
 .up-lead b { color: #fff; }
 .up-points { list-style: none; padding: 0; margin: 0 0 32px; display: flex; flex-direction: column; gap: 14px; }
