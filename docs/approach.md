@@ -34,7 +34,12 @@ USC and Wellpass use different IDs, so studios are matched by data:
 
 Address alone over-matches buildings with many studios (e.g. Funkhaus Nalepastraße 18, Mehringdamm 33), so a match needs address **and** name. A small hand-kept file of confirmed/rejected pairs will cover edge cases.
 
-First test (USC Berlin vs. the first 114 Wellpass Berlin studios): 172 address matches, 88 of them also sharing a name word.
+First full run for Berlin (Oct 2026), comparing 2,218 USC studios with 790 Wellpass studios:
+- 973 address matches, of which 573 also share a name word.
+- That's **426 Wellpass studios** (about 54%) matching **546 USC studios**. One Wellpass studio can match several USC listings, because USC often lists one studio per activity.
+- 142 of those Wellpass studios offer in-app class booking.
+
+These are rough numbers and still include some false matches. The matcher needs tuning before the numbers can be trusted.
 
 ## Matching classes
 
