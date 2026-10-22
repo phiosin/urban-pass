@@ -1,0 +1,30 @@
+name: Publish plugin branch
+
+# WordPress.com GitHub Deployments installs the `wp-plugin` branch, which holds only
+# the contents of wordpress/urban-pass/ (plugin files at the branch root).
+on:
+  push:
+    branches: [main]
+    paths: ["wordpress/urban-pass/**"]
+  workflow_dispatch: {}
+  workflow_call: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publish-plugin
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Split plugin folder into wp-plugin branch
+        run: |
+          git subtree split --prefix wordpress/urban-pass -b wp-plugin
+          git push --force origin wp-plugin

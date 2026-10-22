@@ -45,3 +45,8 @@ jobs:
             git commit -m "Refresh class data $(date -u +%Y-%m-%d)"
             git push
           fi
+
+  # Pushes made with GITHUB_TOKEN don't trigger other workflows, so publish explicitly.
+  publish:
+    needs: refresh
+    uses: ./.github/workflows/publish-plugin.yml
