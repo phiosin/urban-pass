@@ -37,6 +37,8 @@
     search: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>',
     classes: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16" rx="3"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4"/></svg>',
     studios: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>',
+    map: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4 3 6.5v13.5L9 17.5l6 2.5 6-2.5V4l-6 2.5z"/><path d="M9 4v13.5M15 6.5V20"/></svg>',
+    locate: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>',
     info: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.01"/></svg>',
     mark: '<svg class="up-mark" viewBox="0 0 32 32" aria-hidden="true"><circle cx="12" cy="16" r="9" fill="#2e70ce"/><circle cx="20" cy="16" r="9" fill="none" stroke="#fff" stroke-width="2.5"/></svg>'
   };
@@ -91,8 +93,10 @@
         '<nav class="up-days" aria-label="Day"></nav>' +
       '</header>' +
       '<main class="up-main"><div class="up-loading">Loading classes…</div></main>' +
+      '<section class="up-mapview" hidden><div class="up-chips up-mapchips"></div><div class="up-map"></div>' +
+        '<div class="up-mapcount"></div><button class="up-locate" aria-label="Show my location">' + ICON.locate + '</button></section>' +
       '<nav class="up-tabs" role="tablist">' +
-        tabBtn("classes", "Classes") + tabBtn("studios", "Studios") + tabBtn("info", "About") +
+        tabBtn("classes", "Classes") + tabBtn("map", "Map") + tabBtn("studios", "Studios") + tabBtn("info", "About") +
       '</nav>';
     $(".up-search input").addEventListener("input", function (e) { S.q = e.target.value; render(); });
     root.querySelectorAll(".up-tab").forEach(function (b) {
@@ -130,7 +134,12 @@
     $(".up-days").style.display = S.tab === "info" ? "none" : "";
     $(".up-search").style.display = S.tab === "info" ? "none" : "";
     root.style.setProperty("--up-top-h", $(".up-top").getBoundingClientRect().height + "px");
-    if (S.tab === "classes") renderClasses();
+    var isMap = S.tab === "map";
+    $(".up-main").hidden = isMap;
+    $(".up-mapview").hidden = !isMap;
+    root.classList.toggle("up-on-map", isMap);
+    if (isMap) renderMap();
+    else if (S.tab === "classes") renderClasses();
     else if (S.tab === "studios") renderStudios();
     else renderInfo();
   }
@@ -139,15 +148,29 @@
     return '<button class="up-chip" data-chip="' + esc(id) + '" aria-pressed="' + !!on + '">' + (dot ? '<span class="up-dot"></span>' : "") + esc(label) + '</button>';
   }
 
+  function chipsHtml(day) {
+    var nFilters = (S.plan ? 1 : 0) + (S.district ? 1 : 0) + (S.wp.length < 3 ? 1 : 0);
+    return (S.index.wellpass_checked ? chip("both", "✓ On both schedules", S.onlyBoth) : "") +
+      chip("filters", nFilters ? "Filters · " + nFilters : "Filters", nFilters > 0, nFilters > 0) +
+      TIMES.map(function (t) { return chip("time:" + t[0], t[1], S.time === t[0]); }).join("") +
+      topCategories(day.classes).map(function (c) { return chip("cat:" + c, c, S.cat === c); }).join("");
+  }
+
+  function nearHtml(st, all) {
+    var n = st.near || [];
+    if (!n.length) return "";
+    return (all ? n : n.slice(0, 1)).map(function (x) {
+      return '<span class="up-near"><span class="up-st">' + x.t.split("+").map(function (t) {
+        return '<i class="up-st-' + t.toLowerCase() + '">' + t + '</i>'; }).join("") + '</span>' +
+        esc(x.n) + ' · ' + (x.m < 1000 ? x.m + " m" : (x.m / 1000).toFixed(1) + " km") + '</span>';
+    }).join("");
+  }
+
   function renderClasses() {
     var day = S.days[S.date];
     if (!day) return;
     var list = filtered();
-    var nFilters = (S.plan ? 1 : 0) + (S.district ? 1 : 0) + (S.wp.length < 3 ? 1 : 0);
-    var chips = (S.index.wellpass_checked ? chip("both", "✓ On both schedules", S.onlyBoth) : "") +
-      chip("filters", nFilters ? "Filters · " + nFilters : "Filters", nFilters > 0, nFilters > 0) +
-      TIMES.map(function (t) { return chip("time:" + t[0], t[1], S.time === t[0]); }).join("") +
-      topCategories(day.classes).map(function (c) { return chip("cat:" + c, c, S.cat === c); }).join("");
+    var chips = chipsHtml(day);
     var studios = {};
     list.forEach(function (c) { studios[c.st] = 1; });
     var age = generatedAt() ? (Date.now() - generatedAt().getTime()) / 3600000 : 0;
@@ -183,13 +206,14 @@
       '<div class="up-time"><b>' + esc(c.s) + '</b><span>' + esc(c.e) + '</span></div>' +
       '<div><div class="up-title">' + esc(c.t) + '</div>' +
       '<div class="up-sub">' + esc(st.name) + ' · ' + esc(st.district) + '</div>' +
+      (st.near && st.near.length ? '<div class="up-nearrow">' + nearHtml(st) + '</div>' : "") +
       '<div class="up-badges">' + badges.join("") + '</div></div>' +
       (c.img ? '<img class="up-thumb" loading="lazy" alt="" src="' + url(c.img) + '" onerror="this.style.visibility=\'hidden\'">' : '<div class="up-thumb"></div>') +
       '</button>';
   }
 
-  function bindChips() {
-    root.querySelectorAll("[data-chip]").forEach(function (b) {
+  function bindChips(scope) {
+    (scope || root).querySelectorAll("[data-chip]").forEach(function (b) {
       b.addEventListener("click", function () {
         var id = b.dataset.chip;
         if (id === "both") S.onlyBoth = !S.onlyBoth;
@@ -282,12 +306,14 @@
     } else {
       wpBox = '<p>The studio takes Wellpass by check-in. Check that this class is included.</p>';
     }
-    sheet(
+    var sh = sheet(
       '<h2>' + esc(c.t) + '</h2>' +
       '<div class="up-sub">' + esc(dayLabel(S.date, true)) + ' · ' + esc(c.s) + '–' + esc(c.e) + (c.c ? ' · ' + esc(c.c) : "") + '</div>' +
       '<div class="up-box"><h3>Studio</h3><p><b>' + esc(st.name) + '</b></p><p>' + esc(st.street) + ', ' + esc(st.district) + '</p>' +
-        '<div class="up-row"><a class="up-btn ghost" target="_blank" rel="noopener" href="' + url(mapLink(st)) + '">Directions</a>' +
-        '<button class="up-btn ghost" data-open-studio="' + esc(c.st) + '">All classes here</button></div></div>' +
+        '<div class="up-nearlist">' + nearHtml(st, true) + '</div>' +
+        '<div class="up-row"><button class="up-btn ghost" data-show-map="' + esc(c.st) + '">Show on map</button>' +
+        '<button class="up-btn ghost" data-open-studio="' + esc(c.st) + '">All classes here</button></div>' +
+        '<a class="up-btn ghost" target="_blank" rel="noopener" href="' + url(mapLink(st)) + '">Directions</a></div>' +
       '<div class="up-box"><h3>Urban Sports Club</h3><p>Plans: ' + esc(c.pl.join(", ")) + (c.u ? ' · <b>' + esc(c.u) + ' spots left</b>' : "") + '</p>' +
         '<a class="up-btn" target="_blank" rel="noopener" href="https://urbansportsclub.com/de/class-details/' + encodeURIComponent(c.id) + '">Open class on Urban Sports Club</a></div>' +
       '<div class="up-box"><h3>Wellpass</h3>' + wpBox +
@@ -295,28 +321,39 @@
         (st.terms ? '<details><summary style="margin-top:10px;cursor:pointer;font-size:13px;color:#5c687c">Wellpass terms for this studio</summary><div class="up-terms">' + esc(st.terms) + '</div></details>' : "") +
       '</div>',
       c.img
-    ).el.querySelectorAll("[data-open-studio]").forEach(function (b) {
-      b.addEventListener("click", function () { b.closest(".up-sheet-wrap").remove(); document.body.style.overflow = ""; openStudio(b.dataset.openStudio); });
+    );
+    bindSheetLinks(sh);
+  }
+
+  function bindSheetLinks(sh) {
+    sh.el.querySelectorAll("[data-open-studio]").forEach(function (b) {
+      b.addEventListener("click", function () { sh.close(); openStudio(b.dataset.openStudio); });
+    });
+    sh.el.querySelectorAll("[data-show-map]").forEach(function (b) {
+      b.addEventListener("click", function () { sh.close(); showOnMap(b.dataset.showMap); });
     });
   }
 
   function openStudio(key) {
     var st = S.index.studios[key];
-    var classes = ((S.days[S.date] || {}).classes || []).filter(function (c) { return c.st === key && bookable(c); });
+    var classes = filtered().filter(function (c) { return c.st === key; });
     var rows = classes.length ? classes.map(function (c) {
       return '<p style="display:flex;gap:10px"><b style="width:44px;flex:none">' + esc(c.s) + '</b><span>' + esc(c.t) +
         (c.ok === true ? ' <span class="up-badge ok">✓ Wellpass</span>' : "") + '</span></p>';
-    }).join("") : '<p>No shared classes on this day.</p>';
-    sheet(
+    }).join("") : '<p>No classes matching your filters on this day.</p>';
+    var sh = sheet(
       '<h2>' + esc(st.name) + '</h2><div class="up-sub">' + esc(st.street) + ' · ' + esc(st.district) + '</div>' +
+      '<div class="up-nearlist">' + nearHtml(st, true) + '</div>' +
       '<div class="up-box"><h3>' + esc(dayLabel(S.date, true)) + '</h3>' + rows + '</div>' +
       '<div class="up-box"><h3>Wellpass</h3><p>' + esc(st.wp_label) + ' · listed as “' + esc(st.wp_name) + '”</p>' +
         (st.terms ? '<div class="up-terms">' + esc(st.terms) + '</div>' : "") +
         '<a class="up-btn ghost" target="_blank" rel="noopener" href="' + url(st.wp_url) + '">Studio on Wellpass</a></div>' +
       '<div class="up-box"><h3>Urban Sports Club</h3><p>' + esc(st.disciplines.join(" · ")) + '</p><p>Plans: ' + esc(st.plans.join(", ")) + '</p>' +
         '<a class="up-btn ghost" target="_blank" rel="noopener" href="' + url(st.usc_url) + '">Studio on Urban Sports Club</a></div>' +
-      '<a class="up-btn" target="_blank" rel="noopener" href="' + url(mapLink(st)) + '">Directions</a>'
+      '<div class="up-row">' + (S.tab === "map" ? "" : '<button class="up-btn ghost" data-show-map="' + esc(key) + '">Show on map</button>') +
+      '<a class="up-btn" target="_blank" rel="noopener" href="' + url(mapLink(st)) + '">Directions</a></div>'
     );
+    bindSheetLinks(sh);
   }
 
   function openFilters() {
@@ -348,6 +385,125 @@
       S.plan = ""; S.district = ""; S.wp = ["app", "external", "checkin"]; store.set("plan", ""); store.set("wp", S.wp); s.close(); render();
     });
     el.querySelector("[data-done]").addEventListener("click", function () { s.close(); render(); });
+  }
+
+  /* ---------- map ---------- */
+  var CDN = "https://cdnjs.cloudflare.com/ajax/libs/";
+  var M = { map: null, pins: null, stations: null, me: null, loading: null, focus: null };
+
+  function loadAsset(tag, attrs) {
+    return new Promise(function (ok, fail) {
+      var el = document.createElement(tag);
+      for (var k in attrs) el.setAttribute(k, attrs[k]);
+      el.onload = ok; el.onerror = fail;
+      document.head.appendChild(el);
+    });
+  }
+  function loadLeaflet() {
+    if (M.loading) return M.loading;
+    M.loading = Promise.all([
+      loadAsset("link", { rel: "stylesheet", href: CDN + "leaflet/1.9.4/leaflet.min.css" }),
+      loadAsset("link", { rel: "stylesheet", href: CDN + "leaflet.markercluster/1.5.3/MarkerCluster.min.css" }),
+      loadAsset("script", { src: CDN + "leaflet/1.9.4/leaflet.min.js" })
+    ]).then(function () {
+      return loadAsset("script", { src: CDN + "leaflet.markercluster/1.5.3/leaflet.markercluster.min.js" });
+    });
+    return M.loading;
+  }
+
+  function stationIcon(t) {
+    return L.divIcon({ className: "up-stmark", html: '<i class="up-st-' + t.toLowerCase() + '">' + t + '</i>', iconSize: [18, 18], iconAnchor: [9, 9] });
+  }
+  function pinIcon(n) {
+    return L.divIcon({ className: "up-pin", html: '<span><b>' + n + '</b></span>', iconSize: [34, 42], iconAnchor: [17, 40] });
+  }
+
+  function initMap() {
+    M.map = L.map($(".up-map"), { zoomControl: false }).setView([52.515, 13.405], 12);
+    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      maxZoom: 19, className: "up-tiles",
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(M.map);
+    M.stations = L.layerGroup();
+    (S.index.stations || []).forEach(function (s) {
+      L.marker([s.lat, s.lng], { icon: stationIcon(s.t), keyboard: false, zIndexOffset: -1000 })
+        .bindTooltip(s.t + " " + esc(s.n), { direction: "top", offset: [0, -8] })
+        .addTo(M.stations);
+    });
+    function syncStations() {
+      var show = M.map.getZoom() >= 13;
+      if (show && !M.map.hasLayer(M.stations)) M.stations.addTo(M.map);
+      if (!show && M.map.hasLayer(M.stations)) M.map.removeLayer(M.stations);
+    }
+    M.map.on("zoomend", syncStations);
+    syncStations();
+    M.pins = L.markerClusterGroup({
+      showCoverageOnHover: false, spiderfyOnMaxZoom: true, maxClusterRadius: 48,
+      iconCreateFunction: function (cl) {
+        var n = cl.getChildCount();
+        var size = n < 10 ? 38 : n < 50 ? 46 : 54;
+        return L.divIcon({ className: "up-cluster", html: '<span>' + n + '</span>', iconSize: [size, size] });
+      }
+    }).addTo(M.map);
+    $(".up-locate").addEventListener("click", locateMe);
+  }
+
+  function locateMe() {
+    if (!navigator.geolocation) return;
+    var b = $(".up-locate");
+    b.classList.add("busy");
+    navigator.geolocation.getCurrentPosition(function (pos) {
+      b.classList.remove("busy");
+      var ll = [pos.coords.latitude, pos.coords.longitude];
+      if (M.me) M.me.setLatLng(ll);
+      else M.me = L.circleMarker(ll, { radius: 8, color: "#fff", weight: 3, fillColor: "#2e70ce", fillOpacity: 1 }).addTo(M.map);
+      M.map.setView(ll, Math.max(M.map.getZoom(), 15));
+    }, function () {
+      b.classList.remove("busy");
+      alert("Couldn't get your location. Check that location access is allowed for this site.");
+    }, { enableHighAccuracy: true, timeout: 10000, maximumAge: 60000 });
+  }
+
+  function renderMap() {
+    var day = S.days[S.date];
+    var chipsEl = $(".up-mapchips");
+    if (day) { chipsEl.innerHTML = chipsHtml(day); bindChips(chipsEl); }
+    $(".up-mapview").style.setProperty("--up-top-h", $(".up-top").getBoundingClientRect().height + "px");
+    if (!window.L || !window.L.markerClusterGroup) {
+      $(".up-mapcount").textContent = "Loading map…";
+      loadLeaflet().then(function () { if (!M.map) initMap(); renderMap(); })
+        .catch(function () { $(".up-mapcount").textContent = "Couldn't load the map. Check your connection."; });
+      return;
+    }
+    if (!M.map) initMap();
+    M.map.invalidateSize();
+    if (!day) return;
+    var by = {};
+    filtered().forEach(function (c) { (by[c.st] = by[c.st] || []).push(c); });
+    M.pins.clearLayers();
+    var markers = [], focusMarker = null;
+    Object.keys(by).forEach(function (k) {
+      var st = S.index.studios[k];
+      if (!st || st.lat == null) return;
+      var m = L.marker([st.lat, st.lng], { icon: pinIcon(by[k].length), title: st.name });
+      m.on("click", function () { openStudio(k); });
+      markers.push(m);
+      if (M.focus === k) focusMarker = m;
+    });
+    M.pins.addLayers(markers);
+    var nClasses = Object.keys(by).reduce(function (a, k) { return a + by[k].length; }, 0);
+    $(".up-mapcount").textContent = markers.length + " studios · " + nClasses + " classes · " + dayLabel(S.date, true);
+    if (focusMarker) {
+      var k = M.focus;
+      M.focus = null;
+      M.pins.zoomToShowLayer(focusMarker, function () { openStudio(k); });
+    }
+  }
+
+  function showOnMap(key) {
+    M.focus = key;
+    S.tab = "map";
+    render();
   }
 
   /* ---------- start ---------- */

@@ -23,6 +23,7 @@ GitHub Action "Refresh class data" (run on demand)        GitHub Pages (free)
 - `.github/workflows/refresh-data.yml`: on-demand data refresh (Actions → *Refresh class data* → *Run workflow*), followed by a deploy.
 - `.github/workflows/deploy-pages.yml`: publishes the site whenever the app or data changes on `main`.
 - `dev/index.html`: local preview.
+- Map: [Leaflet](https://leafletjs.com) with OpenStreetMap tiles; U-/S-Bahn stations come from OpenStreetMap via the Overpass API.
 
 ## Run it locally
 

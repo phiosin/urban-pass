@@ -108,7 +108,7 @@ body.up-fullscreen { margin: 0; background: #e9e6e0; }
 /* Tab bar */
 .up-tabs {
   position: fixed; left: 50%; transform: translateX(-50%); bottom: 0; width: 100%; max-width: 560px; z-index: 6;
-  display: grid; grid-template-columns: repeat(3, 1fr); background: rgba(255,255,255,.96); backdrop-filter: blur(10px);
+  display: grid; grid-template-columns: repeat(4, 1fr); background: rgba(255,255,255,.96); backdrop-filter: blur(10px);
   border-top: 1px solid var(--up-line); padding: 6px 0 calc(8px + env(safe-area-inset-bottom));
 }
 .up-embedded .up-tabs { position: sticky; left: auto; transform: none; }
@@ -155,3 +155,53 @@ body.up-fullscreen { margin: 0; background: #e9e6e0; }
 }
 .up-stale { margin: 8px 16px 0; padding: 10px 12px; border-radius: 12px; background: var(--up-amber-bg); color: var(--up-amber); font-size: 13px; }
 .up-stale a { color: var(--up-amber) !important; font-weight: 700; }
+
+/* Nearest stations (Berlin signage: U = blue square, S = green circle) */
+.up-st { display: inline-flex; gap: 2px; margin-right: 5px; vertical-align: -3px; }
+.up-st i, .up-stmark i {
+  font-style: normal; font: 700 10.5px/16px var(--up-font); color: #fff; width: 16px; height: 16px; text-align: center; display: inline-block;
+}
+.up-st-u { background: #115d91; border-radius: 3px; }
+.up-st-s { background: #008d4f; border-radius: 50%; }
+.up-nearrow { font-size: 12.5px; color: var(--up-muted); margin-top: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.up-near { display: inline-block; margin-right: 10px; }
+.up-nearlist { display: flex; flex-wrap: wrap; gap: 4px 0; font-size: 13.5px; color: var(--up-ink); margin: 8px 0 2px; }
+
+/* Map */
+#urban-pass-app.up-on-map { padding-bottom: 0; min-height: 0; }
+.up-mapview { position: relative; height: calc(100vh - var(--up-top-h, 190px) - 64px - env(safe-area-inset-bottom)); height: calc(100dvh - var(--up-top-h, 190px) - 64px - env(safe-area-inset-bottom)); }
+.up-mapview[hidden] { display: none; }
+.up-map { position: absolute; inset: 0; background: #e8e4dc; z-index: 1; }
+.up-mapchips { position: absolute; top: 0; left: 0; right: 0; z-index: 500; padding: 10px 12px; background: linear-gradient(var(--up-bg), rgba(248,246,243,0)); }
+.up-mapchips .up-chip { box-shadow: 0 2px 6px rgba(0,17,44,.12); }
+.up-mapcount {
+  position: absolute; left: 50%; transform: translateX(-50%); bottom: 14px; z-index: 500; max-width: calc(100% - 96px);
+  background: var(--up-navy); color: #fff; font-size: 12.5px; font-weight: 600; padding: 7px 13px; border-radius: 999px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; box-shadow: 0 4px 14px rgba(0,17,44,.25);
+}
+.up-mapcount:empty { display: none; }
+.up-locate {
+  position: absolute; right: 12px; bottom: 12px; z-index: 500; width: 44px; height: 44px; border-radius: 50%; border: 0;
+  background: #fff; color: var(--up-blue) !important; box-shadow: 0 3px 12px rgba(0,17,44,.2); display: grid; place-items: center;
+}
+.up-locate svg { width: 22px; height: 22px; }
+.up-locate.busy svg { animation: up-spin 1s linear infinite; }
+@keyframes up-spin { to { transform: rotate(360deg); } }
+.up-pin { background: none; border: 0; }
+.up-pin span {
+  display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50% 50% 50% 4px; transform: rotate(-45deg);
+  background: var(--up-navy); border: 2.5px solid #fff; box-shadow: 0 3px 8px rgba(0,17,44,.35);
+  color: #fff; font: 700 13px/1 var(--up-font);
+}
+.up-pin b { transform: rotate(45deg); font-weight: 700; }
+.up-cluster { background: none; border: 0; }
+.up-cluster span {
+  display: grid; place-items: center; width: 100%; height: 100%; border-radius: 50%; background: var(--up-blue); color: #fff;
+  font: 700 14px/1 var(--up-font); border: 3px solid rgba(255,255,255,.9); box-shadow: 0 0 0 6px rgba(46,112,206,.25), 0 3px 8px rgba(0,17,44,.3);
+}
+.up-stmark { background: none; border: 0; }
+.up-stmark i { box-shadow: 0 0 0 1.5px #fff; }
+.leaflet-container { font-family: var(--up-font); }
+.leaflet-tooltip { font-weight: 600; font-size: 12px; border-radius: 8px; padding: 3px 7px; }
+.leaflet-control-attribution { font-size: 10px; }
+.up-tiles { filter: saturate(.75) contrast(.95); }
