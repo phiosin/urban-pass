@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Urban Pass</title>
+<style>
+:root {
+  --bg: #f6f5f1; --card: #ffffff; --ink: #1c1c1a; --muted: #6b6a64; --line: #e3e1da;
+  --usc: #0b6bcb; --wp: #0f8a5f; --warn: #a15c00; --chip: #efeee8; --accent: #1c1c1a;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --bg: #151514; --card: #1f1f1d; --ink: #ecebe6; --muted: #9c9a92; --line: #2f2f2c;
+    --usc: #6fb1f5; --wp: #5fd0a2; --warn: #f0b35a; --chip: #2a2a27; --accent: #ecebe6; }
+}
+* { box-sizing: border-box; }
+html, body { overflow-x: hidden; }
+body { margin: 0; background: var(--bg); color: var(--ink);
+  font: 15px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+.wrap { max-width: 960px; margin: 0 auto; padding: 24px 16px 64px; }
+header h1 { margin: 0; font-size: 28px; letter-spacing: -0.02em; }
+header p { margin: 4px 0 0; color: var(--muted); }
+.stats { display: flex; gap: 20px; flex-wrap: wrap; margin: 18px 0 8px; }
+.stat b { display: block; font-size: 22px; font-variant-numeric: tabular-nums; }
+.stat span { color: var(--muted); font-size: 13px; }
+.filters { position: sticky; top: 0; z-index: 2; background: var(--bg); padding: 12px 0;
+  display: grid; grid-template-columns: minmax(0,2fr) repeat(3, minmax(0,1fr)); gap: 8px; border-bottom: 1px solid var(--line); }
+.filters input, .filters select { width: 100%; padding: 9px 10px; border: 1px solid var(--line);
+  border-radius: 8px; background: var(--card); color: var(--ink); font: inherit; }
+.toggles { display: flex; gap: 6px; flex-wrap: wrap; grid-column: 1 / -1; }
+.toggles button { border: 1px solid var(--line); background: var(--card); color: var(--ink);
+  border-radius: 999px; padding: 5px 12px; font: inherit; font-size: 13px; cursor: pointer; }
+.toggles button[aria-pressed="true"] { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+.note { color: var(--muted); font-size: 13px; margin: 12px 0; }
+.hour { margin: 22px 0 8px; font-size: 13px; font-weight: 600; color: var(--muted); letter-spacing: .04em; }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px;
+  display: grid; grid-template-columns: 92px minmax(0,1fr); gap: 4px 14px; margin-bottom: 8px; }
+.time { font-weight: 600; font-variant-numeric: tabular-nums; }
+.time small { display: block; color: var(--muted); font-weight: 400; }
+.title { font-weight: 600; }
+.where { color: var(--muted); font-size: 14px; }
+.chips { grid-column: 2; display: flex; gap: 6px; flex-wrap: wrap; margin-top: 6px; }
+.chip { font-size: 12px; padding: 2px 8px; border-radius: 999px; background: var(--chip); }
+.chip.usc { color: var(--usc); } .chip.wp { color: var(--wp); } .chip.warn { color: var(--warn); }
+.links { grid-column: 2; display: flex; gap: 14px; flex-wrap: wrap; margin-top: 6px; font-size: 14px; }
+.links a { color: var(--ink); }
+details { grid-column: 2; font-size: 13px; color: var(--muted); }
+details summary { cursor: pointer; }
+details p { white-space: pre-line; margin: 6px 0 0; }
+.empty { text-align: center; color: var(--muted); padding: 48px 0; }
+@media (max-width: 640px) {
+  .filters { grid-template-columns: minmax(0,1fr) minmax(0,1fr); }
+  .filters .q { grid-column: 1 / -1; }
+  .card { grid-template-columns: minmax(0,1fr); }
+  .chips, .links, details { grid-column: 1; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Urban Pass</h1>
+    <p id="sub"></p>
+  </header>
+  <div class="stats" id="stats"></div>
+  <div class="filters">
+    <input class="q" id="q" type="search" placeholder="Search class, activity or studio">
+    <select id="district"><option value="">All districts</option></select>
+    <select id="plan"><option value="">Any USC plan</option></select>
+    <select id="from"></select>
+    <div class="toggles" id="toggles"></div>
+  </div>
+  <p class="note" id="note"></p>
+  <div id="list"></div>
+</div>
+<script>
+const DATA = /*__DATA__*/null;
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const day = new Date(DATA.date + "T12:00:00");
+$("sub").textContent = "Classes you can do together with Urban Sports Club + Wellpass · Berlin · " +
+  day.toLocaleDateString("en-GB", { weekday: "long", day: "numeric", month: "long" });
+
+const STATUS = {
+  app: "Book in Wellpass app",
+  external: "Book via studio link",
+  checkin: "Check in on site",
+};
+const state = { q: "", district: "", plan: "", from: "", status: new Set(Object.keys(STATUS)), onlyActivity: false,
+  onlyConfirmed: !!DATA.wellpass_checked };
+$("note").textContent = DATA.wellpass_checked
+  ? "Classes marked ✓ are on both the Urban Sports Club and the Wellpass schedule at the same time. Other classes are at shared studios where Wellpass works by check-in or the studio's own booking page, so check there before you book."
+  : "Each class is on Urban Sports Club's schedule at a studio that is also a Wellpass partner. Check in the Wellpass app that the class is open to Wellpass before you book.";
+
+const uniq = (a) => [...new Set(a.filter(Boolean))].sort((x, y) => x.localeCompare(y, "de"));
+for (const d of uniq(DATA.classes.map((c) => c.district))) $("district").add(new Option(d, d));
+for (const p of ["Essential", "Classic", "Premium", "Max"]) $("plan").add(new Option(p + " plan", p));
+$("from").add(new Option("Any time", ""));
+for (let h = 6; h <= 21; h++) $("from").add(new Option("From " + String(h).padStart(2, "0") + ":00", String(h).padStart(2, "0") + ":00"));
+
+const toggles = $("toggles");
+for (const [k, label] of Object.entries(STATUS)) {
+  const b = document.createElement("button");
+  b.type = "button"; b.textContent = label; b.setAttribute("aria-pressed", "true");
+  b.onclick = () => { state.status.has(k) ? state.status.delete(k) : state.status.add(k); b.setAttribute("aria-pressed", state.status.has(k)); render(); };
+  toggles.append(b);
+}
+const act = document.createElement("button");
+act.type = "button"; act.textContent = "Activity also listed on Wellpass"; act.setAttribute("aria-pressed", "false");
+act.onclick = () => { state.onlyActivity = !state.onlyActivity; act.setAttribute("aria-pressed", state.onlyActivity); render(); };
+toggles.append(act);
+if (DATA.wellpass_checked) {
+  const conf = document.createElement("button");
+  conf.type = "button"; conf.textContent = "✓ Only on both schedules"; conf.setAttribute("aria-pressed", "true");
+  conf.onclick = () => { state.onlyConfirmed = !state.onlyConfirmed; conf.setAttribute("aria-pressed", state.onlyConfirmed); render(); };
+  toggles.prepend(conf);
+}
+
+$("q").oninput = (e) => { state.q = e.target.value.toLowerCase(); render(); };
+$("district").onchange = (e) => { state.district = e.target.value; render(); };
+$("plan").onchange = (e) => { state.plan = e.target.value; render(); };
+$("from").onchange = (e) => { state.from = e.target.value; render(); };
+
+function stats(list) {
+  const studios = new Set(list.map((c) => c.wellpass.name)).size;
+  $("stats").innerHTML = [
+    [list.length, "classes shown"], [studios, "studios"],
+    [DATA.counts.usc_classes, "USC classes that day"], [DATA.counts.shared_studios, "studios on both"],
+    ...(DATA.wellpass_checked ? [[DATA.counts.confirmed, "classes on both schedules"]] : []),
+  ].map(([n, l]) => `<div class="stat"><b>${n.toLocaleString("en")}</b><span>${l}</span></div>`).join("");
+}
+
+function card(c) {
+  const w = c.wellpass;
+  const chips = [
+    ...c.plans.map((p) => `<span class="chip usc">USC ${esc(p)}</span>`),
+    w.confirmed
+      ? `<span class="chip wp">✓ On Wellpass schedule${w.wp_class && w.wp_class.spots != null ? " · " + esc(w.wp_class.spots) + " spots" : ""}</span>`
+      : `<span class="chip wp">Wellpass · ${esc(w.status_label)}</span>`,
+    w.activity_listed === false ? `<span class="chip warn">Activity not listed on Wellpass</span>` : "",
+    c.spots_left != null && c.spots_left !== "" ? `<span class="chip">${esc(c.spots_left)} USC spots left</span>` : "",
+  ].join("");
+  const links = [
+    `<a href="${esc(c.url)}" target="_blank" rel="noopener">USC class</a>`,
+    `<a href="${esc(w.url)}" target="_blank" rel="noopener">Wellpass studio</a>`,
+    w.booking_link ? `<a href="${esc(w.booking_link)}" target="_blank" rel="noopener">Studio booking page</a>` : "",
+    w.lat ? `<a href="https://www.google.com/maps/search/?api=1&query=${w.lat},${w.lng}" target="_blank" rel="noopener">Map</a>` : "",
+  ].join("");
+  return `<div class="card">
+    <div class="time">${esc(c.start)}<small>${esc(c.end)}</small></div>
+    <div><div class="title">${esc(c.title)}</div>
+      <div class="where">${esc(c.venue_name)} · ${esc(w.street)}, ${esc(c.district)}${c.category ? " · " + esc(c.category) : ""}</div></div>
+    <div class="chips">${chips}</div>
+    <div class="links">${links}</div>
+    ${w.terms ? `<details><summary>Wellpass terms for this studio</summary><p>${esc(w.terms)}</p></details>` : ""}
+  </div>`;
+}
+
+function render() {
+  const list = DATA.classes.filter((c) =>
+    (!state.q || `${c.title} ${c.category} ${c.venue_name} ${c.wellpass.name}`.toLowerCase().includes(state.q)) &&
+    (!state.district || c.district === state.district) &&
+    (!state.plan || c.plans.includes(state.plan)) &&
+    (!state.from || c.start >= state.from) &&
+    state.status.has(c.wellpass.status) &&
+    (!state.onlyActivity || c.wellpass.activity_listed === true) &&
+    (!state.onlyConfirmed || c.wellpass.confirmed === true));
+  stats(list);
+  if (!list.length) { $("list").innerHTML = `<div class="empty">No classes match these filters.</div>`; return; }
+  let html = "", hour = "";
+  for (const c of list) {
+    const h = c.start.slice(0, 2);
+    if (h !== hour) { hour = h; html += `<div class="hour">${h}:00</div>`; }
+    html += card(c);
+  }
+  $("list").innerHTML = html;
+}
+render();
+</script>
+</body>
+</html>

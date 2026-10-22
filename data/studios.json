@@ -1,0 +1,4074 @@
+[
+ {
+  "usc": "pink-frauen-fitness",
+  "usc_name": "Pink Frauen Fitness (women)",
+  "wellpass": "berlin-hard-candy-fitness-women-friedrichstrasse",
+  "wellpass_name": "Pink Frauenfitness Berlin",
+  "street": "Friedrichstraße 100",
+  "score": 0.5
+ },
+ {
+  "usc": "yogafurdich-friedrichshain",
+  "usc_name": "yogafürdich - Berlin Friedrichshain",
+  "wellpass": "berlin-yogafuerdich-friedrichshain",
+  "wellpass_name": "yogafürdich Studio Berlin Friedrichshain",
+  "street": "Frankfurter Allee 53",
+  "score": 1.0
+ },
+ {
+  "usc": "holmes-place-gendarmenmarkt",
+  "usc_name": "Holmes Place Gendarmenmarkt",
+  "wellpass": "berlin-holmes-place-gendarmenmarkt",
+  "wellpass_name": "Holmes Place Berlin Gendarmenmarkt",
+  "street": "Friedrichstraße 68",
+  "score": 1.0
+ },
+ {
+  "usc": "rocycle-rosenthaler-platz",
+  "usc_name": "Rocycle Berlin Mitte",
+  "wellpass": "berlin-mitte-rostudios",
+  "wellpass_name": "Rostudios - Rocycle Berlin Mitte",
+  "street": "Linienstraße 41",
+  "score": 1.0
+ },
+ {
+  "usc": "schwimm-und-sprunghalle-im-europasportpark",
+  "usc_name": "Schwimm- und Sprunghalle im Europasportpark",
+  "wellpass": "berlin-schwimm-und-sprunghalle-im-europasportpark",
+  "wellpass_name": "Schwimm- und Sprunghalle im Europasportpark",
+  "street": "Paul-Heyse-Straße 26",
+  "score": 1.0
+ },
+ {
+  "usc": "yoga-on-the-move-the-shala",
+  "usc_name": "Yoga on the Move - The Shala",
+  "wellpass": "berlin-yoga-on-the-move-the-shala",
+  "wellpass_name": "Yoga on the Move Berlin The Shala",
+  "street": "Akazienstraße 27",
+  "score": 1.0
+ },
+ {
+  "usc": "storm-bootcamp-berlin-neue-welt",
+  "usc_name": "STORM Bootcamp Berlin - Neue Welt",
+  "wellpass": "berlin-holmes-place-health-club-neue-welt",
+  "wellpass_name": "Holmes Place Berlin Neue Welt",
+  "street": "Hasenheide 109",
+  "score": 0.5
+ },
+ {
+  "usc": "motions-tanz-und-bewegungsstudio",
+  "usc_name": "motion*s MORITZPLATZ Tanz- und Bewegungsstudio",
+  "wellpass": "berlin-motions-tanz-und-bewegungsstudio",
+  "wellpass_name": "motion*s Moritzplatz Tanz- und Bewegungsstudio Berlin",
+  "street": "Prinzenstraße 85",
+  "score": 1.0
+ },
+ {
+  "usc": "evo-rosenthaler-platz",
+  "usc_name": "EVO Fitness Rosenthaler Platz",
+  "wellpass": "berlin-rosenthaler-platz-evo-fitness",
+  "wellpass_name": "EVO Fitness Berlin Rosenthaler Platz",
+  "street": "Torstraße 125",
+  "score": 1.0
+ },
+ {
+  "usc": "american-fitness-berlin",
+  "usc_name": "American Fitness - Berlin",
+  "wellpass": "berlin-american-fitness",
+  "wellpass_name": "American Fitness Berlin",
+  "street": "Hermannplatz 10",
+  "score": 1.0
+ },
+ {
+  "usc": "mitte-charlotte-boutique-padel-club",
+  "usc_name": "mitte — charlotte | charlottenburg",
+  "wellpass": "berlin-mitte-charlotte",
+  "wellpass_name": "mitte - Charlotte Berlin",
+  "street": "Sophie-Charlotten-Straße 14",
+  "score": 1.0
+ },
+ {
+  "usc": "playground-berlin",
+  "usc_name": "Playground Berlin",
+  "wellpass": "berlin-playground",
+  "wellpass_name": "Playground Berlin",
+  "street": "Adlergestell 105",
+  "score": 1.0
+ },
+ {
+  "usc": "turnhalle-hightech-sports-reinhardtstrae",
+  "usc_name": "turnhalle - hightech sports",
+  "wellpass": "berlin-turnhalle",
+  "wellpass_name": "TURNHALLE hightech sports Berlin",
+  "street": "Reinhardtstraße 27a",
+  "score": 1.0
+ },
+ {
+  "usc": "open-studios-neuklln",
+  "usc_name": "OPEN – Neukölln",
+  "wellpass": "berlin-mainzerstrasse-open-studios",
+  "wellpass_name": "OPEN STUDIOS - Neukölln Berlin",
+  "street": "Mainzer Straße 39",
+  "score": 1.0
+ },
+ {
+  "usc": "soulyoga-berlin-yoga-aerial-studio",
+  "usc_name": "SOULYOGA Berlin ~ Yoga & Aerial Studio",
+  "wellpass": "berlin-soulyoga",
+  "wellpass_name": "SOULYOGA Berlin",
+  "street": "Herbertstraße 11",
+  "score": 1.0
+ },
+ {
+  "usc": "think-outside-berlin",
+  "usc_name": "THINK OUTSIDE Berlin",
+  "wellpass": "berlin-think-outside",
+  "wellpass_name": "THINK OUTSIDE Berlin",
+  "street": "Eichborndamm 167",
+  "score": 1.0
+ },
+ {
+  "usc": "kickerworld-berlin",
+  "usc_name": "KICKERWorld Berlin",
+  "wellpass": "berlin-kickerworld",
+  "wellpass_name": "KICKERWorld Berlin",
+  "street": "Kleine Eiswerderstraße 1",
+  "score": 1.0
+ },
+ {
+  "usc": "airport-squash-fitness",
+  "usc_name": "Airport Squash & Fitness",
+  "wellpass": "berlin-airport-squash-und-fitness",
+  "wellpass_name": "Airport Squash & Fitness Berlin",
+  "street": "Rue Charles Calmette 11D",
+  "score": 1.0
+ },
+ {
+  "usc": "tennis-club-sweet-spot",
+  "usc_name": "Tennis Club Sweet Spot",
+  "wellpass": "berlin-tc-sweet-spot",
+  "wellpass_name": "TC Sweet Spot Berlin",
+  "street": "Hermann-Hesse-Straße 46",
+  "score": 0.67
+ },
+ {
+  "usc": "ping-pong-park-berlin",
+  "usc_name": "PING-PONG Park Berlin",
+  "wellpass": "berlin-pingpongpark",
+  "wellpass_name": "PING-PONG Park Berlin",
+  "street": "Müllerstraße 46",
+  "score": 1.0
+ },
+ {
+  "usc": "krav-maga-brandenburg-berlin-ev-kudamm",
+  "usc_name": "Krav Maga Brandenburg-Berlin e.V. (IKMF) - Berlin",
+  "wellpass": "berlin-krav-maga",
+  "wellpass_name": "Krav Maga Berlin",
+  "street": "Joachim-Friedrich-Straße 37-38",
+  "score": 1.0
+ },
+ {
+  "usc": "sky-plate-berlin",
+  "usc_name": "Sky Plate Berlin",
+  "wellpass": "berlin-sky-plate",
+  "wellpass_name": "Sky.Plate Berlin",
+  "street": "Hauptstraße 13A",
+  "score": 1.0
+ },
+ {
+  "usc": "tai-chi-im-park",
+  "usc_name": "Tai Chi Matrix im Kleist Park",
+  "wellpass": "berlin-taichi-matrix",
+  "wellpass_name": "Tai Chi Matrix Berlin ",
+  "street": "Elßholzstraße 7",
+  "score": 1.0
+ },
+ {
+  "usc": "pickleball-collective-turmstrae-indoor",
+  "usc_name": "Pickleball Collective @ Turmstraße (Indoor)",
+  "wellpass": "berlin-pickleball-collective-moabit",
+  "wellpass_name": "PickleBall.Collective (Moabit) Berlin",
+  "street": "Turmstraße 85",
+  "score": 1.0
+ },
+ {
+  "usc": "beat81-indoor-workout-rosa-luxemburg-strasse",
+  "usc_name": "BEAT81 - Rosa BUILD+",
+  "wellpass": "berlin-beat81-rosa-luxemburg-strasse",
+  "wellpass_name": "BEAT81 Berlin - Rosa BUILD+",
+  "street": "Rosa-Luxemburg-Straße 17",
+  "score": 1.0
+ },
+ {
+  "usc": "holmes-place-schlossstrasse",
+  "usc_name": "Holmes Place Schlossstrasse",
+  "wellpass": "berlin-holmes-place-schlossstrasse",
+  "wellpass_name": "Holmes Place Berlin Schlossstraße",
+  "street": "Schildhornstraße 1",
+  "score": 1.0
+ },
+ {
+  "usc": "padel-factory",
+  "usc_name": "Padel Factory",
+  "wellpass": "berlin-padel-factory",
+  "wellpass_name": "Padel Factory Berlin",
+  "street": "Am Gewerbepark 5",
+  "score": 1.0
+ },
+ {
+  "usc": "rocycle-fhain",
+  "usc_name": "Rocycle Berlin F'hain",
+  "wellpass": "berlin-rostudios-fhain",
+  "wellpass_name": "Rostudios - Rocycle Berlin F´hain",
+  "street": "Warschauer Straße 6",
+  "score": 1.0
+ },
+ {
+  "usc": "runningncalisthenics-club-prenzlauer-ber",
+  "usc_name": "RUNNING'N'CALISTHENICS CLUB @Velodrom",
+  "wellpass": "berlin-runningncalisthenicsclubpankow",
+  "wellpass_name": "RUNNING'N'CALISTHENICS CLUB Pankow Berlin",
+  "street": "Paul-Heyse-Straße 29",
+  "score": 1.0
+ },
+ {
+  "usc": "hit-bln-mitte-personal-training-gym-berlin",
+  "usc_name": "HIT BLN Mitte - Personal Training Gym Berlin",
+  "wellpass": "berlin-mitte-hit-bln",
+  "wellpass_name": "HIT BLN - Personal Training Gym Berlin Mitte",
+  "street": "Ackerstraße 155",
+  "score": 1.0
+ },
+ {
+  "usc": "auszeit-die-wellnessmassagen",
+  "usc_name": "Auszeit - die Wellnessmassagen",
+  "wellpass": "berlin-auszeit-die-wellnessmassagen",
+  "wellpass_name": "AUSZEIT - Die Wellnessmassagen Berlin",
+  "street": "Thaerstraße 29 a",
+  "score": 1.0
+ },
+ {
+  "usc": "berta-block-1",
+  "usc_name": "Berta Block",
+  "wellpass": "berlin-berta-block",
+  "wellpass_name": "Berta Block Berlin",
+  "street": "Mühlenstraße 62",
+  "score": 1.0
+ },
+ {
+  "usc": "wemoa-studio",
+  "usc_name": "WeMoa by Coach Noah - HQ",
+  "wellpass": "berlin-wemoabycoachnoah",
+  "wellpass_name": "WeMoa by Coach Noah Berlin",
+  "street": "Havelberger Straße 28",
+  "score": 1.0
+ },
+ {
+  "usc": "padelbros",
+  "usc_name": "PadelBros",
+  "wellpass": "berlin-padelbros",
+  "wellpass_name": "PadelBros Berlin",
+  "street": "Wittestraße 46",
+  "score": 1.0
+ },
+ {
+  "usc": "jivamukti-yoga-mitte",
+  "usc_name": "THREE BOONS YOGA Mitte f.k.a. Jivamukti Berlin",
+  "wellpass": "berlin-threeboonsyogamitte",
+  "wellpass_name": "Three Boons Yoga (Berlin Mitte)",
+  "street": "Brunnenstraße 29",
+  "score": 1.0
+ },
+ {
+  "usc": "motions-gleisdreieck-tanz-und-bewegungsstudio",
+  "usc_name": "motion*s GLEISDREIECK Tanz- und Bewegungsstudio",
+  "wellpass": "berlin-motions-gleisdreieck",
+  "wellpass_name": "motion*s Gleisdreieck Tanz- und Bewegungsstudio Berlin",
+  "street": "Tempelhofer Ufer 36",
+  "score": 1.0
+ },
+ {
+  "usc": "fitbox-berlin-motzstrasse-1",
+  "usc_name": "fitbox Berlin Motzstraße",
+  "wellpass": "berlin-fitbox-motzstrasse",
+  "wellpass_name": "fitbox Berlin Motzstraße",
+  "street": "Motzstraße 9",
+  "score": 1.0
+ },
+ {
+  "usc": "authentic-body-control-2",
+  "usc_name": "authentic body berlin - neukölln",
+  "wellpass": "berlin-authenticbodycontrol",
+  "wellpass_name": "authentic body control Berlin",
+  "street": "Boddinstraße 4",
+  "score": 1.0
+ },
+ {
+  "usc": "holmes-place-de-online-classes",
+  "usc_name": "Online - Holmes Place",
+  "wellpass": "berlin-holmes-place-gendarmenmarkt",
+  "wellpass_name": "Holmes Place Berlin Gendarmenmarkt",
+  "street": "Friedrichstraße 68",
+  "score": 0.67
+ },
+ {
+  "usc": "berlin-hot-yoga",
+  "usc_name": "Mahalaya Yoga & Healing Arts",
+  "wellpass": "berlin-mahalaya-yoga",
+  "wellpass_name": "Mahalaya Yoga Berlin",
+  "street": "Boxhagener Straße 77",
+  "score": 1.0
+ },
+ {
+  "usc": "black-belt-academy-berlin",
+  "usc_name": "Black Belt Academy Berlin",
+  "wellpass": "berlin-black-belt-academy",
+  "wellpass_name": "Black Belt Academy Berlin",
+  "street": "Brunowstraße 52",
+  "score": 1.0
+ },
+ {
+  "usc": "birgit-padel-grenzallee",
+  "usc_name": "Padel Arena Berlin",
+  "wellpass": "berlin-padel-arena",
+  "wellpass_name": "Padel Arena Berlin",
+  "street": "Haberstraße 18",
+  "score": 1.0
+ },
+ {
+  "usc": "onda-yoga-studio",
+  "usc_name": "Onda Yoga Studio",
+  "wellpass": "berlin-onda-yoga-studio",
+  "wellpass_name": "Onda Yoga Studio",
+  "street": "Greifswalder Straße 208",
+  "score": 1.0
+ },
+ {
+  "usc": "beyond-xberg",
+  "usc_name": "BEYOND Xberg",
+  "wellpass": "berlin-beyondkreuzberg",
+  "wellpass_name": "BEYOND Berlin Kreuzberg",
+  "street": "Reichenberger Straße 36",
+  "score": 1.0
+ },
+ {
+  "usc": "berlin-siu-lam-wing-chun-pai-1",
+  "usc_name": "Berlin Siu Lam Wing Chun Pai",
+  "wellpass": "berlin-siu-lam-wing-chun-pai",
+  "wellpass_name": "berlin siu lam wing chun pai Berlin",
+  "street": "Conrad-Blenkle-Straße 2-3",
+  "score": 1.0
+ },
+ {
+  "usc": "wing-tai-schule",
+  "usc_name": "little Kung Fu school",
+  "wellpass": "berlin-little-kung-fu-school",
+  "wellpass_name": "Little Kung Fu School Berlin",
+  "street": "Mehringdamm 64",
+  "score": 1.0
+ },
+ {
+  "usc": "yaya-massage-kreuzberg",
+  "usc_name": "Yaya Spa Berlin",
+  "wellpass": "berlin-kreuzberg-yayaspa",
+  "wellpass_name": "Yayaspa Berlin (Kreuzberg)",
+  "street": "Möckernstraße 66",
+  "score": 1.0
+ },
+ {
+  "usc": "kreuzretter-berlin-friedenau",
+  "usc_name": "KREUZRETTER Berlin-Friedenau",
+  "wellpass": "berlin-friedenau-kreuzretter",
+  "wellpass_name": "Kreuzretter Berlin Friedenau",
+  "street": "Rheinstraße 49",
+  "score": 1.0
+ },
+ {
+  "usc": "holi-collective-berlin-mitte",
+  "usc_name": "Holi Collective - Berlin Mitte",
+  "wellpass": "berlin-holi-collective",
+  "wellpass_name": "Holi Collective Berlin",
+  "street": "Charlottenstraße 18",
+  "score": 1.0
+ },
+ {
+  "usc": "box-kultur-berlin",
+  "usc_name": "Box-Kultur Berlin",
+  "wellpass": "berlin-box-kultur",
+  "wellpass_name": "Box-Kultur Berlin",
+  "street": "Liebenwalder Straße 33",
+  "score": 1.0
+ },
+ {
+  "usc": "hitbln",
+  "usc_name": "HIT BLN Moabit - Personal Training Gym Berlin",
+  "wellpass": "berlin-moabit-hit-bln",
+  "wellpass_name": "HIT BLN - Personal Training Gym Berlin Moabit",
+  "street": "Helgoländer Ufer 7B",
+  "score": 1.0
+ },
+ {
+  "usc": "ridebln-studio-west",
+  "usc_name": "ride.bln - studio charlottenburg",
+  "wellpass": "berlin-ride-bln-studio-charlottenburg",
+  "wellpass_name": "ride.bln - studio charlottenburg Berlin",
+  "street": "Lietzenburger Straße 86",
+  "score": 1.0
+ },
+ {
+  "usc": "yoga-rebellion-berlin",
+  "usc_name": "YOGA REBELLION – Mitte",
+  "wellpass": "berlin-mitte-yoga-rebellion",
+  "wellpass_name": "Yoga Rebellion Berlin Mitte",
+  "street": "Gartenstraße 6",
+  "score": 1.0
+ },
+ {
+  "usc": "rocycle-berlin-kudamm",
+  "usc_name": "Rocycle Berlin Kudamm",
+  "wellpass": "berlin-kudamm-rostudios",
+  "wellpass_name": "Rostudios - Rocycle Berlin Ku´damm",
+  "street": "Kurfürstendamm 64-65",
+  "score": 1.0
+ },
+ {
+  "usc": "good-moves-studio",
+  "usc_name": "Good Moves Studio",
+  "wellpass": "berlin-good-moves-studio",
+  "wellpass_name": "Good Moves Studio Berlin",
+  "street": "Immanuelkirchstraße 24",
+  "score": 1.0
+ },
+ {
+  "usc": "urban-gladiators-1",
+  "usc_name": "Urban Gladiators Functional, Aerial & Calisthenics",
+  "wellpass": "urban-gladiators-berlin",
+  "wellpass_name": "Urban Gladiators Berlin",
+  "street": "Wilhelmstraße 14",
+  "score": 1.0
+ },
+ {
+  "usc": "becycle-mitte",
+  "usc_name": "BECYCLE Mitte",
+  "wellpass": "berlin-becyclemitte",
+  "wellpass_name": "BECYCLE Berlin Mitte",
+  "street": "Brunnenstraße 24",
+  "score": 1.0
+ },
+ {
+  "usc": "jivamukti-berlin-kreuzberg",
+  "usc_name": "THREE BOONS YOGA Kreuzberg f.k.a Jivamukti Berlin",
+  "wellpass": "berlin-threeboonsyogakreuzberg",
+  "wellpass_name": "Three Boons Yoga (Berlin Kreuzberg)",
+  "street": "Dresdener Straße 11",
+  "score": 1.0
+ },
+ {
+  "usc": "gezer-spa-fitness",
+  "usc_name": "Gezer Spa & Fitness im Westin Grand",
+  "wellpass": "berlin-gezer-spa-friedrichstrasse",
+  "wellpass_name": "Gezer Spa Berlin Friedrichstraße",
+  "street": "Friedrichstraße 158-164",
+  "score": 0.67
+ },
+ {
+  "usc": "pdlx-padelsports",
+  "usc_name": "PDLX Berlin",
+  "wellpass": "berlin-pdlx-marienfelde",
+  "wellpass_name": "PDLX Marienfelde Berlin",
+  "street": "Malteserstraße 139",
+  "score": 1.0
+ },
+ {
+  "usc": "stay-yang-space",
+  "usc_name": "STAY YANG SPACE",
+  "wellpass": "berlin-stay-yang-space",
+  "wellpass_name": "STAY YANG SPACE Berlin",
+  "street": "Corinthstraße 54",
+  "score": 1.0
+ },
+ {
+  "usc": "katapult",
+  "usc_name": "Katapult",
+  "wellpass": "berlin-katapult",
+  "wellpass_name": "Katapult Berlin",
+  "street": "Wilhelminenhofstraße 91",
+  "score": 1.0
+ },
+ {
+  "usc": "speedfit-mitte",
+  "usc_name": "SPEED.FIT Mitte – Bahnhof Friedrichstraße",
+  "wellpass": "berlin-european-speed-fit",
+  "wellpass_name": "SPEED.FIT Berlin Mitte",
+  "street": "Albrechtstraße 12",
+  "score": 1.0
+ },
+ {
+  "usc": "kreuzberg-padel",
+  "usc_name": "Birgit Padel",
+  "wellpass": "berlin-birgit-padel",
+  "wellpass_name": "Birgit Padel Berlin",
+  "street": "Schleusenufer 3",
+  "score": 1.0
+ },
+ {
+  "usc": "rostudios-berlin-prenzlauer-berg",
+  "usc_name": "Rostudios Berlin Prenzlauer Berg - Studio 1",
+  "wellpass": "berlin-rostudios-prenzlauer-berg",
+  "wellpass_name": "Rostudios - Roform Berlin Prenzlauer Berg - Studio 1+2",
+  "street": "Schönhauser Allee 9",
+  "score": 1.0
+ },
+ {
+  "usc": "jivamukti-yoga-school-peace-yoga-berlin",
+  "usc_name": "Jivamukti Yoga School Peace Yoga Berlin",
+  "wellpass": "berlin-peace-yoga-berlin",
+  "wellpass_name": "JIVAMUKTI PEACE YOGA BERLIN - Glogauer Straße",
+  "street": "Glogauer Straße 19",
+  "score": 1.0
+ },
+ {
+  "usc": "cumbancha-salsa-tanzschule",
+  "usc_name": "Cumbancha Salsa, Bachata und Kizomba Tanzschule",
+  "wellpass": "berlin-cumbancha-tanzschule",
+  "wellpass_name": "Cumbancha Tanzschule Berlin",
+  "street": "Möckernstraße 68",
+  "score": 1.0
+ },
+ {
+  "usc": "ridebln-studio-prenzlauer-berg",
+  "usc_name": "ride.bln - studio prenzlauer berg",
+  "wellpass": "berlin-ride-bln-studio-prenzlauer-berg",
+  "wellpass_name": "ride.bln - studio prenzlauer berg Berlin",
+  "street": "Danziger Straße 30",
+  "score": 1.0
+ },
+ {
+  "usc": "der-kegel",
+  "usc_name": "Der Kegel",
+  "wellpass": "berlin-der-kegel",
+  "wellpass_name": "Der Kegel Berlin",
+  "street": "Revaler Straße 99",
+  "score": 1.0
+ },
+ {
+  "usc": "be-sports-schmargendorf",
+  "usc_name": "BE SPORTS",
+  "wellpass": "berlin-besports",
+  "wellpass_name": "BE SPORTS Berlin",
+  "street": "Breite Straße 36",
+  "score": 1.0
+ },
+ {
+  "usc": "renacer-studio-kreuzberg-massage",
+  "usc_name": "A Renacer Studio Kreuzberg - Massage",
+  "wellpass": "renacer-studio-berlin",
+  "wellpass_name": "Renacer Studio Berlin",
+  "street": "Großbeerenstraße 32",
+  "score": 1.0
+ },
+ {
+  "usc": "center-of-dance",
+  "usc_name": "Center of Dance - Studio A",
+  "wellpass": "berlin-paratiprenzlauerberg",
+  "wellpass_name": "Para Ti Dance - Academia Jangada",
+  "street": "Schönhauser Allee 36",
+  "score": 0.5
+ },
+ {
+  "usc": "achter-berlin-prenzlauer-berg",
+  "usc_name": "ACHTER - Prenzlauer Berg",
+  "wellpass": "berlin-prenzlauer-berg-achter",
+  "wellpass_name": "ACHTER - Berlin Prenzlauer Berg",
+  "street": "Schwedter Straße 36A",
+  "score": 1.0
+ },
+ {
+  "usc": "evo-mitte",
+  "usc_name": "EVO Fitness Alexanderplatz",
+  "wellpass": "berlin-evo-fitness",
+  "wellpass_name": "EVO Fitness Berlin Mitte",
+  "street": "Rosa-Luxemburg-Straße 14",
+  "score": 1.0
+ },
+ {
+  "usc": "every-damn-day-yoga",
+  "usc_name": "Every Damn Day Yoga",
+  "wellpass": "berlin-every-day-yoga",
+  "wellpass_name": "Every Damn Day Yoga Berlin",
+  "street": "Revaler Straße 22",
+  "score": 1.0
+ },
+ {
+  "usc": "bodystreet-berlin-antonplatz-1",
+  "usc_name": "Bodystreet Berlin-Antonplatz",
+  "wellpass": "berlin-bodystreet-antonplatz",
+  "wellpass_name": "Bodystreet Berlin Antonplatz",
+  "street": "Berliner Allee 25",
+  "score": 1.0
+ },
+ {
+  "usc": "bodystreet-checkpoint-charlie-1",
+  "usc_name": "Bodystreet Checkpoint Charlie",
+  "wellpass": "berlin-bodystreet-checkpoint-charlie",
+  "wellpass_name": "Bodystreet Berlin Checkpoint-Charlie",
+  "street": "Charlottenstraße 79-80",
+  "score": 1.0
+ },
+ {
+  "usc": "momax-pilates-berlin-mitte-reformer-pilates",
+  "usc_name": "Momax Pilates Berlin Mitte - Reformer Pilates",
+  "wellpass": "muenchen-momax-pilates-gipsstrasse",
+  "wellpass_name": "MOMAX Pilates Gipsstraße Berlin",
+  "street": "Gipsstraße 23",
+  "score": 0.67
+ },
+ {
+  "usc": "qibalance-berlin-wing-tai-schule",
+  "usc_name": "QiBalance Berlin Little Kung-Fu Schule",
+  "wellpass": "berlin-little-kung-fu-school",
+  "wellpass_name": "Little Kung Fu School Berlin",
+  "street": "Mehringdamm 64",
+  "score": 1.0
+ },
+ {
+  "usc": "gezer-spa-fitness-im-westin-grand-massage",
+  "usc_name": "Gezer Spa & Fitness im Westin Grand - Massage",
+  "wellpass": "berlin-gezer-spa-friedrichstrasse",
+  "wellpass_name": "Gezer Spa Berlin Friedrichstraße",
+  "street": "Friedrichstraße 158-164",
+  "score": 0.67
+ },
+ {
+  "usc": "yoga-for-happiness-tons-at-lobe-block",
+  "usc_name": "YOGA at Lobe Block",
+  "wellpass": "berlin-yoga-at-lobe-block",
+  "wellpass_name": "Yoga at Lobe Block Berlin",
+  "street": "Böttgerstraße 16",
+  "score": 1.0
+ },
+ {
+  "usc": "mystik-run-holi-collective-mitte",
+  "usc_name": "Mystik Run @Holi Collective- Mitte",
+  "wellpass": "berlin-holi-collective",
+  "wellpass_name": "Holi Collective Berlin",
+  "street": "Charlottenstraße 18",
+  "score": 1.0
+ },
+ {
+  "usc": "online-green-yoga-prenzlauer-berg",
+  "usc_name": "Online - Green Yoga Prenzlauer Berg",
+  "wellpass": "berlin-prenzlauer-berg-green-yoga",
+  "wellpass_name": "Green Yoga Berlin Prenzlauer Berg",
+  "street": "Sredzkistraße 59",
+  "score": 1.0
+ },
+ {
+  "usc": "float-studio",
+  "usc_name": "FLOAT Studio",
+  "wellpass": "berlin-float-studio",
+  "wellpass_name": "FLOAT Studio Berlin",
+  "street": "Glogauer Straße 6",
+  "score": 1.0
+ },
+ {
+  "usc": "fitballet-glogauer-str",
+  "usc_name": "Fit'Ballet - Glogauer Str.",
+  "wellpass": "berlin-pankow-fit-ballet",
+  "wellpass_name": "Fit'Ballet Berlin",
+  "street": "Glogauer Straße 6",
+  "score": 1.0
+ },
+ {
+  "usc": "kungfu-chang-36",
+  "usc_name": "Kungfu Chang 36",
+  "wellpass": "berlin-kung-fu-chang-36",
+  "wellpass_name": "Kung Fu Chang 36 Berlin",
+  "street": "Wrangelstraße 136",
+  "score": 1.0
+ },
+ {
+  "usc": "kokoro-dojo",
+  "usc_name": "Kokoro Dojo",
+  "wellpass": "berlin-kokoro-dojo",
+  "wellpass_name": "Kokoro Dojo Berlin",
+  "street": "Josef-Orlopp-Straße 45-49",
+  "score": 1.0
+ },
+ {
+  "usc": "ninja-bloc",
+  "usc_name": "Ninja Bloc",
+  "wellpass": "berlin-ninja-hall",
+  "wellpass_name": "Ninja Hall Berlin",
+  "street": "Seelenbinderstraße 129-157",
+  "score": 0.5
+ },
+ {
+  "usc": "krperformen-berlin-mitte",
+  "usc_name": "Körperformen Berlin-Mitte",
+  "wellpass": "berlin-koerperformen-mitte",
+  "wellpass_name": "Körperformen Berlin Mitte",
+  "street": "Anklamer Straße 17",
+  "score": 1.0
+ },
+ {
+  "usc": "holmes-place-neue-welt",
+  "usc_name": "Holmes Place Neue Welt",
+  "wellpass": "berlin-holmes-place-health-club-neue-welt",
+  "wellpass_name": "Holmes Place Berlin Neue Welt",
+  "street": "Hasenheide 109",
+  "score": 1.0
+ },
+ {
+  "usc": "consulta-insight-neuklln-wellness",
+  "usc_name": "Consulta Insight Neukölln - Wellness",
+  "wellpass": "berlin-consultainsight",
+  "wellpass_name": "Consulta Insight Berlin",
+  "street": "Weichselplatz 4",
+  "score": 1.0
+ },
+ {
+  "usc": "bodystreet-berlin-tegel",
+  "usc_name": "Bodystreet Berlin-Tegel",
+  "wellpass": "berlin-bodystreet-tegel",
+  "wellpass_name": "Bodystreet Berlin Tegel",
+  "street": "Brunowstraße 58",
+  "score": 1.0
+ },
+ {
+  "usc": "fitbox-berlin-gleimkiez",
+  "usc_name": "fitbox Gleimkiez",
+  "wellpass": "berlin-fitbox-gleimkiez",
+  "wellpass_name": "fitbox Berlin Gleimkiez",
+  "street": "Schönhauser Allee 125",
+  "score": 1.0
+ },
+ {
+  "usc": "yoga-sky",
+  "usc_name": "Online - Yoga Sky",
+  "wellpass": "berlin-yoga-sky",
+  "wellpass_name": "Yoga Sky Berlin",
+  "street": "Am Tempelhofer Berg 7D",
+  "score": 1.0
+ },
+ {
+  "usc": "academia-jangada",
+  "usc_name": "Academia Jangada",
+  "wellpass": "cuban-salsa-power-belin-prenzlauer-berg",
+  "wellpass_name": "Cuban Salsa Power Berlin - Academia Jangada",
+  "street": "Schönhauser Allee 36",
+  "score": 1.0
+ },
+ {
+  "usc": "academia-jangada",
+  "usc_name": "Academia Jangada",
+  "wellpass": "berlin-paratiprenzlauerberg",
+  "wellpass_name": "Para Ti Dance - Academia Jangada",
+  "street": "Schönhauser Allee 36",
+  "score": 1.0
+ },
+ {
+  "usc": "foxhole-fitness",
+  "usc_name": "FOXHOLE FITNESS",
+  "wellpass": "berlin-foxhole-fitness",
+  "wellpass_name": "Foxhole Fitness Berlin Reinickendorf",
+  "street": "Flohrstraße 26",
+  "score": 1.0
+ },
+ {
+  "usc": "berlin-running-society",
+  "usc_name": "Berlin Running Society",
+  "wellpass": "berlin-running-society",
+  "wellpass_name": "Berlin Running Society",
+  "street": "Burgstraße 26",
+  "score": 1.0
+ },
+ {
+  "usc": "fitness-am-park",
+  "usc_name": "Fitness am Park",
+  "wellpass": "berlin-platz-der-luftbruecke-fitness-am-park",
+  "wellpass_name": "Fitness am Park Berlin",
+  "street": "Elsenstraße 113",
+  "score": 1.0
+ },
+ {
+  "usc": "holmes-place-reform-friedrichshain",
+  "usc_name": "Holmes Place REFORM Friedrichshain",
+  "wellpass": "berlin-holmes-place-ostkreuz",
+  "wellpass_name": "Holmes Place Berlin Ostkreuz",
+  "street": "Hirschberger Straße 3",
+  "score": 1.0
+ },
+ {
+  "usc": "aprosports-zehlendorf-1",
+  "usc_name": "AproSports Zehlendorf",
+  "wellpass": "berlin-aprosports-kurfuerstendamm",
+  "wellpass_name": "Aprosports Berlin Zehlendorf",
+  "street": "Onkel-Tom-Straße 12",
+  "score": 1.0
+ },
+ {
+  "usc": "strom-linien-studio",
+  "usc_name": "Strom-Linien Studio",
+  "wellpass": "berlin-strom-linien",
+  "wellpass_name": "Strom Linien EMS-Studio Berlin",
+  "street": "Prinzregentenstraße 42",
+  "score": 1.0
+ },
+ {
+  "usc": "less-stress-relax-massage-by-andrea",
+  "usc_name": "Less Stress - Relax Massage by Andrea",
+  "wellpass": "berlin-less-stress-relax-massage",
+  "wellpass_name": "Less Stress - Relax Massage by Andrea Berlin",
+  "street": "Samariterstraße 30",
+  "score": 1.0
+ },
+ {
+  "usc": "berlijn-charlottenburg-studio-2",
+  "usc_name": "Rostudios Berlin Charlottenburg - Studio 1",
+  "wellpass": "berlin-charlottenburg-rostudios",
+  "wellpass_name": "Rostudios - Roform Berlin Charlottenburg - Studio 1+2",
+  "street": "Knesebeckstraße 62-63",
+  "score": 1.0
+ },
+ {
+  "usc": "barliner-workout-atrium-19-og",
+  "usc_name": "Barliner Workout - Skyline Studio",
+  "wellpass": "berlin-barliner-workout",
+  "wellpass_name": "Barliner Workout Berlin Potsdamer Platz (Indoor)",
+  "street": "Eichhornstraße 3",
+  "score": 0.67
+ },
+ {
+  "usc": "barliner-workout-atrium-19-og",
+  "usc_name": "Barliner Workout - Skyline Studio",
+  "wellpass": "berlinerworkout-atrium19og",
+  "wellpass_name": "Barliner Workout – Skyline Studio (18. OG)",
+  "street": "Eichhornstraße 3",
+  "score": 1.0
+ },
+ {
+  "usc": "sha-la-prenzlauer-berg",
+  "usc_name": "SHA-LA Prenzlauer Berg",
+  "wellpass": "berlin-sha-la-studios",
+  "wellpass_name": "SHA-LA Studios Berlin PBerg",
+  "street": "Kastanienallee 63",
+  "score": 1.0
+ },
+ {
+  "usc": "open-sonnenallee",
+  "usc_name": "OPEN – Sonnenallee",
+  "wellpass": "berlin-neukoelln-open",
+  "wellpass_name": "OPEN STUDIOS - Neukölln Sonnenallee Berlin",
+  "street": "Sonnenallee 90",
+  "score": 1.0
+ },
+ {
+  "usc": "e1-gym-boxing-boutique",
+  "usc_name": "E1 Gym & Boxing Boutique",
+  "wellpass": "berlin-e1-boxing-gym",
+  "wellpass_name": "E1 Boxing Gym Berlin",
+  "street": "Werner-Richard-Heymann-Platz 2",
+  "score": 1.0
+ },
+ {
+  "usc": "sdsclub-berlin-ev-orange-fit",
+  "usc_name": "SDSCLUB-Berlin c/o Orange Fit",
+  "wellpass": "berlin-orange-fit-gesundheitszentrum",
+  "wellpass_name": "Orange Fit Gesundheitszentrum Berlin",
+  "street": "Wilhelminenhofstraße 76",
+  "score": 0.67
+ },
+ {
+  "usc": "holmes-place-ostkreuz",
+  "usc_name": "Holmes Place Ostkreuz",
+  "wellpass": "berlin-holmes-place-ostkreuz",
+  "wellpass_name": "Holmes Place Berlin Ostkreuz",
+  "street": "Hirschberger Straße 3",
+  "score": 1.0
+ },
+ {
+  "usc": "sha-la-studios-xberg-1",
+  "usc_name": "SHA-LA Studios Waterfront",
+  "wellpass": "sha-la-studios-x-berg",
+  "wellpass_name": "SHA-LA Studios Waterfront Berlin",
+  "street": "Falckensteinstraße 47/48",
+  "score": 1.0
+ },
+ {
+  "usc": "online-every-damn-day-yoga",
+  "usc_name": "Online - Every Damn Day Yoga",
+  "wellpass": "berlin-every-day-yoga",
+  "wellpass_name": "Every Damn Day Yoga Berlin",
+  "street": "Revaler Straße 22",
+  "score": 1.0
+ },
+ {
+  "usc": "spirit-yoga-west",
+  "usc_name": "Spirit Yoga - Charlottenburg",
+  "wellpass": "berlin-charlottenburg-spirit-yoga",
+  "wellpass_name": "Spirit Yoga Charlottenburg Berlin",
+  "street": "Goethestraße 2-3",
+  "score": 1.0
+ },
+ {
+  "usc": "beat81-hackerscher-circuit",
+  "usc_name": "BEAT81 - Hacki HYBRID",
+  "wellpass": "berlin-beat81-hiit-hackescher",
+  "wellpass_name": "BEAT81 Berlin - Hacki HYBRID",
+  "street": "Dircksenstraße 47",
+  "score": 1.0
+ },
+ {
+  "usc": "get-impulse-heidestrasse",
+  "usc_name": "GETIMPULSE",
+  "wellpass": "berlin-get-impulse",
+  "wellpass_name": "Get Impulse Berlin",
+  "street": "Heidestraße 11",
+  "score": 1.0
+ },
+ {
+  "usc": "fitbox-berlin-friedenau",
+  "usc_name": "fitbox Berlin Friedenau",
+  "wellpass": "berlin-friedenau-fitbox",
+  "wellpass_name": "fitbox Berlin Friedenau",
+  "street": "Rheinstraße 17",
+  "score": 1.0
+ },
+ {
+  "usc": "holmes-place-reform-potsdamer-platz",
+  "usc_name": "Holmes Place REFORM Potsdamer Platz",
+  "wellpass": "berlin-holmes-place-potsdamer-platz",
+  "wellpass_name": "Holmes Place Berlin Potsdamer Platz",
+  "street": "Gabriele-Tergit-Promenade 17",
+  "score": 1.0
+ },
+ {
+  "usc": "green-yoga",
+  "usc_name": "Green Yoga Prenzlauer Berg",
+  "wellpass": "berlin-prenzlauer-berg-green-yoga",
+  "wellpass_name": "Green Yoga Berlin Prenzlauer Berg",
+  "street": "Sredzkistraße 59",
+  "score": 1.0
+ },
+ {
+  "usc": "fitness-first-berlin-steglitz-ssc",
+  "usc_name": "Fitness First Berlin - Steglitz SSC",
+  "wellpass": "berlin-fitness-first-women-steglitz-ssc",
+  "wellpass_name": "Fitness First Berlin - Steglitz SSC",
+  "street": "Walther-Schreiber-Platz 1",
+  "score": 1.0
+ },
+ {
+  "usc": "zenctuary-im-freiraum-wellness-sauna",
+  "usc_name": "zenctuary - Wellness & Sauna",
+  "wellpass": "berlin-zenctuary",
+  "wellpass_name": "Zenctuary Berlin",
+  "street": "Boxhagener Straße 96",
+  "score": 1.0
+ },
+ {
+  "usc": "rostudios-berlin-prenzlauer-berg-studio-2",
+  "usc_name": "Rostudios Berlin Prenzlauer Berg - Studio 2",
+  "wellpass": "berlin-rostudios-prenzlauer-berg",
+  "wellpass_name": "Rostudios - Roform Berlin Prenzlauer Berg - Studio 1+2",
+  "street": "Schönhauser Allee 9",
+  "score": 1.0
+ },
+ {
+  "usc": "hot-aura",
+  "usc_name": "Hot aura°",
+  "wellpass": "berlin-hotaura",
+  "wellpass_name": "hot aura Berlin",
+  "street": "Winsstraße 64",
+  "score": 1.0
+ },
+ {
+  "usc": "renacer-studio-kreuzberg",
+  "usc_name": "A Renacer Studio Kreuzberg",
+  "wellpass": "renacer-studio-berlin",
+  "wellpass_name": "Renacer Studio Berlin",
+  "street": "Großbeerenstraße 32",
+  "score": 1.0
+ },
+ {
+  "usc": "open-studio-flow-studio-julia-bach",
+  "usc_name": "OPEN – Kreuzberg",
+  "wellpass": "berlin-open-studio",
+  "wellpass_name": "OPEN STUDIOS – Kreuzberg Berlin",
+  "street": "Reichenberger Straße 125",
+  "score": 1.0
+ },
+ {
+  "usc": "viva-studio",
+  "usc_name": "Viva Studio",
+  "wellpass": "berlin-viva-studio",
+  "wellpass_name": " VIVA Studio Berlin",
+  "street": "Wilmersdorfer Straße 98/99",
+  "score": 1.0
+ },
+ {
+  "usc": "berlin-bahnhof-kpenick-copy",
+  "usc_name": "fitbox Berlin Bahnhof Köpenick",
+  "wellpass": "berlin-fitboxbahnhofkoepenick",
+  "wellpass_name": "fitbox Berlin Bahnhof Köpenick",
+  "street": "Bahnhofstraße 2",
+  "score": 1.0
+ },
+ {
+  "usc": "house-of-pilates-berlin",
+  "usc_name": "House of Pilates Berlin",
+  "wellpass": "berlin-house-of-pilates",
+  "wellpass_name": "House of Pilates Berlin",
+  "street": "Novalisstraße 8a",
+  "score": 1.0
+ },
+ {
+  "usc": "made-to-move",
+  "usc_name": "Made to Move. | Holistic Health Club",
+  "wellpass": "berlin-madetomove",
+  "wellpass_name": "Made to Move. | Holistic Health Club Berlin",
+  "street": "Stuttgarter Platz 5",
+  "score": 1.0
+ },
+ {
+  "usc": "yogafurdich-schoneberg",
+  "usc_name": "yogafürdich - Schöneberg",
+  "wellpass": "berlin-schoeneberg-yogafuerdich",
+  "wellpass_name": "yogafürdich Studio Berlin Schöneberg",
+  "street": "Akazienstraße 28",
+  "score": 1.0
+ },
+ {
+  "usc": "trybe-dance-studio-academia-jangada",
+  "usc_name": "Cuban Salsa Power - Academia Jangada",
+  "wellpass": "cuban-salsa-power-belin-prenzlauer-berg",
+  "wellpass_name": "Cuban Salsa Power Berlin - Academia Jangada",
+  "street": "Schönhauser Allee 36",
+  "score": 1.0
+ },
+ {
+  "usc": "fitbox-berlin-schlesische-strae",
+  "usc_name": "fitbox Berlin Schlesische Straße (EMS)",
+  "wellpass": "berlin-fitboxberlinschlesischestrasse",
+  "wellpass_name": "Fitbox Berlin Schlesische Straße",
+  "street": "Schlesische Straße 30",
+  "score": 1.0
+ },
+ {
+  "usc": "holmes-place-bismarckstrasse",
+  "usc_name": "Holmes Place Bismarckstraße",
+  "wellpass": "berlin-holmes-place-charlottenburg",
+  "wellpass_name": "Holmes Place Berlin Bismarckstraße",
+  "street": "Wilmersdorfer Straße 38",
+  "score": 1.0
+ },
+ {
+  "usc": "online-green-yoga-kreuzberg",
+  "usc_name": "Online - Green Yoga Kreuzberg",
+  "wellpass": "green-yoga-berlin",
+  "wellpass_name": "Green Yoga Berlin Kreuzberg",
+  "street": "Oranienstraße 163",
+  "score": 1.0
+ },
+ {
+  "usc": "unfold-studio",
+  "usc_name": "Unfold Studio",
+  "wellpass": "berlin-unfold-studio",
+  "wellpass_name": "unfold studio Berlin",
+  "street": "Leuschnerdamm 13",
+  "score": 1.0
+ },
+ {
+  "usc": "bachata-dance-classes-with-mahir-lisa",
+  "usc_name": "Bachata Dance Classes Berlin Mitte - Mahirs Kurs",
+  "wellpass": "berlin-bachata-dance-classes-mitte",
+  "wellpass_name": "Bachata Dance Classes in Berlin Mitte",
+  "street": "Klosterstraße 44",
+  "score": 1.0
+ },
+ {
+  "usc": "studio-fur-kunstlerischen-tanz",
+  "usc_name": "Jo Siska Tanzstudio",
+  "wellpass": "berlin-studio-fuer-kuenstlerischen-tanz",
+  "wellpass_name": "Jo Siska Tanzstudio Berlin",
+  "street": "Kurfürstenstraße 3a",
+  "score": 1.0
+ },
+ {
+  "usc": "pilatesengel-reformer",
+  "usc_name": "Pilatesengel-Reformer",
+  "wellpass": "berlin-pilatesengel",
+  "wellpass_name": "Pilatesengel Berlin",
+  "street": "Herrfurthplatz 5",
+  "score": 1.0
+ },
+ {
+  "usc": "ems-team-berlin",
+  "usc_name": "EMS Team Berlin",
+  "wellpass": "berlin-ems-team",
+  "wellpass_name": "EMS Team Berlin",
+  "street": "Südwestkorso 8",
+  "score": 1.0
+ },
+ {
+  "usc": "gerald-mathias-ayurvedic-yoga-massage",
+  "usc_name": "Gerald Mathias Ayurvedic Yoga Massage C/O bez",
+  "wellpass": "berlin-gerald-mathias-ayurvedic-yoga-massage",
+  "wellpass_name": "Gerald Mathias Ayurvedic Yoga Massage Berlin",
+  "street": "Fürbringerstraße 12",
+  "score": 1.0
+ },
+ {
+  "usc": "praxis-fur-physiotherapie-physiolab",
+  "usc_name": "Praxis für Physiotherapie PHYSIOLAB",
+  "wellpass": "berlin-physio-lab-berlin",
+  "wellpass_name": "Praxis für Physiotherapie PHYSIOLAB Berlin",
+  "street": "Düppelstraße 39",
+  "score": 1.0
+ },
+ {
+  "usc": "clarity-healing-space-prenzlauer-berg",
+  "usc_name": "Clarity Healing Space Prenzlauer Berg - Massage",
+  "wellpass": "berlin-clarity-healing-space-2",
+  "wellpass_name": "Clarity Healing Space Berlin (Prenzlauer Berg)",
+  "street": "Schönhauser Allee 40",
+  "score": 1.0
+ },
+ {
+  "usc": "berlijn-charlottenburg",
+  "usc_name": "Rostudios Berlin Charlottenburg - Studio 2",
+  "wellpass": "berlin-charlottenburg-rostudios",
+  "wellpass_name": "Rostudios - Roform Berlin Charlottenburg - Studio 1+2",
+  "street": "Knesebeckstraße 62-63",
+  "score": 1.0
+ },
+ {
+  "usc": "fitness-first-berlin-wilmersdorf",
+  "usc_name": "Fitness First Berlin - Wilmersdorf",
+  "wellpass": "berlin-fitness-first-wilmersdorf",
+  "wellpass_name": "Fitness First Berlin - Wilmersdorf",
+  "street": "Wilmersdorfer Straße 108-111",
+  "score": 1.0
+ },
+ {
+  "usc": "open-studios-friedrichshain",
+  "usc_name": "OPEN – Friedrichshain",
+  "wellpass": "berlin-open-studios",
+  "wellpass_name": "OPEN STUDIOS – Friedrichshain Berlin",
+  "street": "Boxhagener Straße 77",
+  "score": 1.0
+ },
+ {
+  "usc": "stadtbad-schoneberg-hans-rosenthal",
+  "usc_name": "Stadtbad Schöneberg - Hans Rosenthal",
+  "wellpass": "berlin-stadtbad-schoeneberg-hans-rosenthal",
+  "wellpass_name": "Stadtbad Schöneberg - Hans Rosenthal",
+  "street": "Hauptstraße 39",
+  "score": 1.0
+ },
+ {
+  "usc": "bodystreet-am-kudamm",
+  "usc_name": "Bodystreet am Kudamm",
+  "wellpass": "berlin-bodystreet-am-kudamm",
+  "wellpass_name": "Bodystreet Berlin am Kudamm",
+  "street": "Lietzenburger Straße 77",
+  "score": 1.0
+ },
+ {
+  "usc": "green-yoga-kreuzberg",
+  "usc_name": "Green Yoga Kreuzberg",
+  "wellpass": "green-yoga-berlin",
+  "wellpass_name": "Green Yoga Berlin Kreuzberg",
+  "street": "Oranienstraße 163",
+  "score": 1.0
+ },
+ {
+  "usc": "aur-pilates-kudamm",
+  "usc_name": "Aurè Pilates Kudamm (Mat/Yoga/Pilates)",
+  "wellpass": "berlin-aure",
+  "wellpass_name": "Aurè Berlin",
+  "street": "Kleiststraße 9-12",
+  "score": 1.0
+ },
+ {
+  "usc": "fitnesscenter-vitalinn-massage-ems",
+  "usc_name": "Fitnesscenter Vital'Inn Power Plate/Massage/EMS",
+  "wellpass": "berlin-fitnesscenter-vital-inn",
+  "wellpass_name": "Fitnesscenter Vital´Inn Berlin",
+  "street": "Küstriner Straße 46",
+  "score": 1.0
+ },
+ {
+  "usc": "three-boons-yoga-charlottenburg-fka-jivamukti-berl",
+  "usc_name": "THREE BOONS YOGA Charlottenburg f.k.a. Jivamukti B",
+  "wellpass": "berlin-threeboonsyogacharlottenburg",
+  "wellpass_name": "Three Boons Yoga (Berlin Charlottenburg)",
+  "street": "Kurfürstendamm 177",
+  "score": 1.0
+ },
+ {
+  "usc": "elevate-pilates",
+  "usc_name": "Elevate Pilates",
+  "wellpass": "elevate-pilates-berlin",
+  "wellpass_name": "Elevate Pilates Berlin",
+  "street": "Greifswalder Straße 207",
+  "score": 1.0
+ },
+ {
+  "usc": "sun-yoga-kreuzberg",
+  "usc_name": "SUNYOGA Kreuzberg",
+  "wellpass": "berlin-sunyoga-kreuzberg",
+  "wellpass_name": "SUNYOGA Berlin Kreuzberg",
+  "street": "Mehringdamm 33",
+  "score": 1.0
+ },
+ {
+  "usc": "para-ti-dance-johanniter-abz",
+  "usc_name": "Para Ti Dance - Johanniter ABZ",
+  "wellpass": "berlin-paratinordbahnhoif",
+  "wellpass_name": "Para Ti Dance – Johanniter AZB",
+  "street": "Zinnowitzer Straße 8",
+  "score": 0.8
+ },
+ {
+  "usc": "open-mitte",
+  "usc_name": "OPEN – Mitte",
+  "wellpass": "berlin-mitte-openstudios",
+  "wellpass_name": "OPEN STUDIOS Berlin Mitte",
+  "street": "Brunnenstraße 24",
+  "score": 1.0
+ },
+ {
+  "usc": "balletonic-studio-64",
+  "usc_name": "STUDIO 64 by BalleTonic",
+  "wellpass": "berlin-studio-64-by-balletonic",
+  "wellpass_name": "Studio 64 by BalleTonic Berlin",
+  "street": "Urbanstraße 64",
+  "score": 1.0
+ },
+ {
+  "usc": "aur-pilates-kudamm-reformer",
+  "usc_name": "Aurè Pilates Kudamm (Reformer & Red Light Therapy)",
+  "wellpass": "berlin-aure",
+  "wellpass_name": "Aurè Berlin",
+  "street": "Kleiststraße 9-12",
+  "score": 1.0
+ },
+ {
+  "usc": "beat81-hiit-fitness-boxhagener-str",
+  "usc_name": "BEAT81 - Boxi HYBRID",
+  "wellpass": "berlin-beat81-hiit-fitness-boxhagener-strasse",
+  "wellpass_name": "BEAT81 Berlin - Boxi HYBRID",
+  "street": "Boxhagener Straße 77",
+  "score": 1.0
+ },
+ {
+  "usc": "omni-yoga",
+  "usc_name": "OMNI Yoga",
+  "wellpass": "berlin-omni-yoga",
+  "wellpass_name": "OMNI Yoga Berlin",
+  "street": "Bergstraße 92",
+  "score": 1.0
+ },
+ {
+  "usc": "dance-through-life-alex",
+  "usc_name": "Bachata Dance through life - Alex",
+  "wellpass": "berlin-bachata-dance-classes-mitte",
+  "wellpass_name": "Bachata Dance Classes in Berlin Mitte",
+  "street": "Klosterstraße 44",
+  "score": 0.67
+ },
+ {
+  "usc": "massage-mozaik",
+  "usc_name": "Massage Mozaik",
+  "wellpass": "berlin-massage-mozaik",
+  "wellpass_name": " Massage Mozaik Berlin",
+  "street": "Goethestraße 11",
+  "score": 1.0
+ },
+ {
+  "usc": "hermon-at-centro-delfino",
+  "usc_name": "Hermon@Nalam-physiotherapie",
+  "wellpass": "berlin-centro-delfino",
+  "wellpass_name": "Issac Physiotherapie @ NALAM Berlin",
+  "street": "Nollendorfstraße 20",
+  "score": 0.67
+ },
+ {
+  "usc": "centro-delfino-issac-newton",
+  "usc_name": "Nalam Physiotherapy - Issac.N - Schöneberg",
+  "wellpass": "berlin-centro-delfino",
+  "wellpass_name": "Issac Physiotherapie @ NALAM Berlin",
+  "street": "Nollendorfstraße 20",
+  "score": 0.67
+ },
+ {
+  "usc": "lagm-massage-studio-friedrichshain",
+  "usc_name": "Lagōm Massage Studio - Friedrichshain",
+  "wellpass": "berlin-lagommassagestudiofhain",
+  "wellpass_name": "Lagōm Massage Studio Friedrichshain Berlin",
+  "street": "Krossener Straße 2",
+  "score": 1.0
+ },
+ {
+  "usc": "open-studios-charlottenburg",
+  "usc_name": "OPEN – Charlottenburg",
+  "wellpass": "berlin-open-studios-charlottenburg",
+  "wellpass_name": "OPEN STUDIOS – Charlottenburg Berlin",
+  "street": "Kurfürstendamm 210",
+  "score": 1.0
+ },
+ {
+  "usc": "hayal-orientalmoves",
+  "usc_name": "GLOW! dance & more",
+  "wellpass": "berlin-hayal-orientalmoves",
+  "wellpass_name": "GLOW! dance & more Berlin",
+  "street": "Inselstraße 9",
+  "score": 1.0
+ },
+ {
+  "usc": "holmes-place-potsdamer-platz",
+  "usc_name": "Holmes Place Potsdamer Platz",
+  "wellpass": "berlin-holmes-place-potsdamer-platz",
+  "wellpass_name": "Holmes Place Berlin Potsdamer Platz",
+  "street": "Gabriele-Tergit-Promenade 17",
+  "score": 1.0
+ },
+ {
+  "usc": "sun-yoga-friedrichshain",
+  "usc_name": "SUNYOGA Friedrichshain",
+  "wellpass": "berlin-sunyoga-friedrichshain",
+  "wellpass_name": "SUNYOGA Berlin Friedrichshain",
+  "street": "Torellstraße 7",
+  "score": 1.0
+ },
+ {
+  "usc": "activsports",
+  "usc_name": "Fitness Unlimited Charlottenburg",
+  "wellpass": "berlin-activsports-charlottenburg",
+  "wellpass_name": "Fitness Unlimited Charlottenburg Berlin",
+  "street": "Uhlandstraße 194",
+  "score": 1.0
+ },
+ {
+  "usc": "tobe-pilates",
+  "usc_name": "ToBe Pilates",
+  "wellpass": "berlin-tobe-pilates",
+  "wellpass_name": "ToBe Pilates Berlin",
+  "street": "Leibnizstraße 30",
+  "score": 1.0
+ },
+ {
+  "usc": "triathlon-crew-berlin-stadtbad-tiergarten",
+  "usc_name": "Triathlon Crew Berlin - Stadtbad Tiergarten",
+  "wellpass": "berlin-stadtbad-tiergarten",
+  "wellpass_name": "Stadtbad Tiergarten",
+  "street": "Seydlitzstraße 7",
+  "score": 1.0
+ },
+ {
+  "usc": "classical-pilates-berlin-reformer-pilates",
+  "usc_name": "Classical Pilates Berlin - Reformer Pilates",
+  "wellpass": "berlin-classical-pilates",
+  "wellpass_name": "Classical Pilates Berlin",
+  "street": "Cuvrystraße 35",
+  "score": 1.0
+ },
+ {
+  "usc": "yoga-hub-friedrichshain",
+  "usc_name": "Yoga Hub Berlin Fhain",
+  "wellpass": "berlin-friedrichshain-yoga-hub",
+  "wellpass_name": "Yoga Hub Berlin Friedrichshain",
+  "street": "Thaerstraße 40",
+  "score": 1.0
+ },
+ {
+  "usc": "ama-health-club",
+  "usc_name": "aōma health club",
+  "wellpass": "berlin-aomahealthclub",
+  "wellpass_name": "aōma health club Berlin",
+  "street": "Uhlandstraße 39",
+  "score": 1.0
+ },
+ {
+  "usc": "fitomat-berlin-adlershof",
+  "usc_name": "FITOMAT Berlin Adlershof",
+  "wellpass": "berlin-fitomat-adlershof",
+  "wellpass_name": "FITOMAT Adlershof Berlin",
+  "street": "Dörpfeldstraße 27-29",
+  "score": 1.0
+ },
+ {
+  "usc": "luisa-fernanda-palma-nou-tango",
+  "usc_name": "Nou Tango",
+  "wellpass": "berlin-nou-tango",
+  "wellpass_name": "Nou Tango Berlin",
+  "street": "Chausseestraße 102",
+  "score": 1.0
+ },
+ {
+  "usc": "pilates-factory",
+  "usc_name": "Pilates Factory - Reformer",
+  "wellpass": "berlin-padel-factory",
+  "wellpass_name": "Padel Factory Berlin",
+  "street": "Am Gewerbepark 5",
+  "score": 0.5
+ },
+ {
+  "usc": "yoga-sky-online",
+  "usc_name": "Yoga Sky Studio",
+  "wellpass": "berlin-yoga-sky",
+  "wellpass_name": "Yoga Sky Berlin",
+  "street": "Am Tempelhofer Berg 7D",
+  "score": 1.0
+ },
+ {
+  "usc": "cuban-salsa-power-the-center-school-of-performing-art",
+  "usc_name": "Cuban Salsa Power - THE CENTER School of Performing Art",
+  "wellpass": "berlin-boetzowviertel-cuban-salsa-power",
+  "wellpass_name": "Cuban Salsa Power Berlin - The Center School of Performing Art",
+  "street": "Esmarchstraße 5",
+  "score": 1.0
+ },
+ {
+  "usc": "clever-fit-marienfelde",
+  "usc_name": "clever fit Marienfelde",
+  "wellpass": "berlin-marienfelde-clever-fit",
+  "wellpass_name": "clever fit Berlin Marienfelde",
+  "street": "Malteserstraße 135",
+  "score": 1.0
+ },
+ {
+  "usc": "open-wedding",
+  "usc_name": "OPEN – Wedding",
+  "wellpass": "berlin-open-studio-wedding",
+  "wellpass_name": "OPEN STUDIOS – Wedding Berlin",
+  "street": "Gerichtstraße 23",
+  "score": 1.0
+ },
+ {
+  "usc": "green-studio-pilates",
+  "usc_name": "Green Studio Pilates",
+  "wellpass": "berlin-greenpilatesfriedrichshain",
+  "wellpass_name": "Green Studio Pilates Friedrichshain",
+  "street": "Jessnerstraße 58",
+  "score": 1.0
+ },
+ {
+  "usc": "dna-art-club-art-house",
+  "usc_name": "DNA. ART HOUSE",
+  "wellpass": "berlin-dnahouse",
+  "wellpass_name": "DNA. HOUSE Berlin",
+  "street": "Wrangelstraße 25",
+  "score": 1.0
+ },
+ {
+  "usc": "oyoga-studio",
+  "usc_name": "OYOGA Schöneberg",
+  "wellpass": "berlin-oyoga-schoeneberg",
+  "wellpass_name": "O·YOGA Berlin Schöneberg",
+  "street": "Gleditschstraße 37",
+  "score": 1.0
+ },
+ {
+  "usc": "the-base-pilates-1",
+  "usc_name": "The Base Pilates",
+  "wellpass": "berlin-the-base-pilates",
+  "wellpass_name": "The Base Pilates Berlin",
+  "street": "Chausseestraße 36",
+  "score": 1.0
+ },
+ {
+  "usc": "fitness-unlimited-pankow",
+  "usc_name": "Fitness Unlimited Pankow",
+  "wellpass": "berlin-fitness-unlimited-pankow",
+  "wellpass_name": "Fitness Unlimited Berlin Pankow",
+  "street": "Neumannstraße 13",
+  "score": 1.0
+ },
+ {
+  "usc": "latifee-studio-berlin",
+  "usc_name": "COSMOS STUDIO",
+  "wellpass": "berlin-cosmos-studio",
+  "wellpass_name": "Cosmos Studio Berlin",
+  "street": "Kottbusser Damm 74",
+  "score": 1.0
+ },
+ {
+  "usc": "urban-hybrid-space",
+  "usc_name": "Urban Hybrid Space",
+  "wellpass": "berlin-hybridspace",
+  "wellpass_name": "Urban Hybrid Space Berlin",
+  "street": "Urbanstraße 93",
+  "score": 1.0
+ },
+ {
+  "usc": "the-base-pilates",
+  "usc_name": "Kineo Studio",
+  "wellpass": "berlin-kineostudio",
+  "wellpass_name": "Kineo Studio Berlin",
+  "street": "Friedenauer Höhe 6",
+  "score": 1.0
+ },
+ {
+  "usc": "bunker-berlin",
+  "usc_name": "Bunker Berlin",
+  "wellpass": "berlin-bunker",
+  "wellpass_name": "Bunker Berlin",
+  "street": "Grünberger Straße 54",
+  "score": 1.0
+ },
+ {
+  "usc": "spirit-yoga-zehlendorf-1",
+  "usc_name": "Spirit Yoga - Zehlendorf",
+  "wellpass": "berlin-spirit-yoga-und-spa",
+  "wellpass_name": "Spirit Yoga und Spa Zehlendorf Berlin",
+  "street": "Martin-Buber-Straße 23",
+  "score": 1.0
+ },
+ {
+  "usc": "the-frame-berlin-kreuzberg",
+  "usc_name": "THE FRAME | Berlin Kreuzberg",
+  "wellpass": "berlin-the-frame-studio",
+  "wellpass_name": "The Frame Studios Berlin",
+  "street": "Waldemarstraße 17",
+  "score": 1.0
+ },
+ {
+  "usc": "cuban-salsa-power-berlin-ballettstudio-annett-f",
+  "usc_name": "Cuban Salsa Power Berlin - Ballettstudio Annett F.",
+  "wellpass": "berlin-wilmersdorf-cuban-salsa-power",
+  "wellpass_name": "Cuban Salsa Power Berlin - Ballettstudio Annett Fellmann",
+  "street": "Berliner Straße 120",
+  "score": 1.0
+ },
+ {
+  "usc": "aura-berlin-studio",
+  "usc_name": "AURA Berlin Studio",
+  "wellpass": "berlin-auraberlinstudio",
+  "wellpass_name": "AURA BERLIN STUDIO",
+  "street": "Kurfürstenstraße 88",
+  "score": 1.0
+ },
+ {
+  "usc": "clever-fit-zehlendorf-copy",
+  "usc_name": "clever fit Zehlendorf",
+  "wellpass": "berlin-clever-fit-fitnessstudio-zehlendorf",
+  "wellpass_name": "clever fit Berlin-Zehlendorf",
+  "street": "Martin-Buber-Straße 12",
+  "score": 1.0
+ },
+ {
+  "usc": "barliner-workout-potsdamer-platz",
+  "usc_name": "Barliner Workout - Potsdamer Platz",
+  "wellpass": "berlin-barliner-workout",
+  "wellpass_name": "Barliner Workout Berlin Potsdamer Platz (Indoor)",
+  "street": "Eichhornstraße 3",
+  "score": 1.0
+ },
+ {
+  "usc": "barliner-workout-potsdamer-platz",
+  "usc_name": "Barliner Workout - Potsdamer Platz",
+  "wellpass": "berlinerworkout-atrium19og",
+  "wellpass_name": "Barliner Workout – Skyline Studio (18. OG)",
+  "street": "Eichhornstraße 3",
+  "score": 1.0
+ },
+ {
+  "usc": "yoga-hub-berlin",
+  "usc_name": "Yoga Hub Berlin Pberg",
+  "wellpass": "berlin-prenzlauer-berg-yoga-hub",
+  "wellpass_name": "Yoga Hub Berlin Prenzlauer Berg",
+  "street": "Kastanienallee 22",
+  "score": 1.0
+ },
+ {
+  "usc": "yogafrdich-mitte",
+  "usc_name": "yogafürdich - Berlin Mitte",
+  "wellpass": "berlin-mitte-yoafuerdich",
+  "wellpass_name": "yogafürdich Studio Berlin Mitte",
+  "street": "Zehdenicker Straße 21",
+  "score": 1.0
+ },
+ {
+  "usc": "urban-boost-station-kienberg",
+  "usc_name": "Urban Boost Station Kienberg",
+  "wellpass": "berlin-kienberg-urban-boost",
+  "wellpass_name": "Urban Boost Station Berlin Kienberg",
+  "street": "Neue Grottkauer Straße 5",
+  "score": 1.0
+ },
+ {
+  "usc": "consulta-insight-neuklln-massage",
+  "usc_name": "Consulta Insight Neukölln - Massage",
+  "wellpass": "berlin-consultainsight",
+  "wellpass_name": "Consulta Insight Berlin",
+  "street": "Weichselplatz 4",
+  "score": 1.0
+ },
+ {
+  "usc": "tantra-yoga-nazhat-wahab",
+  "usc_name": "ZEN Tantra Yoga Berlin",
+  "wellpass": "berlin-zen-tantra",
+  "wellpass_name": "ZEN Tantra Yoga Berlin",
+  "street": "Eberswalder Straße 32",
+  "score": 1.0
+ },
+ {
+  "usc": "apollo-fitness-world",
+  "usc_name": "Apollo Fitness World GmbH",
+  "wellpass": "berlin-apollo-fitness-world",
+  "wellpass_name": "Apollo Fitness-World Berlin",
+  "street": "Borodinstraße 16",
+  "score": 1.0
+ },
+ {
+  "usc": "frei-und-sein-1",
+  "usc_name": "Ginkgo Yoga",
+  "wellpass": "berlin-ginkgo-yoga",
+  "wellpass_name": "Ginkgo Yoga Berlin",
+  "street": "Liebenwalder Straße 11",
+  "score": 1.0
+ },
+ {
+  "usc": "om-shiva-yoga-culture",
+  "usc_name": "OM SHIVA - Yoga & Culture",
+  "wellpass": "berlin-om-shiva-yoga-and-culture",
+  "wellpass_name": "Om Shiva - Yoga & Culture Berlin",
+  "street": "Prenzlauer Allee 192",
+  "score": 1.0
+ },
+ {
+  "usc": "the-essential-kneads-1",
+  "usc_name": "The Essential Kneads - Charlottenburg",
+  "wellpass": "berlin-charlottenburg-the-essential-kneads",
+  "wellpass_name": "The Essential Kneads Berlin Charlottenburg",
+  "street": "Wielandstraße 14",
+  "score": 1.0
+ },
+ {
+  "usc": "massage-dream-time",
+  "usc_name": "MASSAGE DREAM TIME",
+  "wellpass": "berlin-massagedreamtime",
+  "wellpass_name": "MASSAGEDREAMTIME Berlin",
+  "street": "Warschauer Straße 67",
+  "score": 1.0
+ },
+ {
+  "usc": "nalam-physiotherapie-med-und-wellnessmassage",
+  "usc_name": "NALAM Physiotherapie Med. und Wellnessmassage",
+  "wellpass": "berlin-centro-delfino",
+  "wellpass_name": "Issac Physiotherapie @ NALAM Berlin",
+  "street": "Nollendorfstraße 20",
+  "score": 0.67
+ },
+ {
+  "usc": "wellness-juwel",
+  "usc_name": "Wellness Juwel",
+  "wellpass": "berlin-wellnessjuwel",
+  "wellpass_name": "Wellness Juwel Berlin",
+  "street": "Neumagener Straße 5",
+  "score": 1.0
+ },
+ {
+  "usc": "stadtbad-tiergarten",
+  "usc_name": "Stadtbad Tiergarten",
+  "wellpass": "berlin-stadtbad-tiergarten",
+  "wellpass_name": "Stadtbad Tiergarten",
+  "street": "Seydlitzstraße 7",
+  "score": 1.0
+ },
+ {
+  "usc": "vea-yoga",
+  "usc_name": "Vea Studio",
+  "wellpass": "berlin-gracefulmovementveastudio",
+  "wellpass_name": "Graceful Movement Vea Studio Berlin",
+  "street": "Naunynstraße 38",
+  "score": 1.0
+ },
+ {
+  "usc": "flowsol-schneberg",
+  "usc_name": "flowsol",
+  "wellpass": "berlin-flowsolstudio",
+  "wellpass_name": "flowsol studio Berlin",
+  "street": "Apostel-Paulus-Straße 30",
+  "score": 1.0
+ },
+ {
+  "usc": "para-ti-dance-cumbancha",
+  "usc_name": "Para Ti Dance - Cumbancha",
+  "wellpass": "berlin-cumbancha-tanzschule",
+  "wellpass_name": "Cumbancha Tanzschule Berlin",
+  "street": "Möckernstraße 68",
+  "score": 0.5
+ },
+ {
+  "usc": "beat81-grafekiez-indoor-workout",
+  "usc_name": "BEAT81 - Gräfe HYBRID",
+  "wellpass": "berlin-platz-der-luftbruecke-beat81-graefestrasse",
+  "wellpass_name": "BEAT81 Berlin - Gräfe HYBRID",
+  "street": "Graefestraße 71",
+  "score": 1.0
+ },
+ {
+  "usc": "brooklyn-fitboxing-brunnenstrae",
+  "usc_name": "Brooklyn Fitboxing Brunnenstraße",
+  "wellpass": "berlin-brooklyn-fitboxing-gesundbrunnen",
+  "wellpass_name": "Brooklyn Fitboxing Gesundbrunnen Berlin",
+  "street": "Brunnenstraße 125",
+  "score": 1.0
+ },
+ {
+  "usc": "yoga-labor-berlin",
+  "usc_name": "YOGA LABOR",
+  "wellpass": "berlin-yoga-labor-berlin",
+  "wellpass_name": "Yoga Labor Berlin",
+  "street": "Wilhelminenhofstraße 92",
+  "score": 1.0
+ },
+ {
+  "usc": "urquiza-tango-argentino-pilates",
+  "usc_name": "Urquiza - Tango Argentino",
+  "wellpass": "berlin-urquiz-tango-argentino",
+  "wellpass_name": "Urquiza - Tango Argentino Berlin",
+  "street": "Schönhauser Allee 175",
+  "score": 1.0
+ },
+ {
+  "usc": "mrssporty-prenzlauer-berg",
+  "usc_name": "Mrs.Sporty Prenzlauer Berg",
+  "wellpass": "berlin-mrs-sporty-berlin-penzlauer-berg-rodenbergstrasse",
+  "wellpass_name": "Mrs.  Sporty Club Berlin-Prenzlauer Berg",
+  "street": "Rodenbergstraße 35",
+  "score": 1.0
+ },
+ {
+  "usc": "mrssporty-berlin-weiensee",
+  "usc_name": "Mrs.Sporty Berlin Weißensee",
+  "wellpass": "berlin-mrs-sporty-berlin-weissensee",
+  "wellpass_name": "Mrs.Sporty Weißensee",
+  "street": "Max-Steinke-Straße 6",
+  "score": 1.0
+ },
+ {
+  "usc": "clever-fit-charlottenburg",
+  "usc_name": "clever fit Charlottenburg",
+  "wellpass": "berlin-clever-fit-fitnessstudio-charlottenburg",
+  "wellpass_name": "Clever Fit Berlin-Charlottenburg",
+  "street": "Joachimsthaler Straße 19",
+  "score": 1.0
+ },
+ {
+  "usc": "daya-yoga-berlin",
+  "usc_name": "Bhudhara Yoga",
+  "wellpass": "berlin-budharayoga",
+  "wellpass_name": "Bhudhara Yoga Berlin",
+  "street": "Hackerstraße 4",
+  "score": 1.0
+ },
+ {
+  "usc": "para-ti-dance-academia-jangada",
+  "usc_name": "Para Ti Dance - Academia Jangada",
+  "wellpass": "berlin-paratiprenzlauerberg",
+  "wellpass_name": "Para Ti Dance - Academia Jangada",
+  "street": "Schönhauser Allee 36",
+  "score": 1.0
+ },
+ {
+  "usc": "jivamukti-yoga-school-peace-yoga-eisenbahnstrasse",
+  "usc_name": "Peace Yoga -Jivamukti Yoga Eisenbahnstraße",
+  "wellpass": "berlin-lausitzer-platz-jivamukti-peace-yoga",
+  "wellpass_name": "JIVAMUKTI PEACE YOGA BERLIN - Eisenbahnstrasse",
+  "street": "Eisenbahnstraße 5",
+  "score": 1.0
+ },
+ {
+  "usc": "veronica-kalden-inferno-hot-pilates",
+  "usc_name": "Inferno Hot Pilates (at Sunyoga)",
+  "wellpass": "berlin-sunyoga-kreuzberg",
+  "wellpass_name": "SUNYOGA Berlin Kreuzberg",
+  "street": "Mehringdamm 33",
+  "score": 1.0
+ },
+ {
+  "usc": "veronica-kalden-inferno-hot-pilates",
+  "usc_name": "Inferno Hot Pilates (at Sunyoga)",
+  "wellpass": "berlin-inferno-hot-pilates",
+  "wellpass_name": "Inferno Hot Pilates Berlin",
+  "street": "Mehringdamm 33",
+  "score": 1.0
+ },
+ {
+  "usc": "spazio-cirae-prenzlauer-berg",
+  "usc_name": "Spazio Còirae",
+  "wellpass": "berlin-coirae",
+  "wellpass_name": "Còirae Berlin",
+  "street": "Mülhauser Straße 6",
+  "score": 1.0
+ },
+ {
+  "usc": "naturheilpraxis-wang-steglitz",
+  "usc_name": "Naturheilpraxis Wang - Steglitz",
+  "wellpass": "naturheilpraxis-wang-berlin",
+  "wellpass_name": "Naturheilpraxis Wang Berlin",
+  "street": "Schützenstraße 14",
+  "score": 1.0
+ },
+ {
+  "usc": "purna-studio",
+  "usc_name": "Purna Studio",
+  "wellpass": "berlin-purnastudio",
+  "wellpass_name": "Purna Studio Berlin",
+  "street": "Luisenstraße 41",
+  "score": 1.0
+ },
+ {
+  "usc": "brooklyn-fitboxing-charlottenburg",
+  "usc_name": "Brooklyn Fitboxing Charlottenburg",
+  "wellpass": "berlin-brooklyn-fitboxing-charlottenburg",
+  "wellpass_name": "Brooklyn Fitboxing (Charlottenburg)",
+  "street": "Kantstraße 38",
+  "score": 1.0
+ },
+ {
+  "usc": "beat81-pberg-hybrid",
+  "usc_name": "BEAT81 - PBerg HYBRID",
+  "wellpass": "berlin-beat81pberg",
+  "wellpass_name": "BEAT81 Berlin - PBerg HYBRID",
+  "street": "Schönhauser Allee 143",
+  "score": 1.0
+ },
+ {
+  "usc": "zenctuary-im-freiraum",
+  "usc_name": "zenctuary - classes",
+  "wellpass": "berlin-zenctuary",
+  "wellpass_name": "Zenctuary Berlin",
+  "street": "Boxhagener Straße 96",
+  "score": 1.0
+ },
+ {
+  "usc": "fitnessclub-247-berlin-grnau",
+  "usc_name": "Fitnessclub 247 Berlin Grünau",
+  "wellpass": "gruenau-fitnessclub-247",
+  "wellpass_name": "Fitnessclub 247 Grünau",
+  "street": "Regattastraße 116",
+  "score": 1.0
+ },
+ {
+  "usc": "beat81-cycle-studio-fhain",
+  "usc_name": "BEAT81 - FHain RIDE",
+  "wellpass": "berlin-beat81-cycle-studio-fhain",
+  "wellpass_name": "BEAT81 Berlin - FHain RIDE",
+  "street": "Libauer Straße 1",
+  "score": 1.0
+ },
+ {
+  "usc": "mrs-sporty-franzsisch-buchholz",
+  "usc_name": "Mrs.Sporty - Französisch Buchholz",
+  "wellpass": "berlin-mrs-sporty-franzoesisch-buchholz",
+  "wellpass_name": "Mrs.Sporty Berlin-Französisch Buchholz",
+  "street": "Hauptstraße 13",
+  "score": 1.0
+ },
+ {
+  "usc": "clever-fit-berlin-marzahn-1",
+  "usc_name": "clever fit Berlin-Marzahn",
+  "wellpass": "berlin-marzahn-clever-fit",
+  "wellpass_name": "clever fit Berlin-Marzahn",
+  "street": "Helene-Weigel-Platz 5",
+  "score": 1.0
+ },
+ {
+  "usc": "brooklyn-fitboxing-potsdamer-str",
+  "usc_name": "Brooklyn Fitboxing Potsdamer-Str",
+  "wellpass": "berlin-brooklyn-fitboxing-tiergarten",
+  "wellpass_name": "Brooklyn Fitboxing (Tiergarten)",
+  "street": "Potsdamer Straße 125",
+  "score": 1.0
+ },
+ {
+  "usc": "fitbox-berlin-schlesische-strae-1",
+  "usc_name": "fitbox Berlin Schlesische Straße (EMP Chair PRO)",
+  "wellpass": "berlin-fitboxberlinschlesischestrasse",
+  "wellpass_name": "Fitbox Berlin Schlesische Straße",
+  "street": "Schlesische Straße 30",
+  "score": 1.0
+ },
+ {
+  "usc": "fitomat-berlin-friedenauer-hhe",
+  "usc_name": "FITOMAT Berlin Friedenauer Höhe",
+  "wellpass": "berlin-friedenauer-hoehe-fitomat",
+  "wellpass_name": "FITOMAT Berlin Friedenauer Höhe",
+  "street": "Friedenauer Höhe 24",
+  "score": 1.0
+ },
+ {
+  "usc": "sweat-body-arts-space-in-exile",
+  "usc_name": "Sweat Body - Graceful Movement @art space in exile",
+  "wellpass": "berlin-gracefulmovmentartspace",
+  "wellpass_name": "Graceful Movement- Art Space in Exile",
+  "street": "Elsenstraße 87",
+  "score": 1.0
+ },
+ {
+  "usc": "pilatesengel",
+  "usc_name": "Pilatesengel",
+  "wellpass": "berlin-pilatesengel",
+  "wellpass_name": "Pilatesengel Berlin",
+  "street": "Herrfurthplatz 5",
+  "score": 1.0
+ },
+ {
+  "usc": "pilates-in-moabit-bugenhagenstr",
+  "usc_name": "Move with Miri - Bugenhagenstraße Moabit",
+  "wellpass": "berlin-move-with-miri-2",
+  "wellpass_name": "Move with Miri Berlin Bugenhagenstraße",
+  "street": "Bugenhagenstraße 16",
+  "score": 1.0
+ },
+ {
+  "usc": "yoga-rebellion-neukolln",
+  "usc_name": "YOGA REBELLION – Neukölln",
+  "wellpass": "berlin-yoga-rebellion-neukoelln",
+  "wellpass_name": "Yoga Rebellion Berlin Neukölln",
+  "street": "Sonnenallee 124",
+  "score": 1.0
+ },
+ {
+  "usc": "forr-miudinho",
+  "usc_name": "Forró Miudinho - Prenzlauer Berg I",
+  "wellpass": "berlin-prenzlauer-berg-forro-miudinho",
+  "wellpass_name": "Forró Miudinho Berlin (Prenzlauer Berg)",
+  "street": "Kollwitzstraße 77",
+  "score": 1.0
+ },
+ {
+  "usc": "fitomat-berlin-kpenick",
+  "usc_name": "Fitomat Berlin Köpenick",
+  "wellpass": "berlin-fitomat-koerpenick",
+  "wellpass_name": "FITOMAT Berlin Köpenick",
+  "street": "Mahlsdorfer Straße 97D",
+  "score": 1.0
+ },
+ {
+  "usc": "ruckenwind",
+  "usc_name": "Rückenwind",
+  "wellpass": "berlin-rueckenwind",
+  "wellpass_name": "Rückenwind Berlin",
+  "street": "Schönhauser Allee 118",
+  "score": 1.0
+ },
+ {
+  "usc": "beat81-kudamm-circuit",
+  "usc_name": "BEAT81 - Kudamm HYBRID",
+  "wellpass": "berlin-beat-81-circuit-studio",
+  "wellpass_name": "BEAT81 Berlin - Kudamm HYBRID",
+  "street": "Kurfürstendamm 102",
+  "score": 1.0
+ },
+ {
+  "usc": "beat81-kudamm-circuit",
+  "usc_name": "BEAT81 - Kudamm HYBRID",
+  "wellpass": "berlin-cycle-studio-kudamm",
+  "wellpass_name": "BEAT81 Berlin - Kudamm RIDE",
+  "street": "Kurfürstendamm 102",
+  "score": 0.5
+ },
+ {
+  "usc": "stadtbad-mitte",
+  "usc_name": "Stadtbad Mitte",
+  "wellpass": "berlin-stadtbad-mitte",
+  "wellpass_name": "Stadtbad Mitte",
+  "street": "Gartenstraße 5",
+  "score": 1.0
+ },
+ {
+  "usc": "yoga-bar-studio",
+  "usc_name": "Yoga Bär Studio",
+  "wellpass": "berlin-yoga-baer",
+  "wellpass_name": "Yoga Bär Studio Berlin",
+  "street": "Schnellerstraße 123",
+  "score": 1.0
+ },
+ {
+  "usc": "studio-2-jangada",
+  "usc_name": "Studio 2 Jangada",
+  "wellpass": "cuban-salsa-power-belin-prenzlauer-berg",
+  "wellpass_name": "Cuban Salsa Power Berlin - Academia Jangada",
+  "street": "Schönhauser Allee 36",
+  "score": 1.0
+ },
+ {
+  "usc": "studio-2-jangada",
+  "usc_name": "Studio 2 Jangada",
+  "wellpass": "berlin-paratiprenzlauerberg",
+  "wellpass_name": "Para Ti Dance - Academia Jangada",
+  "street": "Schönhauser Allee 36",
+  "score": 1.0
+ },
+ {
+  "usc": "dna-art-club-1",
+  "usc_name": "DNA. ART CLUB",
+  "wellpass": "berlin-dnaclub",
+  "wellpass_name": "DNA. CLUB Berlin",
+  "street": "Adalbertstraße 98",
+  "score": 1.0
+ },
+ {
+  "usc": "yogacircle-berlin-akademie",
+  "usc_name": "YOGACIRCLE BERLIN – Studio Schliemannstr. 22",
+  "wellpass": "berlin-yogacircle-berlin-akademie-berlin",
+  "wellpass_name": "YogaCircle Berlin SCHLIE 22",
+  "street": "Schliemannstraße 22",
+  "score": 0.67
+ },
+ {
+  "usc": "dokan-sportclub",
+  "usc_name": "Dokan Sportclub",
+  "wellpass": "berlin-dokan-sportclub",
+  "wellpass_name": "Dokan Sportclub Berlin",
+  "street": "Berliner Allee 127",
+  "score": 1.0
+ },
+ {
+  "usc": "forr-with-charlotte-alte-nationalgalerie-1",
+  "usc_name": "Forró with Charlotte - Alte Nationalgalerie",
+  "wellpass": "berlin-forrowithcharlotte-nationalgalerie",
+  "wellpass_name": "Forro with Charlotte Berlin (Alte Nationalgalerie)",
+  "street": "Bodestraße 1-3",
+  "score": 1.0
+ },
+ {
+  "usc": "cuban-salsa-power-berlin-flow-motion-moabit",
+  "usc_name": "Cuban Salsa Power Berlin - Flow Motion Moabit",
+  "wellpass": "berlin-cubansalsapowerflow",
+  "wellpass_name": "Cuban Salsa Power Berlin Flow Motion Moabit",
+  "street": "Stromstraße 38",
+  "score": 1.0
+ },
+ {
+  "usc": "clever-fit-berlin-buch",
+  "usc_name": "clever fit Berlin-Buch",
+  "wellpass": "berlin-clever-fit-buch",
+  "wellpass_name": "clever fit Berlin-Buch",
+  "street": "Walter-Friedrich-Straße 1",
+  "score": 1.0
+ },
+ {
+  "usc": "salzhain",
+  "usc_name": "Salzhain Saltrooms",
+  "wellpass": "berlin-salzhain",
+  "wellpass_name": "Salzhain Berlin",
+  "street": "Scharnweberstraße 3",
+  "score": 1.0
+ },
+ {
+  "usc": "beat81-cycle-studio-gorli",
+  "usc_name": "BEAT81 - Görli RIDE",
+  "wellpass": "berlin-beat81-goerli-indoor",
+  "wellpass_name": "BEAT81 Berlin - Görli CIRCUIT",
+  "street": "Zeughofstraße 20",
+  "score": 0.67
+ },
+ {
+  "usc": "beat81-cycle-studio-gorli",
+  "usc_name": "BEAT81 - Görli RIDE",
+  "wellpass": "berlin-cycle-studio-goerli-indoor",
+  "wellpass_name": "BEAT81 Berlin - Görli RIDE",
+  "street": "Zeughofstraße 20",
+  "score": 1.0
+ },
+ {
+  "usc": "pyramide-fitness-world",
+  "usc_name": "Pyramide Fitness World",
+  "wellpass": "berlin-pyramide-fitness-world",
+  "wellpass_name": "Pyramide Fitness World Berlin",
+  "street": "Alte Rhinstraße 16",
+  "score": 1.0
+ },
+ {
+  "usc": "spirit-yoga-moabit",
+  "usc_name": "Spirit Yoga – Moabit",
+  "wellpass": "berlin-spirtiyogamoabit",
+  "wellpass_name": "Spirit Yoga Moabit Berlin",
+  "street": "Erasmusstraße 14",
+  "score": 1.0
+ },
+ {
+  "usc": "clever-fit-berlin-mahlsdorf",
+  "usc_name": "Clever Fit Berlin - Mahlsdorf",
+  "wellpass": "berlin-mahlsdorf-clever-fit",
+  "wellpass_name": "clever fit Berlin-Mahlsdorf",
+  "street": "Hultschiner Damm 90",
+  "score": 1.0
+ },
+ {
+  "usc": "ycba-prenzlauer-berg-ii",
+  "usc_name": "YOGACIRCLE BERLIN – Studio Lychener Str. 11",
+  "wellpass": "berlin-ycba-prenzlauer-berg-eins",
+  "wellpass_name": "YogaCircle Berlin LYCH 11",
+  "street": "Lychener Straße 11",
+  "score": 0.67
+ },
+ {
+  "usc": "artom",
+  "usc_name": "Art.OM",
+  "wellpass": "berlin-artom",
+  "wellpass_name": "Art.OM Studio Berlin",
+  "street": "Wrangelstraße 54",
+  "score": 1.0
+ },
+ {
+  "usc": "beat81-mitte-ride",
+  "usc_name": "BEAT81 - Mitte RIDE",
+  "wellpass": "berlin-beat81mitteride",
+  "wellpass_name": "BEAT81 Berlin - Mitte RIDE",
+  "street": "Friedrichstraße 110",
+  "score": 1.0
+ },
+ {
+  "usc": "clever-fit-pankow",
+  "usc_name": "Clever Fit Berlin-Pankow",
+  "wellpass": "berlin-pankow-clever-fit",
+  "wellpass_name": "clever fit Berlin-Pankow",
+  "street": "Rosenthaler Weg 24B",
+  "score": 1.0
+ },
+ {
+  "usc": "brooklyn-fitboxing-moabit",
+  "usc_name": "Brooklyn Fitboxing Moabit",
+  "wellpass": "berlin-brooklyn-fitboxing-moabit",
+  "wellpass_name": "Brooklyn Fitboxing (Moabit)",
+  "street": "Stromstraße 57",
+  "score": 1.0
+ },
+ {
+  "usc": "yogaschule-zehlendorf",
+  "usc_name": "Yogaschule Zehlendorf",
+  "wellpass": "berlin-yogaschulezehlendorf",
+  "wellpass_name": "Yogaschule Zehlendorf Berlin",
+  "street": "Riemeisterstraße 114",
+  "score": 1.0
+ },
+ {
+  "usc": "kombibad-seestrasse",
+  "usc_name": "Kombibad Seestraße",
+  "wellpass": "berlin-kombibad-seestrasse",
+  "wellpass_name": "Kombibad Seestraße (Hallen- und Sommerbad)",
+  "street": "Seestraße 80",
+  "score": 1.0
+ },
+ {
+  "usc": "schwimmhalle-ernst-thalmann-park",
+  "usc_name": "Schwimmhalle Ernst-Thälmann-Park",
+  "wellpass": "berlin-schwimmhalle-ernst-thaelmann-park",
+  "wellpass_name": "Schwimmhalle Ernst-Thälmann-Park",
+  "street": "Lilli-Henoch-Straße 20",
+  "score": 1.0
+ },
+ {
+  "usc": "para-ti-dance-belushis-mitte",
+  "usc_name": "Para Ti Dance - Belushis (Mitte)",
+  "wellpass": "berlin-mitte-cuban-salsa-power",
+  "wellpass_name": "Para Ti Dance - Belushi´s Mitte Berlin",
+  "street": "Ziegelstraße 28",
+  "score": 1.0
+ },
+ {
+  "usc": "juliane-kempe",
+  "usc_name": "Juliane Kempe im ZBK",
+  "wellpass": "berlin-ballett-und-tanzpaedagogik",
+  "wellpass_name": "Juliane Kempe Ballett- und Tanzpädagogik Berlin",
+  "street": "Weichselstraße 34",
+  "score": 0.67
+ },
+ {
+  "usc": "bollyitout-pberg",
+  "usc_name": "BollyItOut P’Berg",
+  "wellpass": "berlin-bollyitout-p-berg",
+  "wellpass_name": "BollyItOut Berlin P’Berg",
+  "street": "Hagenauer Straße 11",
+  "score": 1.0
+ },
+ {
+  "usc": "yoga-in-person-bodhicharya",
+  "usc_name": "Yoga in Person Bodhicharya",
+  "wellpass": "berlin-yoga-in-person-bodhicharya",
+  "wellpass_name": "Yoga In Person Bodhicharya Berlin",
+  "street": "Kinzigstraße 25",
+  "score": 1.0
+ },
+ {
+  "usc": "yoga-in-person-sarasvati",
+  "usc_name": "Yoga In Person Sarasvati",
+  "wellpass": "berlin-yoga-in-person",
+  "wellpass_name": "Yoga In Person Berlin",
+  "street": "Bundesallee 53",
+  "score": 1.0
+ },
+ {
+  "usc": "forr-with-charlotte-prinzenallee-studio",
+  "usc_name": "Forró with Charlotte - Prinzenallee Studio",
+  "wellpass": "berlin-forrowithcharlotte-prinzenallee",
+  "wellpass_name": "Forro with Charlotte Berlin (Prinzenallee)",
+  "street": "Prinzenallee 58",
+  "score": 1.0
+ },
+ {
+  "usc": "green-yoga-pankow",
+  "usc_name": "Green Yoga Pankow",
+  "wellpass": "berlin-dietzgenstrasse-green-yoga",
+  "wellpass_name": "Green Yoga Berlin Dietzgenstraße",
+  "street": "Dietzgenstraße 56",
+  "score": 1.0
+ },
+ {
+  "usc": "praventionsstudio-flowfitness",
+  "usc_name": "Präventionsstudio FlowFitness",
+  "wellpass": "berlin-gleisdreieck-praeventionsstudio-flow-fitness",
+  "wellpass_name": "Präventionsstudio Flow Fitness Berlin",
+  "street": "Fregestraße 11",
+  "score": 1.0
+ },
+ {
+  "usc": "face-yoga-atelier-by-rosental-sha-la-studios",
+  "usc_name": "Face Yoga Atelier by Rosental @SHA-LA Studio",
+  "wellpass": "berlin-sha-la-studios",
+  "wellpass_name": "SHA-LA Studios Berlin PBerg",
+  "street": "Kastanienallee 63",
+  "score": 1.0
+ },
+ {
+  "usc": "sivananda-yoga-zentrum-berlin",
+  "usc_name": "Sivananda Yoga Zentrum Berlin",
+  "wellpass": "berlin-sivananda",
+  "wellpass_name": "Sivananda Yoga Vedanta Zentrum Berlin",
+  "street": "Schmiljanstraße 24",
+  "score": 1.0
+ },
+ {
+  "usc": "cuban-salsa-power-berlin-imago-tanzstudio",
+  "usc_name": "Cuban Salsa Power Berlin - Imago Tanzstudio",
+  "wellpass": "berlin-cubanpowerslsaimago",
+  "wellpass_name": "Cuban Salsa Power Berlin Imago Tanzstudio",
+  "street": "Straßmannstraße 18",
+  "score": 1.0
+ },
+ {
+  "usc": "lovfit-sports-clubs",
+  "usc_name": "LOVFIT Sports Clubs",
+  "wellpass": "berlin-lovfit",
+  "wellpass_name": "Lovfit Berlin",
+  "street": "Theodor-Heuss-Platz 5",
+  "score": 1.0
+ },
+ {
+  "usc": "salsa4water-berlin",
+  "usc_name": "Salsa4Water Berlin",
+  "wellpass": "berlin-volincubator",
+  "wellpass_name": "Salsa4Water Berlin",
+  "street": "Fischerinsel 3",
+  "score": 1.0
+ },
+ {
+  "usc": "berlin-contemporary-dance-spreefeld",
+  "usc_name": "Berlin Contemporary Dance - Spreefeld",
+  "wellpass": "berlin-spreefeldhalle",
+  "wellpass_name": "Spreefeld Halle Berlin",
+  "street": "Wilhelmine-Gemberg-Weg 12",
+  "score": 0.5
+ },
+ {
+  "usc": "yogalila-prenzlauer-berg",
+  "usc_name": "Yogalila - Prenzlauer Berg",
+  "wellpass": "berlin-yogalila",
+  "wellpass_name": "Yogalila Berlin Prenzlauer Berg",
+  "street": "Rykestraße 37",
+  "score": 1.0
+ },
+ {
+  "usc": "blnathletics",
+  "usc_name": "BLN.Athletics",
+  "wellpass": "berlin-bln-athletics",
+  "wellpass_name": "BLN. Athletics Berlin",
+  "street": "Rathausstraße 12A",
+  "score": 1.0
+ },
+ {
+  "usc": "kaju-coaching-gym",
+  "usc_name": "KaJu Coaching & Gym",
+  "wellpass": "berlin-kaju-coaching-und-gym",
+  "wellpass_name": "KaJu Coaching & Gym Berlin",
+  "street": "Stresemannstraße 65",
+  "score": 1.0
+ },
+ {
+  "usc": "pilates-factory-copy",
+  "usc_name": "Pilates Factory - Mat",
+  "wellpass": "berlin-padel-factory",
+  "wellpass_name": "Padel Factory Berlin",
+  "street": "Am Gewerbepark 5",
+  "score": 0.5
+ },
+ {
+  "usc": "graceful-movement-linea",
+  "usc_name": "Sweat Body - Graceful Movement @ LINEA",
+  "wellpass": "berlin-gracefulmovementslineastudio",
+  "wellpass_name": "Graceful Movement Linea Studio Berlin",
+  "street": "Prinzenstraße 103",
+  "score": 1.0
+ },
+ {
+  "usc": "yaroots-lounge-berlin",
+  "usc_name": "YAROOTS Lounge Berlin",
+  "wellpass": "berlin-yaroots",
+  "wellpass_name": "YAROOTS Berlin",
+  "street": "Grainauer Straße 12",
+  "score": 1.0
+ },
+ {
+  "usc": "flow-motion-studio-moabit",
+  "usc_name": "Flow Motion Studio - Moabit",
+  "wellpass": "berlin-cubansalsapowerflow",
+  "wellpass_name": "Cuban Salsa Power Berlin Flow Motion Moabit",
+  "street": "Stromstraße 38",
+  "score": 1.0
+ },
+ {
+  "usc": "body-by-win-club-outdoor",
+  "usc_name": "Win Club CrossFit®",
+  "wellpass": "berlin-casimir-sports-services",
+  "wellpass_name": "WIN CLUB CrossFit Berlin",
+  "street": "Mittelstraße 34",
+  "score": 1.0
+ },
+ {
+  "usc": "ladyline-loft-yoga-more",
+  "usc_name": "Ladyline Loft - Yoga & More",
+  "wellpass": "berlin-ladyline-loft",
+  "wellpass_name": "Ladyline Loft Berlin",
+  "street": "Stromstraße 39",
+  "score": 1.0
+ },
+ {
+  "usc": "yogis-mindful-moments",
+  "usc_name": "Yogis Mindful Moments",
+  "wellpass": "berlin-yoga-mindful-moments",
+  "wellpass_name": "Yogis mindful moments Berlin",
+  "street": "Finowstraße 11",
+  "score": 1.0
+ },
+ {
+  "usc": "b23-space-1",
+  "usc_name": "b23 Space",
+  "wellpass": "berlin-b23-space",
+  "wellpass_name": "b23 Space Berlin",
+  "street": "Greifswalder Straße 23",
+  "score": 1.0
+ },
+ {
+  "usc": "argo-athletics",
+  "usc_name": "Argo Athletics",
+  "wellpass": "berlin-argo-athletics",
+  "wellpass_name": "Argo Athletics Berlin",
+  "street": "Mühlenstraße 62-65",
+  "score": 1.0
+ },
+ {
+  "usc": "partnerakrobatik-mit-adrian-iselin-gorlitzer-park",
+  "usc_name": "Adrian Iselin - Partner Acro, Movement, Dance @ OR",
+  "wellpass": "berlin-adrian-iselin-partner-movement",
+  "wellpass_name": "Adrian Iselin - Partner Movement Berlin",
+  "street": "Wilhelmine-Gemberg-Weg 12",
+  "score": 1.0
+ },
+ {
+  "usc": "oney-studio-adlershof",
+  "usc_name": "ONEy STUDIO ADLERSHOF",
+  "wellpass": "berlin-oney-studio-adlershof",
+  "wellpass_name": "ONEy STUDIO ADLERSHOF Berlin",
+  "street": "Hermann-Dorner-Allee 19",
+  "score": 1.0
+ },
+ {
+  "usc": "beat81-gorli-indoor-workout",
+  "usc_name": "BEAT81 - Görli CIRCUIT",
+  "wellpass": "berlin-beat81-goerli-indoor",
+  "wellpass_name": "BEAT81 Berlin - Görli CIRCUIT",
+  "street": "Zeughofstraße 20",
+  "score": 1.0
+ },
+ {
+  "usc": "beat81-gorli-indoor-workout",
+  "usc_name": "BEAT81 - Görli CIRCUIT",
+  "wellpass": "berlin-cycle-studio-goerli-indoor",
+  "wellpass_name": "BEAT81 Berlin - Görli RIDE",
+  "street": "Zeughofstraße 20",
+  "score": 0.67
+ },
+ {
+  "usc": "ride-hyrox-holmes-place-berlin-neue-welt-1",
+  "usc_name": "Ride & Hyrox - Holmes Place Berlin Neue Welt",
+  "wellpass": "berlin-holmes-place-health-club-neue-welt",
+  "wellpass_name": "Holmes Place Berlin Neue Welt",
+  "street": "Hasenheide 109",
+  "score": 1.0
+ },
+ {
+  "usc": "muscle-palace-berlin",
+  "usc_name": "Muscle Palace Berlin",
+  "wellpass": "berlin-muscle-palace-luxury-fitness",
+  "wellpass_name": "Muscle Palace Luxury Fitness Berlin",
+  "street": "Alt-Friedrichsfelde 65",
+  "score": 1.0
+ },
+ {
+  "usc": "beat81-kudamm-ride",
+  "usc_name": "BEAT81 - Kudamm RIDE",
+  "wellpass": "berlin-beat-81-circuit-studio",
+  "wellpass_name": "BEAT81 Berlin - Kudamm HYBRID",
+  "street": "Kurfürstendamm 102",
+  "score": 0.5
+ },
+ {
+  "usc": "beat81-kudamm-ride",
+  "usc_name": "BEAT81 - Kudamm RIDE",
+  "wellpass": "berlin-cycle-studio-kudamm",
+  "wellpass_name": "BEAT81 Berlin - Kudamm RIDE",
+  "street": "Kurfürstendamm 102",
+  "score": 1.0
+ },
+ {
+  "usc": "vea-yoga-1",
+  "usc_name": "Vea Yoga",
+  "wellpass": "berlin-gracefulmovementveastudio",
+  "wellpass_name": "Graceful Movement Vea Studio Berlin",
+  "street": "Naunynstraße 38",
+  "score": 1.0
+ },
+ {
+  "usc": "yoga-am-park",
+  "usc_name": "Park Studio",
+  "wellpass": "park-studio-berlin",
+  "wellpass_name": "Park Studio Berlin",
+  "street": "Am Treptower Park 42",
+  "score": 1.0
+ },
+ {
+  "usc": "physiogym28",
+  "usc_name": "PhysioGym28",
+  "wellpass": "berlin-physiogym-28",
+  "wellpass_name": "Physiogym 28 Berlin",
+  "street": "Sanderstraße 28",
+  "score": 1.0
+ },
+ {
+  "usc": "clarity-loft-1",
+  "usc_name": "Clarity Berlin",
+  "wellpass": "berlin-clarity",
+  "wellpass_name": "Clarity Berlin",
+  "street": "Burgemeisterstraße 34",
+  "score": 1.0
+ },
+ {
+  "usc": "fitwomen",
+  "usc_name": "Fitwomen Boutique Gym",
+  "wellpass": "berlin-fit-women",
+  "wellpass_name": "FitWomen Berlin",
+  "street": "Mariendorfer Damm 16",
+  "score": 1.0
+ },
+ {
+  "usc": "vinyasa-flow-yoga-mit-barbara-1",
+  "usc_name": "Life Artists Creators HUB / Barbara Ossevorth",
+  "wellpass": "berlin-yoga-barbara-ossevorth-berlin",
+  "wellpass_name": "Yoga Barbara Ossevorth Berlin",
+  "street": "Milastraße 4",
+  "score": 1.0
+ },
+ {
+  "usc": "urban-tribe-beach",
+  "usc_name": "NOIR Boutique Gym - Open Gym",
+  "wellpass": "berlin-noir-boutique-gym",
+  "wellpass_name": "NOIR Boutique Gym Berlin",
+  "street": "Eisenzahnstraße 14",
+  "score": 1.0
+ },
+ {
+  "usc": "zentrum-fur-bewegung-kommunikation-zbk",
+  "usc_name": "Tango Argentino (tangoarbeit) - ZBK",
+  "wellpass": "berlin-tangoarbeit",
+  "wellpass_name": "Tangoarbeit Berlin",
+  "street": "Weichselstraße 34",
+  "score": 1.0
+ },
+ {
+  "usc": "nadine-leilani-yoga",
+  "usc_name": "Nadine Leilani Yoga",
+  "wellpass": "berlin-nadine-leilani-yoga",
+  "wellpass_name": "Nadine Leilani Yoga Berlin",
+  "street": "Leibnizstraße 88",
+  "score": 1.0
+ },
+ {
+  "usc": "stadtbad-lankwitz",
+  "usc_name": "Stadtbad Lankwitz",
+  "wellpass": "berlin-stadtbad-lankwitz",
+  "wellpass_name": "Stadtbad Lankwitz",
+  "street": "Leonorenstraße 39",
+  "score": 1.0
+ },
+ {
+  "usc": "das-sportstudio",
+  "usc_name": "Das Sportstudio",
+  "wellpass": "berlin-fourty-fit-healthclub",
+  "wellpass_name": "Das Sportstudio Berlin",
+  "street": "Gardeschützenweg 57",
+  "score": 1.0
+ },
+ {
+  "usc": "gymnastikstudio-schlanke-linie",
+  "usc_name": "Gymnastikstudio Schlanke Linie",
+  "wellpass": "berlin-gymnastikstudio-schlanke-linie-berlin",
+  "wellpass_name": "Gymnastikstudio \"Schlanke Linie\" Berlin",
+  "street": "Georg-Wilhelm-Straße 20",
+  "score": 1.0
+ },
+ {
+  "usc": "classical-pilates-berlin",
+  "usc_name": "Classical Pilates Berlin",
+  "wellpass": "berlin-classical-pilates",
+  "wellpass_name": "Classical Pilates Berlin",
+  "street": "Cuvrystraße 35",
+  "score": 1.0
+ },
+ {
+  "usc": "yoga-flow-slow-kreativittsgrundschule-karlshorst",
+  "usc_name": "Yoga Flow Slow Kreativitätsgrundschule Karlshorst",
+  "wellpass": "berlin-yoga-flow-slow",
+  "wellpass_name": "Yoga Flow Slow Berlin",
+  "street": "Ehrlichstraße 63",
+  "score": 1.0
+ },
+ {
+  "usc": "yoga-kitchen",
+  "usc_name": "Yoga Kitchen",
+  "wellpass": "berlin-yoga-kitchen-yoga-ayurveda-entspannung",
+  "wellpass_name": "Yoga Kitchen YOGA, AYURVEDA, Entspannung Berlin",
+  "street": "Robinienweg 3",
+  "score": 1.0
+ },
+ {
+  "usc": "beyond-cburg",
+  "usc_name": "BEYOND Cburg",
+  "wellpass": "berlin-beyondcharlottenburg",
+  "wellpass_name": "BEYOND Berlin Charlottenburg",
+  "street": "Pestalozzistraße 56",
+  "score": 1.0
+ },
+ {
+  "usc": "nou-tango-berlin-mitte",
+  "usc_name": "Nou Tango Berlin Mitte",
+  "wellpass": "berlin-nou-tango",
+  "wellpass_name": "Nou Tango Berlin",
+  "street": "Chausseestraße 102",
+  "score": 1.0
+ },
+ {
+  "usc": "ignite-fit-1",
+  "usc_name": "IGNITE.FIT",
+  "wellpass": "berlin-ignite-fit",
+  "wellpass_name": "Ignite Fit Berlin",
+  "street": "Husemannstraße 32",
+  "score": 1.0
+ },
+ {
+  "usc": "yoga-labor-pop-up-studio",
+  "usc_name": "Yoga Labor Pop-Up Studio",
+  "wellpass": "berlin-yoga-labor-harzer-strasse",
+  "wellpass_name": "Yoga Labor (Harzer Straße) Berlin",
+  "street": "Harzer Straße 114",
+  "score": 0.5
+ },
+ {
+  "usc": "ifarus",
+  "usc_name": "IFARUS",
+  "wellpass": "berlin-ifarus-plus",
+  "wellpass_name": "Ifarus Berlin",
+  "street": "Potsdamer Chaussee 80",
+  "score": 1.0
+ },
+ {
+  "usc": "soul-treats-studio-holistic-yoga",
+  "usc_name": "Soul Treats Studio - Holistic Yoga",
+  "wellpass": "berlin-soul-treats",
+  "wellpass_name": "Soul Treats Berlin",
+  "street": "Schönholzer Straße 13",
+  "score": 1.0
+ },
+ {
+  "usc": "rolands-fitness-lab-sita-tara-yoga",
+  "usc_name": "Rolands Fitness Lab @Yoga Studio Sita Tara",
+  "wellpass": "verlin-sita-tara",
+  "wellpass_name": "Sita Tara Berlin",
+  "street": "Danckelmannstraße 20",
+  "score": 1.0
+ },
+ {
+  "usc": "rolands-fitness-lab-sita-tara-yoga",
+  "usc_name": "Rolands Fitness Lab @Yoga Studio Sita Tara",
+  "wellpass": "berlin-rolands-fitness-lab",
+  "wellpass_name": "Rolands Fitness Lab Berlin",
+  "street": "Danckelmannstraße 20",
+  "score": 1.0
+ },
+ {
+  "usc": "sweat-body-vea-studio",
+  "usc_name": "Sweat Body - Graceful Movement @ vea studio",
+  "wellpass": "berlin-gracefulmovementveastudio",
+  "wellpass_name": "Graceful Movement Vea Studio Berlin",
+  "street": "Naunynstraße 38",
+  "score": 1.0
+ },
+ {
+  "usc": "familienoase",
+  "usc_name": "BalanceZeit Berlin - Weißensee - Erwachsene+Kinder",
+  "wellpass": "berlin-balance-zeit",
+  "wellpass_name": "BalanceZeit Berlin",
+  "street": "Jacobsohnstraße 19",
+  "score": 1.0
+ },
+ {
+  "usc": "oneness-berlin-yoga-sky-studio",
+  "usc_name": "Oneness Berlin Meditation @ Yoga Sky Studio",
+  "wellpass": "berlin-yoga-sky",
+  "wellpass_name": "Yoga Sky Berlin",
+  "street": "Am Tempelhofer Berg 7D",
+  "score": 1.0
+ },
+ {
+  "usc": "fitness-und-reha-zentrum-britz",
+  "usc_name": "Fitness und Reha-Zentrum Britz",
+  "wellpass": "berlin-fitness-und-reha-zentrum-britz",
+  "wellpass_name": "Fitness & Reha-Zentrum Britz",
+  "street": "Tempelhofer Weg 44",
+  "score": 1.0
+ },
+ {
+  "usc": "physio-training",
+  "usc_name": "Physio23 Praxis für Physiotherapie und Sport",
+  "wellpass": "berlin-physio-training-susan-raymond-kg",
+  "wellpass_name": "Physio23 Berlin Friedenau",
+  "street": "Stierstraße 7",
+  "score": 1.0
+ },
+ {
+  "usc": "stadtbad-neukolln",
+  "usc_name": "Stadtbad Neukölln",
+  "wellpass": "berlin-stadtbad-neukoelln",
+  "wellpass_name": "Stadtbad Neukölln",
+  "street": "Ganghoferstraße 3",
+  "score": 1.0
+ },
+ {
+  "usc": "fitnesscenter-vitalinn-fitness-kurse",
+  "usc_name": "Fitnesscenter Vital'Inn - Fitness & Kurse",
+  "wellpass": "berlin-fitnesscenter-vital-inn",
+  "wellpass_name": "Fitnesscenter Vital´Inn Berlin",
+  "street": "Küstriner Straße 46",
+  "score": 1.0
+ },
+ {
+  "usc": "mrs-sporty-berlin-karlshorst",
+  "usc_name": "Mrs.Sporty Berlin-Karlshorst",
+  "wellpass": "berlin-mrs-sporty-karlshorst",
+  "wellpass_name": "Mrs Sporty Karlshorst",
+  "street": "Marksburgstraße 41",
+  "score": 1.0
+ },
+ {
+  "usc": "base-alexa-2",
+  "usc_name": "base - alexa",
+  "wellpass": "berlin-basealexa",
+  "wellpass_name": " base - alexa Berlin",
+  "street": "Dircksenstraße 90",
+  "score": 1.0
+ },
+ {
+  "usc": "bunker-lounge-personal-training-kurse",
+  "usc_name": "Bunker Lounge - Personal Training/Kurse",
+  "wellpass": "berlin-bunker",
+  "wellpass_name": "Bunker Berlin",
+  "street": "Grünberger Straße 54",
+  "score": 1.0
+ },
+ {
+  "usc": "oma-om-gina-lorenzen",
+  "usc_name": "OMA OM Studio - Yoga with Gina",
+  "wellpass": "berlin-oma-om-yoga",
+  "wellpass_name": "OMA OM - Yoga Berlin",
+  "street": "Richardstraße 43",
+  "score": 1.0
+ },
+ {
+  "usc": "gesuvita-health-club",
+  "usc_name": "GesuVita Health Club",
+  "wellpass": "berlin-gesuvita-health-club",
+  "wellpass_name": "GesuVita Health Club Berlin",
+  "street": "Kleinmachnower Weg 9-11",
+  "score": 1.0
+ },
+ {
+  "usc": "jiveberlin-hertastrasse",
+  "usc_name": "Jive.Berlin - Hertastraße",
+  "wellpass": "berlin-jive",
+  "wellpass_name": "Jive.Berlin",
+  "street": "Hertastraße 11",
+  "score": 1.0
+ },
+ {
+  "usc": "kundalini-yoga-with-olympia-taborstrae",
+  "usc_name": "Kundalini Yoga with Olympia (Taborstraße)",
+  "wellpass": "berlin-voices",
+  "wellpass_name": "Kundalini Yoga – Kreuzberg Berlin",
+  "street": "Taborstraße 17",
+  "score": 1.0
+ },
+ {
+  "usc": "original-bootcamp-berlin-tiergarten-schleusenkrug",
+  "usc_name": "Weekend Workout - Original Bootcamp Schöneberg",
+  "wellpass": "berlin-weekender-obc",
+  "wellpass_name": "Weekender by ORIGINAL BOOTCAMP - Outdoor Fitness - Berlin Schöneberg-Volkspark",
+  "street": "Fritz-Elsas-Straße 30",
+  "score": 0.5
+ },
+ {
+  "usc": "komplett-fit-hohenschnhausen",
+  "usc_name": "KOMPLETT FIT - Hohenschönhausen",
+  "wellpass": "berlin-kfit",
+  "wellpass_name": "K-Fit Berlin",
+  "street": "Wartenberger Straße 174",
+  "score": 1.0
+ },
+ {
+  "usc": "kinesolutions-health-movement",
+  "usc_name": "Kinesolutions Health & Movement",
+  "wellpass": "berlin-kinesolutions-health-and-movement",
+  "wellpass_name": "KINESOLUTIONS, Health&Movement Berlin",
+  "street": "Siemensdamm 60",
+  "score": 1.0
+ },
+ {
+  "usc": "stadtbad-wilmersdorf-i",
+  "usc_name": "Stadtbad Wilmersdorf I",
+  "wellpass": "berlin-stadtbad-wilmersdorf-1",
+  "wellpass_name": "Stadtbad Wilmersdorf I",
+  "street": "Mecklenburgische Straße 80",
+  "score": 1.0
+ },
+ {
+  "usc": "yoga-with-reka-yoga-now",
+  "usc_name": "Yoga with Reka - Art.OM",
+  "wellpass": "berlin-artom",
+  "wellpass_name": "Art.OM Studio Berlin",
+  "street": "Wrangelstraße 54",
+  "score": 1.0
+ },
+ {
+  "usc": "nanairo-yoga",
+  "usc_name": "Real Body Yoga @ Sarasvati",
+  "wellpass": "berlin-nanairo-yoga",
+  "wellpass_name": "Real Body Yoga Berlin",
+  "street": "Bundesallee 53",
+  "score": 1.0
+ },
+ {
+  "usc": "sporteve-berlin-mariendorf",
+  "usc_name": "Sporteve Berlin-Mariendorf",
+  "wellpass": "berlin-mrs-sporty-berlin-mariendorf",
+  "wellpass_name": "Sporteve Berlin-Mariendorf",
+  "street": "Mariendorfer Damm 349",
+  "score": 1.0
+ },
+ {
+  "usc": "mrssporty-kaulsdorf",
+  "usc_name": "Mrs.Sporty Kaulsdorf",
+  "wellpass": "mrs-sporty-berlin-kaulsdorf",
+  "wellpass_name": "Mrs.Sporty Berlin-Kaulsdorf",
+  "street": "Cecilienplatz 8",
+  "score": 1.0
+ },
+ {
+  "usc": "original-bootcamp-berlin-friedrichshain-volkspark",
+  "usc_name": "Weekend Workout - Original Bootcamp Friedrichshain",
+  "wellpass": "berlin-volkspark-weekender-obc",
+  "wellpass_name": "Weekender by ORIGINAL BOOTCAMP - Outdoor Fitness - Berlin Volkspark",
+  "street": "Margarete-Sommer-Straße 11",
+  "score": 0.5
+ },
+ {
+  "usc": "mindful-movements-with-caro-rabenhaus-kopenick",
+  "usc_name": "Mindful Movements with Caro @ Rabenhaus Köpenick",
+  "wellpass": "berlin-mindful-movements",
+  "wellpass_name": "Mindful Movements with Caro Berlin",
+  "street": "Puchanstraße 9",
+  "score": 1.0
+ },
+ {
+  "usc": "spreefeld-halle",
+  "usc_name": "Spreefeld Halle",
+  "wellpass": "berlin-spreefeldhalle",
+  "wellpass_name": "Spreefeld Halle Berlin",
+  "street": "Wilhelmine-Gemberg-Weg 12",
+  "score": 1.0
+ },
+ {
+  "usc": "shanti-yoga-berlin-1",
+  "usc_name": "Shanti Yoga-Berlin@Green Yoga Xberg",
+  "wellpass": "green-yoga-berlin",
+  "wellpass_name": "Green Yoga Berlin Kreuzberg",
+  "street": "Oranienstraße 163",
+  "score": 1.0
+ },
+ {
+  "usc": "svetlana-esipova-yoga",
+  "usc_name": "Yoga Glück",
+  "wellpass": "berlin-svetlana-esipova",
+  "wellpass_name": "Yoga Glück- Svetlana Esipova Berlin",
+  "street": "Hackenbergstraße 7",
+  "score": 1.0
+ },
+ {
+  "usc": "achtsam-bewegen-von-kopf-bis-fuss",
+  "usc_name": "Achtsam bewegen - von Kopf bis Fuß",
+  "wellpass": "berlin-achtsam-bewegen-von-kopf-bis-fuss",
+  "wellpass_name": "Achtsam bewegen - von Kopf bis Fuß Berlin",
+  "street": "Sterndamm 124",
+  "score": 1.0
+ },
+ {
+  "usc": "kreuzberg-yoga-2",
+  "usc_name": "Kreuzberg Yoga",
+  "wellpass": "berlin-saskia-graefingholt",
+  "wellpass_name": "Kreuzbergyoga - Gräfingholt Bewegt Berlin",
+  "street": "Lübbener Straße 9",
+  "score": 1.0
+ },
+ {
+  "usc": "stadtbad-charlottenburg-alte-halle",
+  "usc_name": "Stadtbad Charlottenburg - Alte Halle",
+  "wellpass": "berlin-stadtbad-charlottenburg-alte-halle",
+  "wellpass_name": "Stadtbad Charlottenburg \"Alte Halle\"",
+  "street": "Krumme Straße 10",
+  "score": 1.0
+ },
+ {
+  "usc": "mrssporty-club-berlin-prenzlauerberg-winsstrae",
+  "usc_name": "Mrs.Sporty Club Berlin-Prenzlauerberg-Winsstraße",
+  "wellpass": "berlin-mrs-sporty-berlin",
+  "wellpass_name": "Mrs.Sporty Berlin-Prenzlauerberg-Winsstraße",
+  "street": "Winsstraße 42",
+  "score": 1.0
+ },
+ {
+  "usc": "mrssporty-friedrichsfelde",
+  "usc_name": "Mrs.Sporty Friedrichsfelde",
+  "wellpass": "berlin-mrs-sporty-berlin-lichtenberg-friedrichsfelde",
+  "wellpass_name": "Mrs. Sporty Berlin-Lichtenberg-Friedrichsfelde",
+  "street": "Alfred-Kowalke-Straße 2-4",
+  "score": 1.0
+ },
+ {
+  "usc": "schwimmhalle-finckensteinallee",
+  "usc_name": "Schwimmhalle Finckensteinallee",
+  "wellpass": "berlin-schwimmhalle-finckensteinallee",
+  "wellpass_name": "Schwimmhalle Finkensteinallee",
+  "street": "Finckensteinallee 73",
+  "score": 0.5
+ },
+ {
+  "usc": "schwimmhalle-fischerinsel",
+  "usc_name": "Schwimmhalle Fischerinsel",
+  "wellpass": "berlin-schwimmhalle-fischerinsel",
+  "wellpass_name": "Schwimmhalle Fischerinsel",
+  "street": "Fischerinsel 11",
+  "score": 1.0
+ },
+ {
+  "usc": "kombibad-gropiusstadt",
+  "usc_name": "Kombibad Gropiusstadt",
+  "wellpass": "berlin-kombibad-gropiusstadt",
+  "wellpass_name": "Kombibad Gropiusstadt (Hallen- und Sommerbad)",
+  "street": "Lipschitzallee 27-33",
+  "score": 1.0
+ },
+ {
+  "usc": "schwimmhalle-sewanstrasse",
+  "usc_name": "Schwimmhalle Sewanstraße",
+  "wellpass": "berlin-schwimmhalle-sewanstrasse",
+  "wellpass_name": "Schwimmhalle Sewanstraße",
+  "street": "Sewanstraße 229",
+  "score": 1.0
+ },
+ {
+  "usc": "schwimmhalle-anton-saefkow-platz",
+  "usc_name": "Schwimmhalle Anton-Saefkow-Platz",
+  "wellpass": "berlin-schwimmhalle-anton-saefkow-platz",
+  "wellpass_name": "Schwimmhalle Anton-Saefkow-Platz",
+  "street": "Anton-Saefkow-Platz 1",
+  "score": 1.0
+ },
+ {
+  "usc": "schwimmhalle-buch",
+  "usc_name": "Schwimmhalle Buch",
+  "wellpass": "berlin-schwimmhalle-buch",
+  "wellpass_name": "Schwimmhalle Buch",
+  "street": "Wolfgang-Heinz-Straße 41",
+  "score": 1.0
+ },
+ {
+  "usc": "schwimmhalle-kreuzberg",
+  "usc_name": "Schwimmhalle Kreuzberg",
+  "wellpass": "berlin-schwimmhalle-kreuzberg",
+  "wellpass_name": "Schwimmhalle Kreuzberg Berlin",
+  "street": "Gitschiner Straße 18",
+  "score": 1.0
+ },
+ {
+  "usc": "schwimmhalle-allendeviertel",
+  "usc_name": "Schwimmhalle Allendeviertel",
+  "wellpass": "berlin-schwimmhalle-allendeviertel",
+  "wellpass_name": "Schwimmhalle Allendeviertel",
+  "street": "Pablo-Neruda-Straße 5",
+  "score": 1.0
+ },
+ {
+  "usc": "schwimmhalle-huttenweg",
+  "usc_name": "Schwimmhalle Hüttenweg",
+  "wellpass": "berlin-schwimmhalle-huettenweg",
+  "wellpass_name": "Schwimmhalle Hüttenweg",
+  "street": "Hüttenweg 41",
+  "score": 1.0
+ },
+ {
+  "usc": "schwimmhalle-kaulsdorf",
+  "usc_name": "Schwimmhalle Kaulsdorf",
+  "wellpass": "berlin-schwimmhalle-kaulsdorf",
+  "wellpass_name": "Schwimmhalle Kaulsdorf",
+  "street": "Clara-Zetkin-Weg 13",
+  "score": 1.0
+ },
+ {
+  "usc": "kleine-schwimmhalle-wuhlheide",
+  "usc_name": "Kleine Schwimmhalle Wuhlheide",
+  "wellpass": "berlin-kleine-schwimmhalle",
+  "wellpass_name": "Kleine Schwimmhalle Wuhlheide",
+  "street": "An der Wuhlheide 161",
+  "score": 1.0
+ },
+ {
+  "usc": "schwimmhalle-zingster-strasse",
+  "usc_name": "Schwimmhalle Zingster Straße",
+  "wellpass": "berlin-schwimmhalle-zingster",
+  "wellpass_name": "Schwimmhalle Zingster Straße",
+  "street": "Zingster Straße 16",
+  "score": 1.0
+ },
+ {
+  "usc": "schwimmhalle-baumschulenweg",
+  "usc_name": "Schwimmhalle Baumschulenweg",
+  "wellpass": "berlin-schwimmhalle-baumschulenweg",
+  "wellpass_name": "Schwimmhalle Baumschulenweg",
+  "street": "Neue Krugallee 209",
+  "score": 1.0
+ },
+ {
+  "usc": "sport-und-lehrschwimmhalle-schoneberg",
+  "usc_name": "Sport- und Lehrschwimmhalle Schöneberg",
+  "wellpass": "berlin-lankwitz-sport-und-lehrschwimmhalle",
+  "wellpass_name": "Sport- und Lehrschwimmhalle Schöneberg",
+  "street": "Sachsendamm 11",
+  "score": 1.0
+ },
+ {
+  "usc": "stadtbad-spandau-nord",
+  "usc_name": "Stadtbad Spandau Nord",
+  "wellpass": "berlin-stadtbad-spandau-nord",
+  "wellpass_name": "Stadtbad Spandau Nord",
+  "street": "Radelandstraße 1",
+  "score": 1.0
+ },
+ {
+  "usc": "sauna-im-stadtbad-neuklln",
+  "usc_name": "Sauna im Stadtbad Neukölln",
+  "wellpass": "berlin-stadtbad-neukoelln",
+  "wellpass_name": "Stadtbad Neukölln",
+  "street": "Ganghoferstraße 3",
+  "score": 1.0
+ },
+ {
+  "usc": "stadtbad-wilmersdorf-ii",
+  "usc_name": "Stadtbad Wilmersdorf II",
+  "wellpass": "berlin-stadtbad-wilmersdorf-2",
+  "wellpass_name": "Stadtbad Wilmersdorf II",
+  "street": "Fritz-Wildung-Straße 7",
+  "score": 1.0
+ },
+ {
+  "usc": "nanairo-yoga-heilpraxis",
+  "usc_name": "Real Body Yoga @ Schöneberg",
+  "wellpass": "berlin-nanairo-yoga",
+  "wellpass_name": "Real Body Yoga Berlin",
+  "street": "Bundesallee 53",
+  "score": 1.0
+ },
+ {
+  "usc": "1851hz-latifee-yoga-studio-berlin",
+  "usc_name": "1851Hz @COSMOS Studio Berlin",
+  "wellpass": "berlin-cosmos-studio",
+  "wellpass_name": "Cosmos Studio Berlin",
+  "street": "Kottbusser Damm 74",
+  "score": 1.0
+ },
+ {
+  "usc": "abad-capoeira-schule-berlin",
+  "usc_name": "Abadá-Capoeira-Schule-Berlin",
+  "wellpass": "berlin-abada-capoiera",
+  "wellpass_name": "Abadá-Capoeira-Schule e.V. Berlin",
+  "street": "Urbanstraße 93",
+  "score": 1.0
+ },
+ {
+  "usc": "anbadaba-yoga",
+  "usc_name": "Anbadaba Yoga",
+  "wellpass": "berlin-anbadaba-yoga",
+  "wellpass_name": "Anbadaba Yoga Berlin",
+  "street": "Bundesallee 89",
+  "score": 1.0
+ },
+ {
+  "usc": "aur-pilates-neue-kantstrasse-reformer",
+  "usc_name": "Aurè Pilates Neue Kantstr. (Reformer & Red Light)",
+  "wellpass": "berlin-aureneukantstar",
+  "wellpass_name": "Aurè Berlin (Neue Kantstraße)",
+  "street": "Neue Kantstraße 2",
+  "score": 0.67
+ },
+ {
+  "usc": "avantgarde-body-and-dance",
+  "usc_name": "Avantgarde Body and Dance",
+  "wellpass": "berlin-avantgarde-body-und-dance",
+  "wellpass_name": "Avantgarde Body & Dance Berlin",
+  "street": "Waldstraße 56",
+  "score": 1.0
+ },
+ {
+  "usc": "axion-therapiezentrum",
+  "usc_name": "Axion Therapiezentrum",
+  "wellpass": "berlin-axion",
+  "wellpass_name": "Axion Therapiezentrum Berlin",
+  "street": "Ollenhauerstraße 6",
+  "score": 1.0
+ },
+ {
+  "usc": "balancezeit-mauerpark-treff",
+  "usc_name": "BalanceZeit @Mauerpark Treff",
+  "wellpass": "berlin-balancezeitoutdoor",
+  "wellpass_name": "BalanceZeit Berlin (Outdoor)",
+  "street": "Lortzingstraße 22",
+  "score": 0.5
+ },
+ {
+  "usc": "ballettschule-fellmann",
+  "usc_name": "Ballettschule Fellmann",
+  "wellpass": "berlin-wilmersdorf-cuban-salsa-power",
+  "wellpass_name": "Cuban Salsa Power Berlin - Ballettstudio Annett Fellmann",
+  "street": "Berliner Straße 120",
+  "score": 0.5
+ },
+ {
+  "usc": "barliner-workout-sony-center",
+  "usc_name": "Barliner Workout - Sony Center (Outdoor)",
+  "wellpass": "berlin-barliner-workout-3",
+  "wellpass_name": "Barliner Workout Berlin Sony Center (Outdoor)",
+  "street": "Kemperplatz 1",
+  "score": 1.0
+ },
+ {
+  "usc": "barliner-workout-gleisdreieck",
+  "usc_name": "Barliner Workout – Gleisdreieck Park (Outdoor)",
+  "wellpass": "berlin-barlinerworkoutgleisdreieck",
+  "wellpass_name": "Barliner Workout – Gleisdreieck Park (Outdoor)",
+  "street": "Luckenwalder Straße 6",
+  "score": 1.0
+ },
+ {
+  "usc": "berlin-tango-academie-das-sportstudio-in-steglitz",
+  "usc_name": "Berlin Tango Academie @Das Sportstudio in Steglitz",
+  "wellpass": "berlin-fourty-fit-healthclub",
+  "wellpass_name": "Das Sportstudio Berlin",
+  "street": "Gardeschützenweg 57",
+  "score": 1.0
+ },
+ {
+  "usc": "bodystreet-kranoldplatz",
+  "usc_name": "Bodystreet Kranoldplatz",
+  "wellpass": "berlin-kranoldplatz-bodystreet",
+  "wellpass_name": "Bodystreet Berlin Kranoldplatz",
+  "street": "Oberhofer Weg 15",
+  "score": 1.0
+ },
+ {
+  "usc": "oma-om",
+  "usc_name": "Bodywork at OMA OM /sako.sense",
+  "wellpass": "berlin-oma-om-yoga",
+  "wellpass_name": "OMA OM - Yoga Berlin",
+  "street": "Richardstraße 43",
+  "score": 1.0
+ },
+ {
+  "usc": "booty-therapy-motion-gleidreiek",
+  "usc_name": "Booty Therapy - Motion*s Gleisdreieck",
+  "wellpass": "berlin-motions-gleisdreieck",
+  "wellpass_name": "motion*s Gleisdreieck Tanz- und Bewegungsstudio Berlin",
+  "street": "Tempelhofer Ufer 36",
+  "score": 0.5
+ },
+ {
+  "usc": "clarity-loft-massage",
+  "usc_name": "Clarity Berlin - Massage",
+  "wellpass": "berlin-clarity",
+  "wellpass_name": "Clarity Berlin",
+  "street": "Burgemeisterstraße 34",
+  "score": 1.0
+ },
+ {
+  "usc": "clarity-healing-space-ostkreuz",
+  "usc_name": "Clarity Healing Space Ostkreuz - Massage",
+  "wellpass": "berlin-clarity-healing-space",
+  "wellpass_name": "Clarity Healing Space Berlin (Friedrichshain)",
+  "street": "Nöldnerstraße 20",
+  "score": 1.0
+ },
+ {
+  "usc": "die-bewegungsebene",
+  "usc_name": "Die Bewegungsebene",
+  "wellpass": "berlin-diebewegungsebene",
+  "wellpass_name": "Die Bewegungsebene Berlin",
+  "street": "Alt-Kaulsdorf 18",
+  "score": 1.0
+ },
+ {
+  "usc": "ewto-home-of-wingtsun-berlin",
+  "usc_name": "EWTO: Home of WingTsun Berlin",
+  "wellpass": "ewto-33",
+  "wellpass_name": "EWTO-Schule 12681 Berlin",
+  "street": "Coswiger Straße 5",
+  "score": 0.5
+ },
+ {
+  "usc": "ewto-home-of-wingtsun-berlin-friedrichshain",
+  "usc_name": "EWTO: Home of WingTsun Berlin-Friedrichshain",
+  "wellpass": "ewto-25",
+  "wellpass_name": "EWTO-Schule 10247 Berlin-Friedrichshain",
+  "street": "Erich-Nehlhans-Straße 19",
+  "score": 0.5
+ },
+ {
+  "usc": "ewto-home-of-wingtsun-berlin-hellersdorf",
+  "usc_name": "EWTO: Home of WingTsun Berlin-Hellersdorf",
+  "wellpass": "ewto-19",
+  "wellpass_name": "EWTO-Schule 12627 Berlin-Hellersdorf",
+  "street": "Böhlener Straße 3",
+  "score": 0.5
+ },
+ {
+  "usc": "ewto-home-of-wingtsun-berlin-kreuzberg",
+  "usc_name": "EWTO: Home of WingTsun Berlin-Kreuzberg",
+  "wellpass": "ewto-170",
+  "wellpass_name": "EWTO-Schule 10963 Berlin-Kreuzberg",
+  "street": "Obentrautstraße 51",
+  "score": 0.5
+ },
+ {
+  "usc": "ewto-home-of-wingtsun-berlin-marzahn",
+  "usc_name": "EWTO: Home of WingTsun Berlin-Marzahn",
+  "wellpass": "12679",
+  "wellpass_name": "EWTO-Schule 12679 Berlin-Marzahn",
+  "street": "Marzahner Promenade 46",
+  "score": 0.5
+ },
+ {
+  "usc": "ewto-home-of-wingtsun-berlin-mitte",
+  "usc_name": "EWTO: Home of WingTsun Berlin-Mitte",
+  "wellpass": "10178",
+  "wellpass_name": "EWTO-Schule 10178 Berlin-Mitte",
+  "street": "Neue Schönhauser Straße 19",
+  "score": 0.5
+ },
+ {
+  "usc": "ewto-home-of-wingtsun-berlin-schneberg",
+  "usc_name": "EWTO: Home of WingTsun Berlin-Schöneberg",
+  "wellpass": "ewto-48",
+  "wellpass_name": "EWTO-Schule 10777 Berlin-Schöneberg",
+  "street": "Regensburger Straße 2",
+  "score": 0.5
+ },
+ {
+  "usc": "ewto-home-of-wingtsun-berlin-steglitz",
+  "usc_name": "EWTO: Home of WingTsun Berlin-Steglitz",
+  "wellpass": "ewto-21",
+  "wellpass_name": "EWTO-Schule 12161 Berlin-Steglitz",
+  "street": "Bundesallee 79",
+  "score": 0.5
+ },
+ {
+  "usc": "ewto-home-of-wingtsun-berlin-treptow",
+  "usc_name": "EWTO: Home of WingTsun Berlin-Treptow",
+  "wellpass": "12435",
+  "wellpass_name": "EWTO-Schule 12435 Berlin-Treptow",
+  "street": "Am Treptower Park 42",
+  "score": 0.5
+ },
+ {
+  "usc": "ewto-home-of-wingtsun-berlin-weiensee",
+  "usc_name": "EWTO: Home of WingTsun Berlin-Weißensee",
+  "wellpass": "ewto-125",
+  "wellpass_name": "EWTO-Schule 13086 Berlin-Weißensee",
+  "street": "Parkstraße 14",
+  "score": 0.5
+ },
+ {
+  "usc": "alte-eisbahn-lankwitz",
+  "usc_name": "Eisbahn Lankwitz",
+  "wellpass": "berlin-padel-lankwitz",
+  "wellpass_name": "Padel Lankwitz Berlin",
+  "street": "Leonorenstraße 37",
+  "score": 0.5
+ },
+ {
+  "usc": "empathie-yoga-kreuzbergyoga",
+  "usc_name": "Empathie Yoga @KreuzbergYoga",
+  "wellpass": "berlin-saskia-graefingholt",
+  "wellpass_name": "Kreuzbergyoga - Gräfingholt Bewegt Berlin",
+  "street": "Lübbener Straße 9",
+  "score": 0.5
+ },
+ {
+  "usc": "every-damn-day-yoga-spreestudio",
+  "usc_name": "Every Damn Day Yoga - Spreestudio",
+  "wellpass": "every-damn-day-yoga-x-spreestudios-berlin",
+  "wellpass_name": "Every Damn Day Yoga x Spreestudios Berlin",
+  "street": "Köpenicker Chaussee 4",
+  "score": 0.75
+ },
+ {
+  "usc": "float-studio-atelier-rooftop",
+  "usc_name": "FLOAT - Atelier Rooftop",
+  "wellpass": "berlin-float-studio-atelier-rooftop",
+  "wellpass_name": "FLOAT Studio Berlin @ Atelier Rooftop",
+  "street": "Prinzenstraße 84.2",
+  "score": 1.0
+ },
+ {
+  "usc": "float-lobe-block",
+  "usc_name": "FLOAT - Lobe Block",
+  "wellpass": "berlin-yoga-at-lobe-block",
+  "wellpass_name": "Yoga at Lobe Block Berlin",
+  "street": "Böttgerstraße 16",
+  "score": 0.67
+ },
+ {
+  "usc": "feel-freeyoga-mauerpark",
+  "usc_name": "Feel FreeYoga - Mauerpark (Outdoor)",
+  "wellpass": "berlin-balancezeitoutdoor",
+  "wellpass_name": "BalanceZeit Berlin (Outdoor)",
+  "street": "Lortzingstraße 22",
+  "score": 0.5
+ },
+ {
+  "usc": "fittichede-sarasvati",
+  "usc_name": "Fittiche.de @Sarasvati",
+  "wellpass": "berlin-fittiche-diana-hoffmann",
+  "wellpass_name": "Fittiche - Diana Hoffmann Berlin",
+  "street": "Bundesallee 53",
+  "score": 0.5
+ },
+ {
+  "usc": "forr-by-tau-alte-nationalgalerie",
+  "usc_name": "Forró by Tau - Alte Nationalgalerie",
+  "wellpass": "berlin-forrowithcharlotte-nationalgalerie",
+  "wellpass_name": "Forro with Charlotte Berlin (Alte Nationalgalerie)",
+  "street": "Bodestraße 1-3",
+  "score": 0.75
+ },
+ {
+  "usc": "forr-with-charlotte-realign-prenzlauer-berg",
+  "usc_name": "Forró with Charlotte - Realign Prenzlauer Berg",
+  "wellpass": "berlin-prenzlauer-berg-forro-miudinho",
+  "wellpass_name": "Forró Miudinho Berlin (Prenzlauer Berg)",
+  "street": "Kollwitzstraße 77",
+  "score": 0.5
+ },
+ {
+  "usc": "forr-with-charlotte-saloneo",
+  "usc_name": "Forró with Charlotte - SaloNeo",
+  "wellpass": "berlin-forrowithcharlotte-prenzlauerberg",
+  "wellpass_name": "Forro with Charlotte Berlin (Prenzlauer Berg)",
+  "street": "Hagenauer Straße 11",
+  "score": 1.0
+ },
+ {
+  "usc": "forr-with-charlotte-tanzbasis-fh",
+  "usc_name": "Forró with Charlotte - Tanzbasis FH",
+  "wellpass": "berlin-forrowithcharlotte-tanzbasis",
+  "wellpass_name": "Forro with Charlotte Berlin (Tanzbasis)",
+  "street": "Eldenaer Straße 44",
+  "score": 1.0
+ },
+ {
+  "usc": "green-yoga-sez",
+  "usc_name": "Green Yoga SEZ",
+  "wellpass": "berlin-sez-green-yoga",
+  "wellpass_name": "Green Yoga SEZ Berlin",
+  "street": "Landsberger Allee 77",
+  "score": 1.0
+ },
+ {
+  "usc": "heiuki-sup-kajak-werder-riegelspitze-1",
+  "usc_name": "HEIUKI SUP & Kajak - Berlin Rummelsburg",
+  "wellpass": "berlin-heiukispree",
+  "wellpass_name": "HEIUKI Berlin Spree",
+  "street": "Gustav-Holzmann-Straße 10",
+  "score": 0.5
+ },
+ {
+  "usc": "break-dance-x-hiit-workout-by-hitmeister-limelig",
+  "usc_name": "HIITMEISTER BREAK DANCE WORKOUT @ LIMELIGHT",
+  "wellpass": "berlin-hiitmeister-kastanienalleee",
+  "wellpass_name": "Hiitmeister Kastanienallee Berlin",
+  "street": "Kastanienallee 71",
+  "score": 0.5
+ },
+ {
+  "usc": "hot-holmes-place-berlin-ostkreuz-1",
+  "usc_name": "HOT - Holmes Place Berlin Ostkreuz",
+  "wellpass": "berlin-holmes-place-ostkreuz",
+  "wellpass_name": "Holmes Place Berlin Ostkreuz",
+  "street": "Hirschberger Straße 3",
+  "score": 1.0
+ },
+ {
+  "usc": "huangshan-berlin-little-kung-fu-school",
+  "usc_name": "Huangshan Berlin - Little Kung Fu School",
+  "wellpass": "berlin-little-kung-fu-school",
+  "wellpass_name": "Little Kung Fu School Berlin",
+  "street": "Mehringdamm 64",
+  "score": 1.0
+ },
+ {
+  "usc": "schwimmhalle-ernst-thlmann-park-aquasport",
+  "usc_name": "Igor Bartoletti- Aqua @Schwimmhalle Ernst-Thälmann-Park",
+  "wellpass": "berlin-schwimmhalle-ernst-thaelmann-park",
+  "wellpass_name": "Schwimmhalle Ernst-Thälmann-Park",
+  "street": "Lilli-Henoch-Straße 20",
+  "score": 1.0
+ },
+ {
+  "usc": "clarity-loft",
+  "usc_name": "Jolene B. @ Clarity Berlin",
+  "wellpass": "berlin-clarity",
+  "wellpass_name": "Clarity Berlin",
+  "street": "Burgemeisterstraße 34",
+  "score": 1.0
+ },
+ {
+  "usc": "hiya-berlin",
+  "usc_name": "Just a lil' break Yoga",
+  "wellpass": "berlin-just-a-lil-break-yoga",
+  "wellpass_name": "Just a lil‘ break Yoga Berlin",
+  "street": "Goltzstraße 21",
+  "score": 1.0
+ },
+ {
+  "usc": "yo",
+  "usc_name": "KIM x YOU",
+  "wellpass": "berlin-kim-x-you",
+  "wellpass_name": "KIM x YOU Berlin",
+  "street": "Schandauer Straße 1A",
+  "score": 1.0
+ },
+ {
+  "usc": "kreuzbergyoga-4",
+  "usc_name": "KREUZBERGYOGA",
+  "wellpass": "berlin-saskia-graefingholt",
+  "wellpass_name": "Kreuzbergyoga - Gräfingholt Bewegt Berlin",
+  "street": "Lübbener Straße 9",
+  "score": 1.0
+ },
+ {
+  "usc": "kangatraining-outdoor-dietzgenstrae",
+  "usc_name": "Kangatraining - Green Yoga Pankow",
+  "wellpass": "berlin-dietzgenstrasse-green-yoga",
+  "wellpass_name": "Green Yoga Berlin Dietzgenstraße",
+  "street": "Dietzgenstraße 56",
+  "score": 0.5
+ },
+ {
+  "usc": "kinderbad-marzahn-platsch",
+  "usc_name": "Kinderbad Marzahn - Platsch",
+  "wellpass": "berlin-kinderbad-platsch",
+  "wellpass_name": "Kinderbad Platsch (Sommerbad)",
+  "street": "Max-Herrmann-Straße 7",
+  "score": 1.0
+ },
+ {
+  "usc": "kinderbad-monbijou",
+  "usc_name": "Kinderbad Monbijou",
+  "wellpass": "berlin-kinderbad-monbijou",
+  "wellpass_name": "Kinderbad Monbijou (Sommerbad)",
+  "street": "Oranienburger Straße 78",
+  "score": 1.0
+ },
+ {
+  "usc": "kombibad-mariendorf",
+  "usc_name": "Kombibad Mariendorf",
+  "wellpass": "berlin-kombibad-mariendorf-halle",
+  "wellpass_name": "Kombibad Mariendorf (Hallen. und Sommerbad)",
+  "street": "Ankogelweg 95",
+  "score": 1.0
+ },
+ {
+  "usc": "la-candela-the-center",
+  "usc_name": "La Candela Salsa - The Center",
+  "wellpass": "berlin-boetzowviertel-cuban-salsa-power",
+  "wellpass_name": "Cuban Salsa Power Berlin - The Center School of Performing Art",
+  "street": "Esmarchstraße 5",
+  "score": 0.5
+ },
+ {
+  "usc": "lagm-massage-studio-mitte",
+  "usc_name": "Lagōm Massage Studio - Mitte",
+  "wellpass": "berlin-lagommassagemitte",
+  "wellpass_name": "Lagōm Massage Studio Mitte Berlin",
+  "street": "Almstadtstraße 24",
+  "score": 1.0
+ },
+ {
+  "usc": "mara-jos-zen-massage-room",
+  "usc_name": "María José - ZEN massage room",
+  "wellpass": "berlin-zen-tantra",
+  "wellpass_name": "ZEN Tantra Yoga Berlin",
+  "street": "Eberswalder Straße 32",
+  "score": 0.5
+ },
+ {
+  "usc": "mara-jos-zen-room-massage",
+  "usc_name": "María José - Zen Room Massage",
+  "wellpass": "berlin-zen-tantra",
+  "wellpass_name": "ZEN Tantra Yoga Berlin",
+  "street": "Eberswalder Straße 32",
+  "score": 0.5
+ },
+ {
+  "usc": "massage-place-panagiotis-sopiadis",
+  "usc_name": "Massage Place @George Sopiadis",
+  "wellpass": "berlin-massage-place",
+  "wellpass_name": "Massage Place Berlin",
+  "street": "Nollendorfstraße 23",
+  "score": 1.0
+ },
+ {
+  "usc": "mitra-yoga-esi-berlin",
+  "usc_name": "Mitra Yoga - Meyerbeerstraße",
+  "wellpass": "berlin-wedding-mitra-yoga",
+  "wellpass_name": "Mitra Yoga Berlin",
+  "street": "Meyerbeerstraße 59",
+  "score": 1.0
+ },
+ {
+  "usc": "mitra-yoga-esi-berlin",
+  "usc_name": "Mitra Yoga - Meyerbeerstraße",
+  "wellpass": "berlin-yoga-nach-mass-weissensee",
+  "wellpass_name": "YOGA NACH MASS Meyerbeerstraße Berlin",
+  "street": "Meyerbeerstraße 59",
+  "score": 0.5
+ },
+ {
+  "usc": "mphp-gendarmenmarkt",
+  "usc_name": "MpHp Gendarmenmarkt",
+  "wellpass": "berlin-holmes-place-gendarmenmarkt",
+  "wellpass_name": "Holmes Place Berlin Gendarmenmarkt",
+  "street": "Friedrichstraße 68",
+  "score": 0.5
+ },
+ {
+  "usc": "nomad-yoga-im-bodhicharya",
+  "usc_name": "Nomad Yoga im Bodhicharya",
+  "wellpass": "berlin-yoga-in-person-bodhicharya",
+  "wellpass_name": "Yoga In Person Bodhicharya Berlin",
+  "street": "Kinzigstraße 25",
+  "score": 0.5
+ },
+ {
+  "usc": "oyoga-im-michelberger",
+  "usc_name": "OYOGA Michelberger Hotel",
+  "wellpass": "oyoga-michelberger-hotel-underlook-berlin",
+  "wellpass_name": "OYOGA Michelberger Hotel Underlook Berlin",
+  "street": "Warschauer Straße 39-40",
+  "score": 1.0
+ },
+ {
+  "usc": "ori-tahiti-atelier-de-la-danse",
+  "usc_name": "Ori Tahiti @ Atelier De La Danse",
+  "wellpass": "berlin-ori-tahiti",
+  "wellpass_name": "Ori Tahiti Berlin",
+  "street": "Bundesallee 88",
+  "score": 1.0
+ },
+ {
+  "usc": "original-bootcamp-berlin-adlershof-johannisthal",
+  "usc_name": "Original Bootcamp - Berlin Adlershof/Johannisthal",
+  "wellpass": "berlin-obc-adlershof",
+  "wellpass_name": "ORIGINAL BOOTCAMP - Outdoor Fitness - Berlin Adlershof/Johannisthal",
+  "street": "Hermann-Dorner-Allee 11",
+  "score": 1.0
+ },
+ {
+  "usc": "original-bootcamp-berlin-hasenheide",
+  "usc_name": "Original Bootcamp - Berlin Hasenheide",
+  "wellpass": "berlin-original-bootcamp-hasenheide",
+  "wellpass_name": "ORIGINAL BOOTCAMP - Outdoor Fitness - Berlin Hasenheide",
+  "street": "Columbiadamm 160",
+  "score": 1.0
+ },
+ {
+  "usc": "original-bootcamp-schneberg-gasometer",
+  "usc_name": "Original Bootcamp - Berlin Schöneberg-Gasometer",
+  "wellpass": "berlin-original-bootcamp-gasometer",
+  "wellpass_name": "ORIGINAL BOOTCAMP - Outdoor Fitness - Berlin Schöneberg - Cheruskerpark / Südkreuz",
+  "street": "Torgauer Straße 11",
+  "score": 0.67
+ },
+ {
+  "usc": "outdoor-artom-studio",
+  "usc_name": "Outdoor - Art.OM Studio",
+  "wellpass": "berlin-outdooromstudio",
+  "wellpass_name": "Art.OM Studio Berlin - Outdoor",
+  "street": "Am Flutgraben 1",
+  "score": 1.0
+ },
+ {
+  "usc": "green-yoga-1",
+  "usc_name": "Outdoor - Green Yoga Hasenheide",
+  "wellpass": "berlin-original-bootcamp-hasenheide",
+  "wellpass_name": "ORIGINAL BOOTCAMP - Outdoor Fitness - Berlin Hasenheide",
+  "street": "Columbiadamm 160",
+  "score": 0.67
+ },
+ {
+  "usc": "peaceful-mountain-yoga-green-yoga-kreuzberg",
+  "usc_name": "PEACEFUL MOUNTAIN YOGA @Green Yoga Kreuzberg",
+  "wellpass": "green-yoga-berlin",
+  "wellpass_name": "Green Yoga Berlin Kreuzberg",
+  "street": "Oranienstraße 163",
+  "score": 1.0
+ },
+ {
+  "usc": "para-ti-dance-belushis-rosa-lux",
+  "usc_name": "Para Ti Dance - Belushis (Rosa-Lux)",
+  "wellpass": "berlin-paratialexanderplatz",
+  "wellpass_name": "Para Ti Dance - Belushis Rosa Lux",
+  "street": "Rosa-Luxemburg-Straße 41",
+  "score": 1.0
+ },
+ {
+  "usc": "pickleball-collective-edeka-treugut",
+  "usc_name": "Pickleball Collective @ Edeka Treugut",
+  "wellpass": "berlin-pickleball-collective-treptow",
+  "wellpass_name": "PickleBall.Collective (Treptow) Berlin",
+  "street": "Heidelberger Straße 90",
+  "score": 1.0
+ },
+ {
+  "usc": "pickleball-collective-nrtingen-elementary-schoo",
+  "usc_name": "Pickleball Collective @ Nürtingen ElementarySchool",
+  "wellpass": "berlin-pickleball-collective-kreuzberg",
+  "wellpass_name": "PickleBall.Collective (Kreuzberg) Berlin",
+  "street": "Wrangelstraße 136",
+  "score": 1.0
+ },
+ {
+  "usc": "pilates-with-lu-noir-sport",
+  "usc_name": "Pilates with Lu @Noir Sport",
+  "wellpass": "berlin-noir-boutique-gym",
+  "wellpass_name": "NOIR Boutique Gym Berlin",
+  "street": "Eisenzahnstraße 14",
+  "score": 0.5
+ },
+ {
+  "usc": "runningncalisthenics-club-mauerpark",
+  "usc_name": "RUNNING'N'CALISTHENICS CLUB @Mauerpark",
+  "wellpass": "berlin-runningncalisthenicsclubmauerpark",
+  "wellpass_name": "RUNNING'N'CALISTHENICS CLUB Mauerpark Berlin",
+  "street": "Am Falkplatz 1",
+  "score": 1.0
+ },
+ {
+  "usc": "ana-kavalis-zbk",
+  "usc_name": "Resonant Body® ZBK Studio",
+  "wellpass": "berlin-resonant-body-weichselstrasse",
+  "wellpass_name": "Ana Kavalis/ Resonant Body Berlin Weichselstrasse",
+  "street": "Weichselstraße 34",
+  "score": 0.67
+ },
+ {
+  "usc": "rika-healing-artist",
+  "usc_name": "Rika Healing Artist",
+  "wellpass": "berlin-healing-artist",
+  "wellpass_name": "Healing Artist Berlin",
+  "street": "Lehmbruckstraße 26",
+  "score": 1.0
+ },
+ {
+  "usc": "speed-fit-tegel",
+  "usc_name": "SPEED.FIT Reinickendorf",
+  "wellpass": "berlin-speedfit-tegel",
+  "wellpass_name": "SPEED.FIT Berlin Tegel",
+  "street": "Oraniendamm 64",
+  "score": 1.0
+ },
+ {
+  "usc": "salzhain-private-salz-session",
+  "usc_name": "Salzhain - Private Salz Session",
+  "wellpass": "berlin-salzhain",
+  "wellpass_name": "Salzhain Berlin",
+  "street": "Scharnweberstraße 3",
+  "score": 1.0
+ },
+ {
+  "usc": "sauna-im-stadtbad-lankwitz",
+  "usc_name": "Sauna im Stadtbad Lankwitz",
+  "wellpass": "berlin-stadtbad-lankwitz",
+  "wellpass_name": "Stadtbad Lankwitz",
+  "street": "Leonorenstraße 39",
+  "score": 1.0
+ },
+ {
+  "usc": "sauna-im-stadtbad-wilmersdorf-l",
+  "usc_name": "Sauna im Stadtbad Wilmersdorf l",
+  "wellpass": "berlin-stadtbad-wilmersdorf-1",
+  "wellpass_name": "Stadtbad Wilmersdorf I",
+  "street": "Mecklenburgische Straße 80",
+  "score": 1.0
+ },
+ {
+  "usc": "sauna-in-der-schwimmhalle-allendeviertel",
+  "usc_name": "Sauna in der Schwimmhalle Allendeviertel",
+  "wellpass": "berlin-schwimmhalle-allendeviertel",
+  "wellpass_name": "Schwimmhalle Allendeviertel",
+  "street": "Pablo-Neruda-Straße 5",
+  "score": 1.0
+ },
+ {
+  "usc": "sauna-in-der-schwimmhalle-anton-saefkow-platz",
+  "usc_name": "Sauna in der Schwimmhalle Anton-Saefkow-Platz",
+  "wellpass": "berlin-schwimmhalle-anton-saefkow-platz",
+  "wellpass_name": "Schwimmhalle Anton-Saefkow-Platz",
+  "street": "Anton-Saefkow-Platz 1",
+  "score": 1.0
+ },
+ {
+  "usc": "sauna-in-der-schwimmhalle-buch",
+  "usc_name": "Sauna in der Schwimmhalle Buch",
+  "wellpass": "berlin-schwimmhalle-buch",
+  "wellpass_name": "Schwimmhalle Buch",
+  "street": "Wolfgang-Heinz-Straße 41",
+  "score": 1.0
+ },
+ {
+  "usc": "sauna-in-der-schwimmhalle-ernst-thlmann-park",
+  "usc_name": "Sauna in der Schwimmhalle Ernst-Thälmann-Park",
+  "wellpass": "berlin-schwimmhalle-ernst-thaelmann-park",
+  "wellpass_name": "Schwimmhalle Ernst-Thälmann-Park",
+  "street": "Lilli-Henoch-Straße 20",
+  "score": 1.0
+ },
+ {
+  "usc": "sauna-in-der-schwimmhalle-fischerinsel",
+  "usc_name": "Sauna in der Schwimmhalle Fischerinsel",
+  "wellpass": "berlin-schwimmhalle-fischerinsel",
+  "wellpass_name": "Schwimmhalle Fischerinsel",
+  "street": "Fischerinsel 11",
+  "score": 1.0
+ },
+ {
+  "usc": "sauna-in-der-schwimmhalle-kaulsdorf",
+  "usc_name": "Sauna in der Schwimmhalle Kaulsdorf",
+  "wellpass": "berlin-schwimmhalle-kaulsdorf",
+  "wellpass_name": "Schwimmhalle Kaulsdorf",
+  "street": "Clara-Zetkin-Weg 13",
+  "score": 1.0
+ },
+ {
+  "usc": "sauna-in-der-schwimmhalle-sewanstrae",
+  "usc_name": "Sauna in der Schwimmhalle Sewanstraße",
+  "wellpass": "berlin-schwimmhalle-sewanstrasse",
+  "wellpass_name": "Schwimmhalle Sewanstraße",
+  "street": "Sewanstraße 229",
+  "score": 1.0
+ },
+ {
+  "usc": "seebad-friedrichshagen",
+  "usc_name": "Seebad Friedrichshagen",
+  "wellpass": "yoga-labor-berlin-seebad-friedrichshagen-sup-yoga",
+  "wellpass_name": "Yoga Labor Berlin Seebad Friedrichshagen (SUP Yoga)",
+  "street": "Müggelseedamm 216",
+  "score": 1.0
+ },
+ {
+  "usc": "sscbg-ev-rohrwallallee-11-12527-berlin",
+  "usc_name": "Seesportclub Berlin-Grünau e.V.",
+  "wellpass": "berlin-seesportclub-berlin-gruenau-ev",
+  "wellpass_name": "Seesportclub Berlin Grünau e.V. (SUP)",
+  "street": "Rohrwallallee 11",
+  "score": 1.0
+ },
+ {
+  "usc": "shinzen-dojo-berlin-kreuzberg",
+  "usc_name": "Shinzen Dojo Berlin - Berlin Schönberg",
+  "wellpass": "berlin-shinzen-dojo",
+  "wellpass_name": "Shinzen Dojo Berlin",
+  "street": "Kolonnenstraße 26",
+  "score": 1.0
+ },
+ {
+  "usc": "sicuro-dojo-berlin",
+  "usc_name": "Sicuro Dojo Berlin",
+  "wellpass": "berlin-sicuro-dojo",
+  "wellpass_name": "Sicuro Dojo Berlin",
+  "street": "Bahnhofstraße 2A",
+  "score": 1.0
+ },
+ {
+  "usc": "somana-am-gendarmenmarkt",
+  "usc_name": "Somana | Am Gendarmenmarkt",
+  "wellpass": "berlin-somana-health",
+  "wellpass_name": "Somana Health Berlin",
+  "street": "Französische Straße 24",
+  "score": 0.5
+ },
+ {
+  "usc": "sommerbad-humboldthain",
+  "usc_name": "Sommerbad Humboldthain",
+  "wellpass": "berlin-sommerbad-humboldthain",
+  "wellpass_name": "Sommerbad Humboldthain",
+  "street": "Wiesenstraße 1",
+  "score": 1.0
+ },
+ {
+  "usc": "sommerbad-mariendorf",
+  "usc_name": "Sommerbad Mariendorf",
+  "wellpass": "berlin-sommerbad-mariendorf",
+  "wellpass_name": "Sommerbad Mariendorf",
+  "street": "Rixdorfer Straße 130",
+  "score": 1.0
+ },
+ {
+  "usc": "sommerbad-neukolln",
+  "usc_name": "Sommerbad Neukölln",
+  "wellpass": "berlin-sommerbad-neukoelln",
+  "wellpass_name": "Sommerbad Neukölln",
+  "street": "Columbiadamm 160",
+  "score": 1.0
+ },
+ {
+  "usc": "sommerbad-staaken-west",
+  "usc_name": "Sommerbad Staaken-West",
+  "wellpass": "berlin-sommerbad-staaken-west",
+  "wellpass_name": "Sommerbad Staaken West",
+  "street": "Brunsbütteler Damm 443",
+  "score": 1.0
+ },
+ {
+  "usc": "sommerbad-wilmersdorf",
+  "usc_name": "Sommerbad Wilmersdorf",
+  "wellpass": "berlin-sommerbad-wilmersdorf",
+  "wellpass_name": "Sommerbad Wilmersdorf",
+  "street": "Forckenbeckstraße 14",
+  "score": 1.0
+ },
+ {
+  "usc": "sommerbad-wuhlheide",
+  "usc_name": "Sommerbad Wuhlheide",
+  "wellpass": "berlin-sommerbad-wuhlheide",
+  "wellpass_name": "Sommerbad Wuhlheide",
+  "street": "Treskowallee 211",
+  "score": 1.0
+ },
+ {
+  "usc": "sommerbad-am-insulaner",
+  "usc_name": "Sommerbad am Insulaner",
+  "wellpass": "berlin-sommerbad-am-insulaner",
+  "wellpass_name": "Sommerbad Am Insulaner",
+  "street": "Munsterdamm 80",
+  "score": 1.0
+ },
+ {
+  "usc": "soul-treats-massage",
+  "usc_name": "Soul Treats - Massage",
+  "wellpass": "berlin-soul-treats",
+  "wellpass_name": "Soul Treats Berlin",
+  "street": "Schönholzer Straße 13",
+  "score": 1.0
+ },
+ {
+  "usc": "spannungsausgleich",
+  "usc_name": "Spannungsausgleich",
+  "wellpass": "berlin-spannungsausgleich",
+  "wellpass_name": "Spannungsausgleich Berlin",
+  "street": "Straße 251 12",
+  "score": 1.0
+ },
+ {
+  "usc": "stadtbad-charlottenburg-neue-halle",
+  "usc_name": "Stadtbad Charlottenburg - Neue Halle",
+  "wellpass": "berlin-stadtbad-charlottenburg-neue-halle",
+  "wellpass_name": "Stadtbad Charlottenburg \"Neue Halle\"",
+  "street": "Krumme Straße 9",
+  "score": 1.0
+ },
+ {
+  "usc": "stadtbad-markisches-viertel",
+  "usc_name": "Stadtbad Märkisches Viertel",
+  "wellpass": "berlin-stadtbad-maerkisches-viertel",
+  "wellpass_name": "Stadtbad Märkisches Viertel",
+  "street": "Wilhelmsruher Damm 142D",
+  "score": 1.0
+ },
+ {
+  "usc": "standupclub-berlin-funkhaus",
+  "usc_name": "StandUpClub Berlin - Funkhaus SUP Kurse und Touren",
+  "wellpass": "belrin-standupclub",
+  "wellpass_name": "StandUpClub Berlin",
+  "street": "Nalepastraße 18",
+  "score": 1.0
+ },
+ {
+  "usc": "standupclub-berlin-funkhaus-verleih",
+  "usc_name": "StandUpClub Berlin Funkhaus - SUP Verleih",
+  "wellpass": "belrin-standupclub",
+  "wellpass_name": "StandUpClub Berlin",
+  "street": "Nalepastraße 18",
+  "score": 1.0
+ },
+ {
+  "usc": "strandbad-jungfernheide",
+  "usc_name": "Strandbad Jungfernheide",
+  "wellpass": "berlin-jungfernheide-obc",
+  "wellpass_name": "ORIGINAL BOOTCAMP - Outdoor Fitness - Berlin Siemensstadt - Jungfernheide",
+  "street": "Jungfernheideweg 60",
+  "score": 0.5
+ },
+ {
+  "usc": "strandbad-jungfernheide",
+  "usc_name": "Strandbad Jungfernheide",
+  "wellpass": "berlin-strandbad-jungfernheide",
+  "wellpass_name": "Strandbad Jungfernheide Berlin",
+  "street": "Jungfernheideweg 60",
+  "score": 1.0
+ },
+ {
+  "usc": "strandbad-jungfernheide-schwimmen",
+  "usc_name": "Strandbad Jungfernheide - Schwimmen",
+  "wellpass": "berlin-strandbad-jungfernheide",
+  "wellpass_name": "Strandbad Jungfernheide Berlin",
+  "street": "Jungfernheideweg 60",
+  "score": 1.0
+ },
+ {
+  "usc": "strandbad-plotzensee",
+  "usc_name": "Strandbad Plötzensee",
+  "wellpass": "berlin-ploetzsee-strandbad",
+  "wellpass_name": "Strandbad Plötzensee Berlin",
+  "street": "Nordufer 26",
+  "score": 1.0
+ },
+ {
+  "usc": "strandbad-wannsee",
+  "usc_name": "Strandbad Wannsee",
+  "wellpass": "berlin-strandbad-wannsee",
+  "wellpass_name": "Strandbad Wannsee",
+  "street": "Wannseebadweg 25",
+  "score": 1.0
+ },
+ {
+  "usc": "strandbad-wendenschloss",
+  "usc_name": "Strandbad Wendenschloss",
+  "wellpass": "berlin-strandbad-wendenschloss",
+  "wellpass_name": "Strandbad Wendenschloß",
+  "street": "Möllhausenufer 30",
+  "score": 1.0
+ },
+ {
+  "usc": "studio-nalam",
+  "usc_name": "Studio Nalam",
+  "wellpass": "berlin-centro-delfino",
+  "wellpass_name": "Issac Physiotherapie @ NALAM Berlin",
+  "street": "Nollendorfstraße 20",
+  "score": 1.0
+ },
+ {
+  "usc": "surya-villa-ayurveda-wellness-zentrum",
+  "usc_name": "Surya Villa - Ayurveda Wellness Zentrum",
+  "wellpass": "berlin-suryavillaayurvedawelnesszentrum",
+  "wellpass_name": "Surya Villa Ayurveda Wellness Zentrum Berlin",
+  "street": "Husemannstraße 8",
+  "score": 1.0
+ },
+ {
+  "usc": "surya-villa-ayurveda-wellness-zentrum-plus",
+  "usc_name": "Surya Villa - Ayurveda Wellness Zentrum PLUS",
+  "wellpass": "berlin-suryavillaayurvedawelnesszentrum",
+  "wellpass_name": "Surya Villa Ayurveda Wellness Zentrum Berlin",
+  "street": "Husemannstraße 8",
+  "score": 1.0
+ },
+ {
+  "usc": "tanzschule-traumtnzer-mariendorf",
+  "usc_name": "Tanzschule Traumtänzer - Mariendorf",
+  "wellpass": "berlin-tanzschule-traumtaenzer-in-mariendorf-berlin",
+  "wellpass_name": "Tanzschule Traumtänzer in Mariendorf",
+  "street": "Großbeerenstraße 46-52",
+  "score": 1.0
+ },
+ {
+  "usc": "the-slow-space",
+  "usc_name": "The Slow Space",
+  "wellpass": "berlin-theslowspace",
+  "wellpass_name": "The Slow Space Berlin",
+  "street": "Gaudystraße 25",
+  "score": 1.0
+ },
+ {
+  "usc": "triathlon-crew-berlin-kombibad-seestrasse",
+  "usc_name": "Triathlon Crew Berlin - Kombibad Seestrasse",
+  "wellpass": "berlin-kombibad-seestrasse",
+  "wellpass_name": "Kombibad Seestraße (Hallen- und Sommerbad)",
+  "street": "Seestraße 80",
+  "score": 0.5
+ },
+ {
+  "usc": "triathlon-crew-berlin-hq",
+  "usc_name": "Triathlon Crew Berlin HQ",
+  "wellpass": "berlin-triathlon-crew",
+  "wellpass_name": "Triathlon Crew Berlin",
+  "street": "Gipsstraße 23B",
+  "score": 1.0
+ },
+ {
+  "usc": "tvaya",
+  "usc_name": "Tvaya @ Noir Studio",
+  "wellpass": "berlin-noir-boutique-gym",
+  "wellpass_name": "NOIR Boutique Gym Berlin",
+  "street": "Eisenzahnstraße 14",
+  "score": 0.5
+ },
+ {
+  "usc": "tvaya",
+  "usc_name": "Tvaya @ Noir Studio",
+  "wellpass": "berlin-tvaya-berlin",
+  "wellpass_name": "Tvaya Berlin",
+  "street": "Eisenzahnstraße 14",
+  "score": 1.0
+ },
+ {
+  "usc": "urban-buddha-oma-om",
+  "usc_name": "Urban Buddha - Oma Om",
+  "wellpass": "berlin-oma-om-yoga",
+  "wellpass_name": "OMA OM - Yoga Berlin",
+  "street": "Richardstraße 43",
+  "score": 1.0
+ },
+ {
+  "usc": "korperformen-berlin-schoneweide",
+  "usc_name": "VacuFitEMS",
+  "wellpass": "berlin-schoeneweide-koerperformen",
+  "wellpass_name": "VacuFit EMS Berlin",
+  "street": "Wilhelminenhofstraße 18",
+  "score": 1.0
+ },
+ {
+  "usc": "wave-on-yoga-heilehaus",
+  "usc_name": "Wave on Yoga - HeileHaus",
+  "wellpass": "berlin-wave-on-yoga",
+  "wellpass_name": "Wave on Yoga Berlin",
+  "street": "Waldemarstraße 36",
+  "score": 1.0
+ },
+ {
+  "usc": "barbara-pascaly-yoga-beat-fusion",
+  "usc_name": "YOGA BEAT FUSION im Michelberger Hotel",
+  "wellpass": "oyoga-michelberger-hotel-underlook-berlin",
+  "wellpass_name": "OYOGA Michelberger Hotel Underlook Berlin",
+  "street": "Warschauer Straße 39-40",
+  "score": 0.5
+ },
+ {
+  "usc": "yoga-vidya-berlin-mobil-stadtbad-mitte",
+  "usc_name": "Yoga Vidya Berlin Mobil - Stadtbad - Mitte",
+  "wellpass": "berlin-stadtbad-mitte",
+  "wellpass_name": "Stadtbad Mitte",
+  "street": "Gartenstraße 5",
+  "score": 1.0
+ },
+ {
+  "usc": "yoga-nach-mass-hohenschonhausen",
+  "usc_name": "Yoga nach Maß - Hohenschönhausen",
+  "wellpass": "berlin-yoga-nach-mass-hohenschoenmausen",
+  "wellpass_name": "YOGA NACH MASS Ribnitzer Straße Berlin",
+  "street": "Ribnitzer Straße 1B",
+  "score": 0.67
+ },
+ {
+  "usc": "yogaschule-zehlendorf-1",
+  "usc_name": "Yogaschule Zehlendorf",
+  "wellpass": "berlin-yogaschulezehlendorf",
+  "wellpass_name": "Yogaschule Zehlendorf Berlin",
+  "street": "Riemeisterstraße 114",
+  "score": 1.0
+ },
+ {
+  "usc": "mypelvi-holmes-place-berlin-neue-welt",
+  "usc_name": "mypelvi @Holmes Place Berlin Neue Welt",
+  "wellpass": "berlin-holmes-place-health-club-neue-welt",
+  "wellpass_name": "Holmes Place Berlin Neue Welt",
+  "street": "Hasenheide 109",
+  "score": 1.0
+ },
+ {
+  "usc": "mypelvi-holmes-place-berlin-steglitz",
+  "usc_name": "mypelvi @Holmes Place Berlin Steglitz",
+  "wellpass": "berlin-holmes-place-schlossstrasse",
+  "wellpass_name": "Holmes Place Berlin Schlossstraße",
+  "street": "Schildhornstraße 1",
+  "score": 0.67
+ },
+ {
+  "usc": "mypelvi-holmes-place-fitness-ostkreuz",
+  "usc_name": "mypelvi @Holmes Place Fitness - Ostkreuz",
+  "wellpass": "berlin-holmes-place-ostkreuz",
+  "wellpass_name": "Holmes Place Berlin Ostkreuz",
+  "street": "Hirschberger Straße 3",
+  "score": 1.0
+ },
+ {
+  "usc": "pilates22",
+  "usc_name": "pilates22",
+  "wellpass": "berlin-pilates22",
+  "wellpass_name": "pilates22",
+  "street": "Wiesbadener Straße 79",
+  "score": 1.0
+ }
+]

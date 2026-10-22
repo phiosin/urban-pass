@@ -58,3 +58,19 @@ These are rough numbers and still include some false matches. The matcher needs 
 - These are unofficial endpoints. They can change without notice, and automated access may conflict with the platforms' terms. Keep traffic low and use the data for personal use only.
 - USC plan matters: a studio may only be in Premium/Max. Filter by your partner's plan.
 - Wellpass terms text can restrict what's included (e.g. "Kurse nur mit Aufpreis"), so show it next to each match.
+
+## Update: Wellpass class schedule (via the app's API)
+
+A one-time recording of the iOS app's traffic showed how the app loads classes:
+
+- **Classes:** `GET https://mwa-api.int.api.egym.com/mwa/api/class-booking/v1/class-session?gymId={id}&from={utc}&to={utc}&status=ACTIVE`. `gymId` is the same `id` as in the public `/v1/gym/overview` list. Each session has `name`, `startDateTime`/`endDateTime` (UTC), `capacity`, `booked`, `instructor` and `gym`.
+- **Auth:** `Authorization: Bearer <Firebase ID token>` (project `prod-egym-id`, valid for 1 hour). The app gets it like this:
+  1. It logs in at `qualitrain.netpulse.com` (session cookie).
+  2. It calls `/np/exerciser/{uuid}/externalAccount/egym/qltLocations/sso`, which returns a Firebase custom token.
+  3. It exchanges that token through `signInWithCustomToken`.
+
+  After that, the long-lived refresh token renews the ID token.
+- **Our setup:** `python -m urbanpass.login` asks for the password in your own terminal and stores only the refresh token, in `.secrets/` (git-ignored). The daily run fetches the Wellpass schedule only for shared studios with in-app booking, about 140 requests.
+- **Matching:** a USC class counts as "on both" when the same studio has a Wellpass class starting within 5 minutes, with the name as a tie-breaker. USC classes at in-app studios with no Wellpass counterpart are dropped. Studios where Wellpass works by check-in or external booking stay listed with a note.
+
+The recording and the proxy's certificate key were deleted after the analysis.
