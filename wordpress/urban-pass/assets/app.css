@@ -205,3 +205,29 @@ body.up-fullscreen { margin: 0; background: #e9e6e0; }
 .leaflet-tooltip { font-weight: 600; font-size: 12px; border-radius: 8px; padding: 3px 7px; }
 .leaflet-control-attribution { font-size: 10px; }
 .up-tiles { filter: saturate(.75) contrast(.95); }
+
+/* Studio name under each pin (shown from zoom 14) */
+.up-pin em {
+  display: none; position: absolute; top: 44px; left: 50%; transform: translateX(-50%); max-width: 140px;
+  font: 600 11.5px/1.25 var(--up-font); font-style: normal; color: var(--up-ink); background: rgba(255,255,255,.95);
+  padding: 2px 6px; border-radius: 6px; box-shadow: 0 1px 4px rgba(0,17,44,.2);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; pointer-events: none;
+}
+.up-labels .up-pin em { display: block; }
+.up-pin-drop span { background: #fff; border-color: var(--up-navy); }
+.up-pin-drop span b::before { content: ""; display: block; width: 10px; height: 10px; border-radius: 50%; background: var(--up-navy); }
+
+/* Activity picker */
+.up-actsearch { width: 100%; margin: 14px 0 6px; padding: 11px 12px; border-radius: 12px; border: 1px solid var(--up-line); background: var(--up-card); font: inherit; color: var(--up-ink); }
+.up-actlist { display: flex; flex-direction: column; gap: 6px; margin-top: 6px; }
+.up-act {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px; width: 100%; text-align: left;
+  background: var(--up-card); border: 1.5px solid transparent; border-radius: 12px; padding: 10px 14px; cursor: pointer;
+  font: inherit; color: var(--up-ink);
+}
+.up-act span { font-weight: 600; }
+.up-act small { display: block; font-weight: 400; font-size: 12.5px; color: var(--up-muted); margin-top: 1px; }
+.up-act i { font-style: normal; font-weight: 700; color: var(--up-blue); width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; border: 1.5px solid var(--up-line); flex: none; }
+.up-act[aria-pressed="true"] { border-color: var(--up-blue); }
+.up-act[aria-pressed="true"] i { background: var(--up-blue); border-color: var(--up-blue); color: #fff; }
+.up-actbar { position: sticky; bottom: 0; background: var(--up-bg); padding-top: 10px; margin-top: 8px; }

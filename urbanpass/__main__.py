@@ -103,7 +103,7 @@ def main():
     index = {
         "generated": dt.datetime.now(dt.timezone.utc).replace(tzinfo=None).strftime("%Y-%m-%dT%H:%MZ"), "city": "Berlin", "wellpass_checked": checked,
         "days": days, "stations": STATIONS, "studios": {k: {kk: vv for kk, vv in v.items() if kk != "gym_id"}
-                                  for k, v in studios.items() if k in used},
+                                  for k, v in studios.items()},
     }
     (out / "index.json").write_text(json.dumps(index, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
     print(f"Wrote {len(dates)} days to {out}")

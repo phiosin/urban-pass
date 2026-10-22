@@ -15,7 +15,7 @@
   };
 
   var S = {
-    index: null, days: {}, date: null, tab: "classes", q: "", time: "", cat: "",
+    index: null, days: {}, date: null, tab: "classes", q: "", time: "", acts: store.get("acts", []),
     onlyBoth: true, plan: store.get("plan", ""), district: "", wp: store.get("wp", ["app", "external", "checkin"])
   };
 
@@ -55,6 +55,13 @@
   }
   function localISO(d) { return new Date(d.getTime() - d.getTimezoneOffset() * 60000).toISOString().slice(0, 10); }
   function bookable(c) { return c.ok === true || (c.ok == null && studio(c).wp_status !== "app"); }
+  function actOf(c) { return (c.c || "").trim() || "Other"; }
+  // Activities you can do without booking a class (gym floor, pool, courts, walls, sauna).
+  var DROPIN = /fitness|gym|swim|squash|tennis|padel|badminton|climb|boulder|sauna|spa|wellness|skat|golf|volleyball|ski/i;
+  function isDropIn(a) { return DROPIN.test(a); }
+  function studioOffers(st) {
+    return S.acts.some(function (a) { return isDropIn(a) && (st.disciplines || []).indexOf(a) >= 0; });
+  }
   function topCategories(classes) {
     var n = {};
     classes.forEach(function (c) {
@@ -63,7 +70,7 @@
     });
     return Object.keys(n).sort(function (a, b) { return n[b] - n[a]; }).slice(0, 8);
   }
-  function filtered() {
+  function filtered(ignoreActs) {
     var day = S.days[S.date];
     if (!day) return [];
     var q = S.q.toLowerCase(), t = TIMES.filter(function (x) { return x[0] === S.time; })[0];
@@ -77,7 +84,7 @@
       if (S.wp.indexOf(st.wp_status) < 0) return false;
       if (S.plan && c.pl.indexOf(S.plan) < 0) return false;
       if (S.district && st.district !== S.district) return false;
-      if (S.cat && (c.c || "").indexOf(S.cat) !== 0) return false;
+      if (!ignoreActs && S.acts.length && S.acts.indexOf(actOf(c)) < 0) return false;
       if (t && (c.s < t[2] || c.s > t[3])) return false;
       if (q && (c.t + " " + c.c + " " + st.name + " " + st.wp_name + " " + st.district).toLowerCase().indexOf(q) < 0) return false;
       return true;
@@ -150,10 +157,11 @@
 
   function chipsHtml(day) {
     var nFilters = (S.plan ? 1 : 0) + (S.district ? 1 : 0) + (S.wp.length < 3 ? 1 : 0);
-    return (S.index.wellpass_checked ? chip("both", "✓ On both schedules", S.onlyBoth) : "") +
+    var actLabel = !S.acts.length ? "All activities" : S.acts.length === 1 ? S.acts[0] : S.acts[0] + " +" + (S.acts.length - 1);
+    return chip("acts", actLabel + " ▾", S.acts.length > 0, S.acts.length > 0) +
+      (S.index.wellpass_checked ? chip("both", "✓ On both schedules", S.onlyBoth) : "") +
       chip("filters", nFilters ? "Filters · " + nFilters : "Filters", nFilters > 0, nFilters > 0) +
-      TIMES.map(function (t) { return chip("time:" + t[0], t[1], S.time === t[0]); }).join("") +
-      topCategories(day.classes).map(function (c) { return chip("cat:" + c, c, S.cat === c); }).join("");
+      TIMES.map(function (t) { return chip("time:" + t[0], t[1], S.time === t[0]); }).join("");
   }
 
   function nearHtml(st, all) {
@@ -219,7 +227,7 @@
         if (id === "both") S.onlyBoth = !S.onlyBoth;
         else if (id === "filters") return openFilters();
         else if (id.indexOf("time:") === 0) S.time = S.time === id.slice(5) ? "" : id.slice(5);
-        else if (id.indexOf("cat:") === 0) S.cat = S.cat === id.slice(4) ? "" : id.slice(4);
+        else if (id === "acts") return openActivities();
         render();
       });
     });
@@ -228,13 +236,15 @@
   function renderStudios() {
     var day = S.days[S.date] || { classes: [] };
     var counts = {};
-    day.classes.forEach(function (c) { if (!S.onlyBoth || c.ok === true || !S.index.wellpass_checked) counts[c.st] = (counts[c.st] || 0) + 1; });
+    filtered().forEach(function (c) { counts[c.st] = (counts[c.st] || 0) + 1; });
     var q = S.q.toLowerCase();
     var keys = Object.keys(S.index.studios).filter(function (k) {
       var s = S.index.studios[k];
+      if (S.acts.length && !counts[k] && !studioOffers(s)) return false;
       return !q || (s.name + " " + s.wp_name + " " + s.district + " " + s.disciplines.join(" ")).toLowerCase().indexOf(q) >= 0;
     }).sort(function (a, b) { return (counts[b] || 0) - (counts[a] || 0) || S.index.studios[a].name.localeCompare(S.index.studios[b].name, "de"); });
-    var html = '<div class="up-meta" style="padding-top:14px">' + keys.length + ' studios on both platforms · classes on ' + esc(dayLabel(S.date, true)) + '</div>';
+    var html = '<div class="up-chips">' + chipsHtml(day) + '</div>' +
+      '<div class="up-meta">' + keys.length + ' studios on both platforms · classes on ' + esc(dayLabel(S.date, true)) + '</div>';
     keys.forEach(function (k) {
       var s = S.index.studios[k];
       html += '<button class="up-card up-studio" data-studio="' + esc(k) + '"><div>' +
@@ -245,6 +255,7 @@
         '<div class="up-count">' + (counts[k] || 0) + ' classes</div></button>';
     });
     $(".up-main").innerHTML = html;
+    bindChips();
     root.querySelectorAll("[data-studio]").forEach(function (el) {
       el.addEventListener("click", function () { openStudio(el.dataset.studio); });
     });
@@ -341,6 +352,8 @@
       return '<p style="display:flex;gap:10px"><b style="width:44px;flex:none">' + esc(c.s) + '</b><span>' + esc(c.t) +
         (c.ok === true ? ' <span class="up-badge ok">✓ Wellpass</span>' : "") + '</span></p>';
     }).join("") : '<p>No classes matching your filters on this day.</p>';
+    var dropIn = S.acts.filter(function (a) { return isDropIn(a) && (st.disciplines || []).indexOf(a) >= 0; });
+    if (dropIn.length && !classes.length) rows += '<p><b>Drop-in:</b> ' + esc(dropIn.join(", ")) + ' without a class. Check opening hours with the studio.</p>';
     var sh = sheet(
       '<h2>' + esc(st.name) + '</h2><div class="up-sub">' + esc(st.street) + ' · ' + esc(st.district) + '</div>' +
       '<div class="up-nearlist">' + nearHtml(st, true) + '</div>' +
@@ -354,6 +367,50 @@
       '<a class="up-btn" target="_blank" rel="noopener" href="' + url(mapLink(st)) + '">Directions</a></div>'
     );
     bindSheetLinks(sh);
+  }
+
+  function openActivities() {
+    var day = S.days[S.date] || { classes: [] };
+    var counts = {}, drop = {};
+    filtered(true).forEach(function (c) { var a = actOf(c); counts[a] = (counts[a] || 0) + 1; });
+    Object.keys(S.index.studios).forEach(function (k) {
+      (S.index.studios[k].disciplines || []).forEach(function (d) { drop[d] = (drop[d] || 0) + 1; });
+    });
+    var names = Object.keys(counts);
+    Object.keys(drop).forEach(function (d) { if (names.indexOf(d) < 0) names.push(d); });
+    names.sort(function (a, b) { return (counts[b] || 0) - (counts[a] || 0) || a.localeCompare(b, "de"); });
+    var pick = S.acts.slice();
+    function row(a) {
+      var on = pick.indexOf(a) >= 0;
+      var sub = (counts[a] ? counts[a] + (counts[a] === 1 ? " class" : " classes") : "no classes") +
+        (drop[a] && isDropIn(a) ? " · drop-in at " + drop[a] + " studios" : "");
+      return '<button class="up-act" data-act="' + esc(a) + '" aria-pressed="' + on + '"><span>' + esc(a) +
+        '<small>' + esc(sub) + '</small></span><i>' + (on ? "✓" : "") + '</i></button>';
+    }
+    var sh = sheet(
+      '<h2>Activities</h2><div class="up-sub">' + esc(dayLabel(S.date, true)) + ' · pick one or more</div>' +
+      '<input class="up-actsearch" type="search" placeholder="Search activities (yoga, padel, swimming…)">' +
+      '<div class="up-actlist"></div>' +
+      '<div class="up-row up-actbar"><button class="up-btn ghost" data-clear>All activities</button><button class="up-btn" data-done>Show</button></div>'
+    );
+    var list = sh.el.querySelector(".up-actlist");
+    function draw(q) {
+      q = (q || "").toLowerCase();
+      var shown = names.filter(function (a) { return !q || a.toLowerCase().indexOf(q) >= 0; });
+      list.innerHTML = shown.length ? shown.map(row).join("") : '<p class="up-sub">Nothing matches. Tennis, padel and similar only show up if a shared studio offers them.</p>';
+      list.querySelectorAll("[data-act]").forEach(function (b) {
+        b.addEventListener("click", function () {
+          var a = b.dataset.act, i = pick.indexOf(a);
+          if (i >= 0) pick.splice(i, 1); else pick.push(a);
+          b.setAttribute("aria-pressed", i < 0);
+          b.querySelector("i").textContent = i < 0 ? "✓" : "";
+        });
+      });
+    }
+    draw("");
+    sh.el.querySelector(".up-actsearch").addEventListener("input", function (e) { draw(e.target.value); });
+    sh.el.querySelector("[data-clear]").addEventListener("click", function () { S.acts = []; store.set("acts", []); sh.close(); render(); });
+    sh.el.querySelector("[data-done]").addEventListener("click", function () { S.acts = pick; store.set("acts", pick); sh.close(); render(); });
   }
 
   function openFilters() {
@@ -414,12 +471,17 @@
   function stationIcon(t) {
     return L.divIcon({ className: "up-stmark", html: '<i class="up-st-' + t.toLowerCase() + '">' + t + '</i>', iconSize: [18, 18], iconAnchor: [9, 9] });
   }
-  function pinIcon(n) {
-    return L.divIcon({ className: "up-pin", html: '<span><b>' + n + '</b></span>', iconSize: [34, 42], iconAnchor: [17, 40] });
+  function pinIcon(n, name, hollow) {
+    return L.divIcon({
+      className: "up-pin" + (hollow ? " up-pin-drop" : ""),
+      html: '<span><b>' + (hollow ? "" : n) + '</b></span><em>' + esc(name) + '</em>',
+      iconSize: [34, 42], iconAnchor: [17, 40]
+    });
   }
 
   function initMap() {
-    M.map = L.map($(".up-map"), { zoomControl: false }).setView([52.515, 13.405], 12);
+    var el = $(".up-map");
+    M.map = L.map(el, { zoomControl: false }).setView([52.515, 13.405], 12);
     L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
       maxZoom: 19, className: "up-tiles",
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
@@ -435,8 +497,11 @@
       if (show && !M.map.hasLayer(M.stations)) M.stations.addTo(M.map);
       if (!show && M.map.hasLayer(M.stations)) M.map.removeLayer(M.stations);
     }
+    function syncLabels() { el.classList.toggle("up-labels", M.map.getZoom() >= 14); }
     M.map.on("zoomend", syncStations);
+    M.map.on("zoomend", syncLabels);
     syncStations();
+    syncLabels();
     M.pins = L.markerClusterGroup({
       showCoverageOnHover: false, spiderfyOnMaxZoom: true, maxClusterRadius: 48,
       iconCreateFunction: function (cl) {
@@ -485,14 +550,28 @@
     Object.keys(by).forEach(function (k) {
       var st = S.index.studios[k];
       if (!st || st.lat == null) return;
-      var m = L.marker([st.lat, st.lng], { icon: pinIcon(by[k].length), title: st.name });
+      var m = L.marker([st.lat, st.lng], { icon: pinIcon(by[k].length, st.name), title: st.name });
       m.on("click", function () { openStudio(k); });
       markers.push(m);
       if (M.focus === k) focusMarker = m;
     });
+    var nDrop = 0;
+    if (S.acts.length) {
+      Object.keys(S.index.studios).forEach(function (k) {
+        var st = S.index.studios[k];
+        if (by[k] || st.lat == null || !studioOffers(st)) return;
+        if (S.district && st.district !== S.district) return;
+        if (S.wp.indexOf(st.wp_status) < 0) return;
+        var m = L.marker([st.lat, st.lng], { icon: pinIcon(0, st.name, true), title: st.name, zIndexOffset: -500 });
+        m.on("click", function () { openStudio(k); });
+        markers.push(m);
+        nDrop++;
+      });
+    }
     M.pins.addLayers(markers);
     var nClasses = Object.keys(by).reduce(function (a, k) { return a + by[k].length; }, 0);
-    $(".up-mapcount").textContent = markers.length + " studios · " + nClasses + " classes · " + dayLabel(S.date, true);
+    $(".up-mapcount").textContent = (markers.length - nDrop) + " studios · " + nClasses + " classes" +
+      (nDrop ? " · " + nDrop + " drop-in" : "") + " · " + dayLabel(S.date, true);
     if (focusMarker) {
       var k = M.focus;
       M.focus = null;
