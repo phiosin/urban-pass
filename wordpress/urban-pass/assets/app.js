@@ -904,7 +904,9 @@
     var days = (S.index.days || []).filter(function (d) { return d.usc_total >= 300; }).slice(0, 3);
     var usc = 0, both = 0;
     days.forEach(function (d) { usc += d.usc_total; both += d.confirmed || 0; });
-    return { venues: t.usc_venues, shared: t.shared_studios, usc: usc, both: both, nDays: days.length };
+    // all studios on either pass (counted once) vs. those on both
+    var all = (t.usc_venues || 0) + (t.wp_studios || 0) - (t.shared_studios || 0);
+    return { venues: all, shared: t.shared_studios, usc: usc, both: both, nDays: days.length };
   }
 
   function showLanding() {
@@ -915,10 +917,9 @@
       '<section class="up-landing">' +
         '<div class="up-landing-top">' + ICON.mark + '</div>' +
         '<h1>Urban Pass</h1>' +
-        (st.venues ? '<p class="up-claim">Only <em>' + pct(st.shared / st.venues) + '</em> of <b>Urban Sports</b> studios in Berlin can also be booked with <b>Wellpass</b>.</p>' : "") +
+        (st.venues ? '<p class="up-claim">Only <em>' + pct(st.shared / st.venues) + '</em> of Berlin’s sports-pass studios take <b>both</b> passes.</p>' : "") +
         '<div class="up-facts">' +
-          (st.venues ? '<p><b>' + fmt(st.venues) + '</b> Urban Sports venues · only <b>' + fmt(st.shared) + '</b> take both</p>' : "") +
-          (st.usc ? '<p><b>' + fmt(st.usc) + '</b> Urban Sports classes in the next ' + st.nDays + ' days · only <b>' + fmt(st.both) + '</b> bookable with both</p>' : "") +
+          (st.usc ? '<p><b>' + fmt(st.usc) + '</b> classes in the next ' + st.nDays + ' days · only <b>' + fmt(st.both) + '</b> bookable with both</p>' : "") +
         '</div>' +
         '<button class="up-btn up-go" data-go>Find classes</button>' +
         '<p class="up-fine">Private project. Not affiliated with Urban Sports Club or EGYM Wellpass.</p>' +

@@ -351,3 +351,12 @@ body.up-noscroll { overflow: hidden; overscroll-behavior: none; }
 .up-facts { border-top: 1px solid rgba(255,255,255,.12); padding-top: 16px; display: flex; flex-direction: column; gap: 10px; }
 .up-facts p { margin: 0; font-size: 14.5px; color: #aab4c5; line-height: 1.4; }
 .up-facts b { color: #fff; font-variant-numeric: tabular-nums; }
+
+/* Landing background: abstract Kreuzberg street-art vibe (no landmarks), darkened for readable text */
+.up-landing {
+  background:
+    linear-gradient(180deg, rgba(0,17,44,.25) 0%, rgba(0,17,44,.55) 45%, rgba(0,17,44,.9) 100%),
+    url("landing-bg.svg") center / cover no-repeat,
+    #00112c;
+}
+.up-claim { text-shadow: 0 1px 12px rgba(0,17,44,.6); }
