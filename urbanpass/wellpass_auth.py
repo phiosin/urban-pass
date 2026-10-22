@@ -8,6 +8,7 @@ Only the refresh token is stored (in .secrets/wellpass.json, git-ignored).
 """
 import http.cookiejar
 import json
+import os
 import re
 import time
 import urllib.parse
@@ -91,22 +92,24 @@ def id_token():
     """A fresh 1-hour ID token from the stored refresh token."""
     if _cache["token"] and time.time() < _cache["exp"] - 120:
         return _cache["token"]
-    if not SECRETS.exists():
-        raise AuthError("Not logged in. Run: python -m urbanpass.login")
-    refresh = json.loads(SECRETS.read_text(encoding="utf-8"))["refresh_token"]
+    refresh = os.environ.get("WELLPASS_REFRESH_TOKEN")  # set as a secret in GitHub Actions
+    if not refresh:
+        if not SECRETS.exists():
+            raise AuthError("Not logged in. Run: python -m urbanpass.login")
+        refresh = json.loads(SECRETS.read_text(encoding="utf-8"))["refresh_token"]
     try:
         r = _post_form(f"https://securetoken.googleapis.com/v1/token?key={firebase_key()}",
                        {"grant_type": "refresh_token", "refresh_token": refresh})
     except urllib.error.HTTPError as e:
         raise AuthError(f"Token refresh failed (HTTP {e.code}). Run the login again.") from None
-    if r.get("refresh_token") and r["refresh_token"] != refresh:
+    if r.get("refresh_token") and r["refresh_token"] != refresh and SECRETS.exists():
         SECRETS.write_text(json.dumps({"refresh_token": r["refresh_token"]}), encoding="utf-8")
     _cache.update(token=r["id_token"], exp=time.time() + int(r.get("expires_in", 3600)))
     return _cache["token"]
 
 
 def logged_in():
-    return SECRETS.exists()
+    return bool(os.environ.get("WELLPASS_REFRESH_TOKEN")) or SECRETS.exists()
 
 
 def class_sessions(gym_id, start_utc, end_utc):

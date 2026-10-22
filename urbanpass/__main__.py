@@ -1,60 +1,106 @@
-"""Usage: python -m urbanpass [YYYY-MM-DD]   (default: tomorrow, Berlin time)"""
+"""Build the Urban Pass data.
+
+Usage: python -m urbanpass [--days N] [--start YYYY-MM-DD] [--out DIR]
+Defaults: 7 days starting today (Berlin), written to wordpress/urban-pass/data/.
+"""
+import argparse
 import datetime as dt
 import json
-import sys
 from pathlib import Path
 
-from . import match, site, usc, wellpass, wellpass_auth
+from . import match, usc, wellpass, wellpass_auth
 
 ROOT = Path(__file__).resolve().parent.parent
-DATA = ROOT / "data"
+OUT = ROOT / "wordpress" / "urban-pass" / "data"
+
+
+def berlin_today():
+    now = dt.datetime.now(dt.timezone.utc).replace(tzinfo=None)
+    return (now + dt.timedelta(hours=match._berlin_offset(now.date().isoformat()))).date()
+
+
+def studio_record(p):
+    u, w = p["usc"], p["wellpass"]
+    code, label = match.wellpass_status(w)
+    return {
+        "name": u["name"], "wp_name": w["name"], "street": w["street"] or u["street"], "district": u["district"],
+        "lat": w.get("lat"), "lng": w.get("lng"), "disciplines": u["disciplines"], "plans": u["plans"],
+        "usc_url": f"{usc.BASE}/venues/{u['slug']}", "wp_url": w["url"], "wp_status": code, "wp_label": label,
+        "booking": w.get("external_booking") or "", "terms": (w.get("terms") or "")[:800],
+        "gym_id": w.get("gym_id"),
+    }
+
+
+def compact_class(c):
+    w = c["wellpass"]
+    wc = w.get("wp_class") or {}
+    return {
+        "id": c["id"], "t": c["title"], "c": c["category"], "s": c["start"], "e": c["end"], "st": c["venue_slug"],
+        "pl": c["plans"], "u": c["spots_left"], "img": c.get("image", ""), "ok": w["confirmed"],
+        "w": wc.get("spots"), "act": w["activity_listed"],
+    }
 
 
 def main():
-    date = sys.argv[1] if len(sys.argv) > 1 else (dt.date.today() + dt.timedelta(days=1)).isoformat()
-    DATA.mkdir(exist_ok=True)
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--days", type=int, default=7)
+    ap.add_argument("--start", default=None)
+    ap.add_argument("--out", default=str(OUT))
+    args = ap.parse_args()
+    first = dt.date.fromisoformat(args.start) if args.start else berlin_today()
+    dates = [(first + dt.timedelta(days=i)).isoformat() for i in range(args.days)]
+    out = Path(args.out)
+    out.mkdir(parents=True, exist_ok=True)
 
     print("USC venues ...", flush=True)
     venues = usc.venues()
-    print(f"  {len(venues)}")
-    print("Wellpass studios ...", flush=True)
+    print(f"  {len(venues)}\nWellpass studios ...", flush=True)
     wp = wellpass.berlin()
     print(f"  {len(wp)}")
-
     pairs = match.match_studios(venues, wp)
-    shared = sorted({p["wellpass"]["slug"] for p in pairs})
-    print(f"Shared studios: {len(shared)} Wellpass / {len({p['usc']['slug'] for p in pairs})} USC listings")
-    (DATA / "studios.json").write_text(json.dumps(
-        [{"usc": p["usc"]["slug"], "usc_name": p["usc"]["name"], "wellpass": p["wellpass"]["slug"],
-          "wellpass_name": p["wellpass"]["name"], "street": p["wellpass"]["street"], "score": p["score"]}
-         for p in pairs], ensure_ascii=False, indent=1), encoding="utf-8")
+    best = {}
+    for p in pairs:
+        if p["usc"]["slug"] not in best or p["score"] > best[p["usc"]["slug"]]["score"]:
+            best[p["usc"]["slug"]] = p
+    studios = {slug: studio_record(p) for slug, p in best.items()}
+    print(f"Shared studios: {len({s['wp_url'] for s in studios.values()})}")
 
-    print(f"USC classes on {date} ...", flush=True)
-    classes = usc.classes(date)
-    print(f"  {len(classes)}")
-    joint = match.joint_classes(classes, pairs)
-    print(f"Classes at shared studios: {len(joint)}")
-
-    checked = False
+    sessions, checked = {}, False
     if wellpass_auth.logged_in():
         try:
-            match.confirm_with_wellpass(joint, date, wellpass_auth.class_sessions)
+            gyms = {s["gym_id"] for s in studios.values() if s["wp_status"] == "app" and s["gym_id"]}
+            sessions = match.wellpass_sessions(gyms, dates[0], len(dates), wellpass_auth.class_sessions)
             checked = True
         except wellpass_auth.AuthError as e:
             print(f"Skipping Wellpass class check: {e}")
     else:
-        print("Not logged in to Wellpass (python -m urbanpass.login) - skipping class check.")
-    # A USC class at an in-app-booking studio that isn't on the Wellpass schedule can't be done together.
-    if checked:
-        joint = [c for c in joint if c["wellpass"]["confirmed"] is not False]
+        print("Not logged in to Wellpass - skipping class check.")
 
-    out = {"date": date, "generated": dt.datetime.now().isoformat(timespec="minutes"), "wellpass_checked": checked,
-           "counts": {"usc_classes": len(classes), "shared_studios": len(shared), "joint_classes": len(joint),
-                      "confirmed": sum(1 for c in joint if c["wellpass"]["confirmed"])},
-           "classes": joint}
-    (DATA / f"classes-{date}.json").write_text(json.dumps(out, ensure_ascii=False, indent=1), encoding="utf-8")
-    path = site.build(out, ROOT / "site" / "index.html")
-    print(f"Site: {path}")
+    days = []
+    used = set()
+    for date in dates:
+        print(f"{date}: USC classes ...", flush=True)
+        joint = match.joint_classes(usc.classes(date), pairs)
+        n = match.confirm(joint, date, sessions) if checked else 0
+        if checked:
+            joint = [c for c in joint if c["wellpass"]["confirmed"] is not False]
+        print(f"  {len(joint)} at shared studios, {n} on both schedules")
+        used.update(c["venue_slug"] for c in joint)
+        (out / f"{date}.json").write_text(json.dumps(
+            {"date": date, "classes": [compact_class(c) for c in joint]},
+            ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+        days.append({"date": date, "classes": len(joint), "confirmed": n})
+
+    for old in out.glob("20??-??-??.json"):
+        if old.stem not in dates:
+            old.unlink()
+    index = {
+        "generated": dt.datetime.now(dt.timezone.utc).replace(tzinfo=None).strftime("%Y-%m-%dT%H:%MZ"), "city": "Berlin", "wellpass_checked": checked,
+        "days": days, "studios": {k: {kk: vv for kk, vv in v.items() if kk != "gym_id"}
+                                  for k, v in studios.items() if k in used},
+    }
+    (out / "index.json").write_text(json.dumps(index, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+    print(f"Wrote {len(dates)} days to {out}")
 
 
 if __name__ == "__main__":

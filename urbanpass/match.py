@@ -116,50 +116,59 @@ def _berlin_offset(date):
     return 2 if last_sunday(3) <= d < last_sunday(10) else 1
 
 
-def _to_local(iso_utc, offset):
-    h, m = int(iso_utc[11:13]), int(iso_utc[14:16])
-    total = (h * 60 + m + offset * 60) % (24 * 60)
-    return f"{total // 60:02d}:{total % 60:02d}"
+def _local(iso_utc):
+    """'2026-10-23T15:15:00Z' -> ('2026-10-23', '17:15') in Berlin time."""
+    import datetime as dt
+    t = dt.datetime.fromisoformat(iso_utc.replace("Z", "+00:00")).replace(tzinfo=None)
+    t += dt.timedelta(hours=_berlin_offset(t.date().isoformat()))
+    return t.date().isoformat(), t.strftime("%H:%M")
 
 
 def _minutes(hhmm):
     return int(hhmm[:2]) * 60 + int(hhmm[3:5])
 
 
-def confirm_with_wellpass(joint, date, fetch, log=print):
-    """Check each class against the Wellpass app schedule (studios with in-app booking only).
+def wellpass_sessions(gym_ids, first_date, days, fetch, log=print):
+    """Wellpass app classes for each studio over a date range: {gym_id: {date: [session, ...]}}.
 
-    fetch(gym_id, from_utc, to_utc) -> list of Wellpass class sessions.
-    Sets c["wellpass"]["confirmed"] to True (same start time on Wellpass), False, or leaves None (not checked).
+    fetch(gym_id, from_utc, to_utc) -> list of raw Wellpass class sessions.
     """
     import datetime as dt
-    off = _berlin_offset(date)
-    day = dt.date.fromisoformat(date)
-    start = (dt.datetime.combine(day, dt.time()) - dt.timedelta(hours=off)).strftime("%Y-%m-%dT%H:%M:%S.000Z")
-    end = (dt.datetime.combine(day + dt.timedelta(days=1), dt.time()) - dt.timedelta(hours=off, seconds=1)).strftime("%Y-%m-%dT%H:%M:%S.999Z")
-    gyms = {c["wellpass"]["gym_id"] for c in joint if c["wellpass"]["status"] == "app" and c["wellpass"].get("gym_id")}
-    log(f"Wellpass schedules for {len(gyms)} studios ...")
-    sessions = {}
-    for i, g in enumerate(sorted(gyms)):
-        sessions[g] = [{"start": _to_local(s["startDateTime"], off), "end": _to_local(s["endDateTime"], off),
-                        "name": s.get("name", ""), "spots": (s["capacity"] - s["booked"]) if s.get("capacity") else None}
-                       for s in fetch(g, start, end) or []]
+    d0 = dt.date.fromisoformat(first_date)
+    start = dt.datetime.combine(d0, dt.time()) - dt.timedelta(hours=_berlin_offset(first_date))
+    last = d0 + dt.timedelta(days=days)
+    end = dt.datetime.combine(last, dt.time()) - dt.timedelta(hours=_berlin_offset(last.isoformat()), seconds=1)
+    fmt = "%Y-%m-%dT%H:%M:%S.000Z"
+    log(f"Wellpass schedules for {len(gym_ids)} studios ...")
+    out = {}
+    for g in sorted(gym_ids):
+        by_day = out.setdefault(g, {})
+        for s in fetch(g, start.strftime(fmt), end.strftime(fmt)) or []:
+            day, t0 = _local(s["startDateTime"])
+            by_day.setdefault(day, []).append({
+                "start": t0, "end": _local(s["endDateTime"])[1], "name": s.get("name", ""),
+                "spots": (s["capacity"] - s["booked"]) if s.get("capacity") else None})
         time.sleep(0.5)
+    return out
+
+
+def confirm(joint, date, sessions):
+    """Mark each class confirmed=True/False against Wellpass sessions of that day (None = not checked)."""
     n = 0
     for c in joint:
         w = c["wellpass"]
-        if w.get("gym_id") not in sessions:
+        if w["status"] != "app" or w.get("gym_id") not in sessions:
             continue
+        todays = sessions[w["gym_id"]].get(date, [])
         # same start time (±5 min) and a similar name; the best name match wins when rooms overlap
-        hits = [s for s in sessions[w["gym_id"]] if abs(_minutes(s["start"]) - _minutes(c["start"])) <= 5
+        hits = [s for s in todays if abs(_minutes(s["start"]) - _minutes(c["start"])) <= 5
                 and name_score(s["name"], c["title"]) > 0]
         hits.sort(key=lambda s: -name_score(s["name"], c["title"]))
         w["confirmed"] = bool(hits)
         if hits:
             w["wp_class"] = hits[0]
             n += 1
-    log(f"Confirmed on both: {n}")
-    return sessions
+    return n
 
 
 def joint_classes(classes, pairs):

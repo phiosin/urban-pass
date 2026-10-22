@@ -66,5 +66,6 @@ def classes(date, city_id=BERLIN):
                 "end": times[1] if len(times) > 1 else "",
                 "plans": re.findall(r'class-plan" data-type="\d+">\s*(\w+)', block),
                 "url": f"{BASE}/class-details/{appt}",
+                "image": html.unescape(_text(r"background-image: url\('([^']+)'\)", block)),
             }
     return sorted(out.values(), key=lambda c: (c["start"], c["venue_name"]))
