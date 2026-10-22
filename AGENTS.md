@@ -7,16 +7,13 @@ Two AI agents, Codex and Claude Code, take turns on this repository like two sen
 2. Read `HANDOFF.md`, then `git log --oneline -10`. If the other agent committed since your last session, skim its diff (`git show --stat`, then the relevant hunks) like a code review. Flag problems instead of silently rewriting its work.
 3. Read only the files you need. HANDOFF.md tells you where to look.
 
-## After every completed step: handoff, commit, push
-A "step" is any finished unit of work: a feature, fix, refactor, investigation, or the end of a session, even if the work is incomplete.
-1. Rewrite `HANDOFF.md` (see below).
-2. Commit the step together with HANDOFF.md.
-3. **Push** right away if the repo has a remote, unless the user said not to or the project specifics say otherwise. Pushing is part of finishing a step, not something to ask about each time.
-
-Never end a session with uncommitted or unpushed work. If the work is half-done, commit it on a branch (`wip/<name>`) or with a clear `WIP:` message, and say so in HANDOFF.md.
+## Commits, pushes and handoffs
+- **During a session:** use your judgement. Commit at sensible checkpoints (a working feature or fix, before a risky change) and update `HANDOFF.md` when something meaningful changed. No need to commit or push after every small step.
+- **End of every session (mandatory):** update `HANDOFF.md`, **commit** everything (half-done work gets a clear `WIP:` message, or goes on a `wip/<name>` branch, and is noted in HANDOFF.md), then **push** if the repo has a remote, unless the user said not to. The other agent must find the full current state in the repo, at least locally.
+- Never leave uncommitted work behind at the end of a session.
 
 ## HANDOFF.md
-Rewrite it (don't append a diary), keeping it under ~50 lines, with these sections:
+Whenever you update it, rewrite it (don't append a diary), keeping it under ~50 lines, with these sections:
 - **Where this is going**: the goal and the bigger direction or roadmap (stable, rarely changes).
 - **Last step**: what was just done, by which agent, date, and the commit(s).
 - **Current state**: what works, what's half-done (with file paths), any open branch.
