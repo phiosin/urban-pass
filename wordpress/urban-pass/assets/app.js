@@ -17,7 +17,8 @@
   var S = {
     index: null, days: {}, date: null, tab: "classes", q: "", time: "", acts: store.get("acts", []),
     onlyBoth: true, plan: store.get("plan", ""), district: "", wp: store.get("wp", ["app", "external", "checkin"]),
-    showCourts: store.get("showCourts", true), plus1Only: store.get("plus1Only", false)
+    showCourts: store.get("showCourts", true), plus1Only: store.get("plus1Only", false),
+    timeMode: store.get("timeMode", "any"), timeVal: store.get("timeVal", "18:00")
   };
 
   function esc(s) {
@@ -73,6 +74,7 @@
     var dt = new Date(d + "T12:00:00");
     return dt.toLocaleDateString("en-GB", long ? { weekday: "long", day: "numeric", month: "long" } : { weekday: "short" });
   }
+  function toMin(hm) { return (+hm.slice(0, 2)) * 60 + (+hm.slice(3, 5)); }
   function localISO(d) { return new Date(d.getTime() - d.getTimezoneOffset() * 60000).toISOString().slice(0, 10); }
   function bookable(c) { return c.ok === true || (c.ok == null && studio(c).wp_status !== "app"); }
   function actOf(c) { return (c.c || "").trim() || "Other"; }
@@ -122,6 +124,11 @@
       if (S.district && st.district !== S.district) return false;
       if (!ignoreActs && S.acts.length && S.acts.indexOf(normAct(actOf(c))) < 0) return false;
       if (t && (c.s < t[2] || c.s > t[3])) return false;
+      if (S.timeMode && S.timeMode !== "any" && S.timeVal) {
+        if (S.timeMode === "after" && c.s < S.timeVal) return false;
+        if (S.timeMode === "before" && c.s >= S.timeVal) return false;
+        if (S.timeMode === "at" && Math.abs(toMin(c.s) - toMin(S.timeVal)) > 30) return false;
+      }
       if (q && (c.t + " " + c.c + " " + st.name + " " + st.wp_name + " " + st.district).toLowerCase().indexOf(q) < 0) return false;
       return true;
     });
@@ -131,8 +138,8 @@
   function shell() {
     root.innerHTML =
       '<header class="up-top">' +
-        '<div class="up-brand">' + ICON.mark + '<div><h1>Urban Pass</h1><p>Berlin · Urban Sports Club × Wellpass</p></div>' +
-          '<button class="up-setup-btn" data-setup>Change search</button></div>' +
+        '<div class="up-bar"><button class="up-back" data-setup aria-label="Change settings">‹</button>' +
+          '<button class="up-summary" data-setup2><b>Urban Pass</b><span></span></button></div>' +
         '<label class="up-search">' + ICON.search + '<input type="search" placeholder="Search classes, studios, districts" aria-label="Search"></label>' +
         '<nav class="up-days" aria-label="Day"></nav>' +
       '</header>' +
@@ -144,6 +151,7 @@
       '</nav>';
     $(".up-search input").addEventListener("input", function (e) { S.q = e.target.value; render(); });
     $("[data-setup]").addEventListener("click", showSetup);
+    $("[data-setup2]").addEventListener("click", showSetup);
     root.querySelectorAll(".up-tab").forEach(function (b) {
       b.addEventListener("click", function () { S.tab = b.dataset.tab; render(); window.scrollTo(0, 0); });
     });
@@ -176,8 +184,10 @@
   /* ---------- views ---------- */
   function render() {
     root.querySelectorAll(".up-tab").forEach(function (b) { b.setAttribute("aria-selected", b.dataset.tab === S.tab); });
-    $(".up-days").style.display = S.tab === "info" ? "none" : "";
-    $(".up-search").style.display = S.tab === "info" ? "none" : "";
+    $(".up-days").style.display = "none";
+    $(".up-search").style.display = S.tab === "info" || S.tab === "map" ? "none" : "";
+    $(".up-summary span").textContent = summaryText();
+    document.body.classList.toggle("up-noscroll", S.tab === "map");
     root.style.setProperty("--up-top-h", $(".up-top").getBoundingClientRect().height + "px");
     var isMap = S.tab === "map";
     $(".up-main").hidden = isMap;
@@ -692,7 +702,7 @@
   function renderMap() {
     var day = S.days[S.date];
     var chipsEl = $(".up-mapchips");
-    if (day) { chipsEl.innerHTML = chipsHtml(day); bindChips(chipsEl); }
+    chipsEl.innerHTML = ""; chipsEl.hidden = true;
     $(".up-mapview").style.setProperty("--up-top-h", $(".up-top").getBoundingClientRect().height + "px");
     if (!window.L || !window.L.markerClusterGroup) {
       $(".up-mapcount").textContent = "Loading map…";
@@ -838,35 +848,62 @@
     $("[data-go]").addEventListener("click", showSetup);
   }
 
+  function timeRuleText() {
+    if (!S.timeMode || S.timeMode === "any" || !S.timeVal) return "";
+    return (S.timeMode === "at" ? "around " : S.timeMode === "after" ? "from " : "until ") + S.timeVal;
+  }
+  function summaryText() {
+    var parts = [];
+    parts.push(S.acts.length ? S.acts.map(actLabelOf).join(", ") : "Anything");
+    var d = S.index.days.map(function (x) { return x.date; }).indexOf(S.date);
+    parts.push(d === 0 ? "Today" : d === 1 ? "Tomorrow" : dayLabel(S.date) + " " + S.date.slice(8, 10).replace(/^0/, ""));
+    if (timeRuleText()) parts.push(timeRuleText());
+    if (S.plus1Only) parts.push("Wellpass +1 only");
+    else if (S.plan) parts.push("USC " + S.plan);
+    return parts.join(" · ");
+  }
+
   function showSetup() {
     var opts = activityOptions();
-    var draft = { act: S.acts[0] || "", plan: S.plan, plus1: S.plus1Only, date: S.date || S.index.days[0].date };
+    var draft = {
+      acts: S.acts.slice(), plan: S.plan, plus1: S.plus1Only, date: S.date || S.index.days[0].date,
+      timeMode: S.timeMode || "any", timeVal: S.timeVal || "18:00"
+    };
+    document.body.classList.remove("up-noscroll");
     root.classList.remove("up-on-map");
     root.innerHTML =
       '<section class="up-setup">' +
-        '<header class="up-setup-top">' + ICON.mark + '<div><h1>What are you looking for?</h1><p>You can change this later.</p></div></header>' +
-        '<div class="up-step"><h2><b>1</b> Activity</h2>' +
+        '<header class="up-setup-top">' + ICON.mark + '<div><h1>What are you looking for?</h1><p>Everything except the activity is optional.</p></div></header>' +
+        '<div class="up-step"><h2><b>1</b> Activities <small>pick one or more</small></h2>' +
           '<input class="up-actsearch" type="search" placeholder="Search: yoga, padel, swimming…">' +
           '<div class="up-seg up-setup-acts"></div><p class="up-hint" hidden></p></div>' +
         '<div class="up-step up-step-plan"><h2><b>2</b> Your friend\'s Urban Sports Club plan</h2><div class="up-seg up-setup-plan"></div></div>' +
         '<div class="up-step"><label class="up-switch"><input type="checkbox" data-plus1' + (draft.plus1 ? " checked" : "") + '><span></span>' +
           '<div><b>Only Wellpass +1 places</b><small>The Wellpass member brings the other person as a guest. No Urban Sports Club needed.</small></div></label></div>' +
         '<div class="up-step"><h2><b>3</b> Day</h2><div class="up-seg up-setup-days"></div></div>' +
-        '<div class="up-setup-bar"><button class="up-btn" data-show>Show map</button></div>' +
+        '<div class="up-step"><h2><b>4</b> Time <small>optional</small></h2><div class="up-seg up-setup-timemode"></div>' +
+          '<div class="up-timepick" hidden><input type="time" step="300" lang="de-DE" aria-label="Time" value="' + esc(draft.timeVal) + '"></div></div>' +
+        '<div class="up-setup-bar"><button class="up-btn" data-show>Go</button></div>' +
       '</section>';
     window.scrollTo(0, 0);
     var actsEl = $(".up-setup-acts"), hint = $(".up-hint");
     function drawActs(q) {
       q = normAct(q || "");
-      var list = q ? opts.filter(function (a) { return a.indexOf(q) >= 0; }) : opts.slice(0, 18);
-      if (draft.act && list.indexOf(draft.act) < 0) list.unshift(draft.act);
-      actsEl.innerHTML = '<button class="up-chip" data-a="" aria-pressed="' + !draft.act + '">Anything</button>' +
-        list.map(function (a) { return '<button class="up-chip" data-a="' + esc(a) + '" aria-pressed="' + (draft.act === a) + '">' + actIcon(a) + esc(actLabelOf(a)) + '</button>'; }).join("") +
+      var list = q ? opts.filter(function (a) { return a.indexOf(q) >= 0; }) : opts.slice(0, 16);
+      draft.acts.forEach(function (a) { if (list.indexOf(a) < 0) list.unshift(a); });
+      actsEl.innerHTML = '<button class="up-chip" data-a="" aria-pressed="' + !draft.acts.length + '">Anything</button>' +
+        list.map(function (a) { return '<button class="up-chip" data-a="' + esc(a) + '" aria-pressed="' + (draft.acts.indexOf(a) >= 0) + '">' + esc(actLabelOf(a)) + '</button>'; }).join("") +
         (q && !list.length ? '<p class="up-sub">No place on either pass offers that right now.</p>' : "");
       actsEl.querySelectorAll("[data-a]").forEach(function (b) {
-        b.addEventListener("click", function () { draft.act = b.dataset.a; drawActs($(".up-setup .up-actsearch").value); });
+        b.addEventListener("click", function () {
+          var a = b.dataset.a, i = draft.acts.indexOf(a);
+          if (!a) draft.acts = [];
+          else if (i >= 0) draft.acts.splice(i, 1);
+          else draft.acts.push(a);
+          drawActs($(".up-setup .up-actsearch").value);
+        });
       });
-      hint.hidden = !(draft.act && isDropIn(draft.act));
+      hint.hidden = !(draft.acts.length && draft.acts.every(isDropIn));
       hint.textContent = "No class needed here. You'll see places where at least one of your passes gets you in or lowers the fee. Tap ⓘ on a place to see who covers what.";
     }
     function drawPlan() {
@@ -885,15 +922,26 @@
       }).join("");
       el.querySelectorAll("[data-d]").forEach(function (b) { b.addEventListener("click", function () { draft.date = b.dataset.d; drawDays(); }); });
     }
-    drawActs(""); drawPlan(); drawDays();
+    function drawTime() {
+      var el = $(".up-setup-timemode");
+      el.innerHTML = [["any", "Any time"], ["at", "Around"], ["after", "At or after"], ["before", "Before"]].map(function (x) {
+        return '<button class="up-chip" data-tm="' + x[0] + '" aria-pressed="' + (draft.timeMode === x[0]) + '">' + x[1] + '</button>';
+      }).join("");
+      el.querySelectorAll("[data-tm]").forEach(function (b) { b.addEventListener("click", function () { draft.timeMode = b.dataset.tm; drawTime(); }); });
+      $(".up-timepick").hidden = draft.timeMode === "any";
+    }
+    drawActs(""); drawPlan(); drawDays(); drawTime();
     $(".up-setup .up-actsearch").addEventListener("input", function (e) { drawActs(e.target.value); });
     $("[data-plus1]").addEventListener("change", function (e) { draft.plus1 = e.target.checked; drawPlan(); });
+    $(".up-timepick input").addEventListener("change", function (e) { if (e.target.value) draft.timeVal = e.target.value.slice(0, 5); });
     $("[data-show]").addEventListener("click", function () {
-      S.acts = draft.act ? [draft.act] : []; store.set("acts", S.acts);
+      S.acts = draft.acts.slice(); store.set("acts", S.acts);
       S.plan = draft.plus1 ? "" : draft.plan; store.set("plan", S.plan);
       S.plus1Only = draft.plus1; store.set("plus1Only", S.plus1Only);
+      S.timeMode = draft.timeMode; S.timeVal = draft.timeVal; store.set("timeMode", S.timeMode); store.set("timeVal", S.timeVal);
+      store.set("date", draft.date);
       if (accessMode()) { S.showCourts = true; store.set("showCourts", true); }
-      S.q = ""; S.tab = "map";
+      S.q = ""; S.time = ""; S.tab = "map";
       shell();
       selectDay(draft.date);
     });
@@ -907,7 +955,8 @@
     var iso = localISO(new Date());
     idx.days = idx.days.filter(function (d) { return d.date >= iso; }).concat([]);
     if (!idx.days.length) idx.days = [{ date: iso }];
-    S.date = idx.days[0].date;
+    var cached = store.get("date", "");
+    S.date = idx.days.some(function (d) { return d.date === cached; }) ? cached : idx.days[0].date;
     showLanding();
   }).catch(function () {
     root.innerHTML = '<div class="up-empty"><b>No data yet.</b>The data update hasn\'t run.</div>';
