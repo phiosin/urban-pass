@@ -1,0 +1,41 @@
+name: Deploy site
+
+# Publishes the app (web/index.html + plugin assets + data) to GitHub Pages.
+on:
+  push:
+    branches: [main]
+    paths: ["wordpress/urban-pass/**", "web/**"]
+  workflow_dispatch: {}
+  workflow_call: {}
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Assemble site
+        run: |
+          mkdir -p _site
+          cp -r wordpress/urban-pass/assets wordpress/urban-pass/data _site/
+          sed "s/__VERSION__/$(date -u +%Y%m%d%H%M)/g" web/index.html > _site/index.html
+          printf 'User-agent: *\nDisallow: /\n' > _site/robots.txt
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - id: deployment
+        uses: actions/deploy-pages@v4

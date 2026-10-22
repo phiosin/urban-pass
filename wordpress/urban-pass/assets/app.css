@@ -153,3 +153,5 @@ body.up-fullscreen { margin: 0; background: #e9e6e0; }
 @media (min-width: 600px) {
   body.up-fullscreen #urban-pass-app { box-shadow: 0 0 0 1px rgba(0,17,44,.06), 0 20px 60px rgba(0,17,44,.12); }
 }
+.up-stale { margin: 8px 16px 0; padding: 10px 12px; border-radius: 12px; background: var(--up-amber-bg); color: var(--up-amber); font-size: 13px; }
+.up-stale a { color: var(--up-amber) !important; font-weight: 700; }

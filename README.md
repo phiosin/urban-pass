@@ -13,14 +13,16 @@ See [docs/approach.md](docs/approach.md) for the data sources (public USC and We
 ## How it fits together
 
 ```
-GitHub Action (daily, 06:30)          WordPress.com site
-  crawl USC + Wellpass  ──commit──▶  main ──▶ wp-plugin branch ──GitHub Deployments──▶ /wp-content/plugins/urban-pass
+GitHub Action "Refresh class data" (run on demand)        GitHub Pages (free)
+  crawl USC + Wellpass ──commit data──▶ main ──deploy──▶ https://phiosin.github.io/urban-pass/
 ```
 
 - `urbanpass/`: Python crawler and matcher (standard library only).
-- `wordpress/urban-pass/`: the WordPress plugin (app UI in `assets/`, daily data in `data/`).
-- `.github/workflows/refresh-data.yml`: rebuilds 7 days of data every morning, commits it, and republishes the `wp-plugin` branch.
-- `dev/index.html`: local preview of the plugin UI without WordPress.
+- `wordpress/urban-pass/`: the app (`assets/`) and its data (`data/`). It also works as a WordPress plugin, if the site's plan allows plugins (WordPress.com Business or self-hosted).
+- `web/index.html`: page shell for GitHub Pages.
+- `.github/workflows/refresh-data.yml`: on-demand data refresh (Actions → *Refresh class data* → *Run workflow*), followed by a deploy.
+- `.github/workflows/deploy-pages.yml`: publishes the site whenever the app or data changes on `main`.
+- `dev/index.html`: local preview.
 
 ## Run it locally
 
@@ -33,16 +35,19 @@ uv run --no-project --python 3.12 python -m urbanpass --days 7     # build data 
 
 Then serve the repo (`python -m http.server`) and open `/dev/`.
 
-## Set up the WordPress site (one time)
+## Update the classes
 
-1. **Create the site** on WordPress.com. GitHub Deployments needs a Business or Commerce plan.
-2. **Make it private** (Settings → General → Privacy → Private). The class data comes partly from your Wellpass account, and the sources are unofficial.
-3. **Connect GitHub:** Hosting → Deployments → Connect repository → `phiosin/urban-pass`, branch **`wp-plugin`**, destination **`/wp-content/plugins/urban-pass`**, mode **Simple**, automatic deployments **on**.
-4. **Activate** the *Urban Pass* plugin. It takes over the front page. To switch that off, use Settings → Reading. The app also works at `/urban-pass/` (after saving Settings → Permalinks once) and via the `[urban_pass]` shortcode.
-5. **Daily Wellpass check:** add the GitHub secret `WELLPASS_REFRESH_TOKEN`, using the `refresh_token` value from `.secrets/wellpass.json`:
+- **From GitHub:** Actions → *Refresh class data* → *Run workflow*. This works in the GitHub mobile app too, and the app's About tab links there. It takes about 15 minutes, and the site updates automatically when it's done.
+- **Locally:** run the two commands above, then commit and push `wordpress/urban-pass/data`.
 
-   ```bash
-   uv run --no-project --python 3.12 python -c "import json;print(json.load(open('.secrets/wellpass.json'))['refresh_token'])" | gh secret set WELLPASS_REFRESH_TOKEN
-   ```
+The GitHub run needs the secret `WELLPASS_REFRESH_TOKEN` for the Wellpass schedule check. Set it once from your PC:
+
+```bash
+uv run --no-project --python 3.12 python -c "import json;print(json.load(open('.secrets/wellpass.json'))['refresh_token'])" | gh secret set WELLPASS_REFRESH_TOKEN
+```
+
+## Note on privacy
+
+The repository and the site are public, and the data includes Wellpass schedule details fetched with a personal account. Keep the site unlisted (it is `noindex`), or make the repo private; GitHub Pages for private repos needs GitHub Pro.
 
 Not affiliated with Urban Sports Club or EGYM Wellpass.

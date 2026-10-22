@@ -150,7 +150,10 @@
       topCategories(day.classes).map(function (c) { return chip("cat:" + c, c, S.cat === c); }).join("");
     var studios = {};
     list.forEach(function (c) { studios[c.st] = 1; });
-    var html = '<div class="up-chips">' + chips + '</div>' +
+    var age = generatedAt() ? (Date.now() - generatedAt().getTime()) / 3600000 : 0;
+    var stale = age > 20 ? '<div class="up-stale">Data is ' + Math.round(age / 24 * 10) / 10 + ' days old. Spots and schedules may have changed.' +
+      (CFG.refreshUrl ? ' <a target="_blank" rel="noopener" href="' + url(CFG.refreshUrl) + '">Update now</a>' : "") + '</div>' : "";
+    var html = '<div class="up-chips">' + chips + '</div>' + stale +
       '<div class="up-meta">' + list.length + ' classes at ' + Object.keys(studios).length + ' studios · ' + esc(dayLabel(S.date, true)) + '</div>';
     if (!list.length) {
       html += '<div class="up-empty"><b>No classes match.</b>Try another day or fewer filters.</div>';
@@ -223,8 +226,10 @@
     });
   }
 
+  function generatedAt() { return S.index && S.index.generated ? new Date(S.index.generated.replace("Z", ":00Z")) : null; }
+
   function renderInfo() {
-    var g = S.index.generated ? new Date(S.index.generated.replace("Z", ":00Z")) : null;
+    var g = generatedAt();
     $(".up-main").innerHTML = '<div class="up-info">' +
       '<h2>Book together, with different passes</h2>' +
       '<p>Urban Pass shows Berlin classes you can book with <b>Urban Sports Club</b> and with <b>EGYM Wellpass</b>, so you can train with friends on the other platform.</p>' +
@@ -233,9 +238,12 @@
       '<li><b>Check in on site</b> / <b>Book via studio link</b>: the studio takes Wellpass without in-app booking. Check with the studio first.</li>' +
       '<li><b>USC Classic+</b>: the lowest Urban Sports Club plan that includes the class.</li></ul>' +
       '<h3>Where the data comes from</h3>' +
-      '<p>The public Urban Sports Club class schedule, the public Wellpass studio finder, and the Wellpass app schedule. It is refreshed every morning' +
-      (g ? ' (last update ' + esc(g.toLocaleString("en-GB", { weekday: "short", hour: "2-digit", minute: "2-digit" })) + ')' : '') + '.</p>' +
-      '<div class="up-note">Spots and schedules can change after the daily update. Always confirm in each app before booking. Urban Pass is a private project and isn\'t affiliated with Urban Sports Club or EGYM Wellpass.</div>' +
+      '<p>The public Urban Sports Club class schedule, the public Wellpass studio finder, and the Wellpass app schedule.</p>' +
+      '<div class="up-box"><h3>Last update</h3><p>' + (g ? esc(g.toLocaleString("en-GB", { weekday: "long", day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" })) : "unknown") + '</p>' +
+      (CFG.refreshUrl ? '<a class="up-btn" target="_blank" rel="noopener" href="' + url(CFG.refreshUrl) + '">Update classes now</a>' +
+        '<p style="font-size:13px;color:#5c687c;margin-top:8px">Opens GitHub: tap <b>Run workflow</b>. The new data is live after about 15 minutes.</p>' : "") +
+      '</div>' +
+      '<div class="up-note">Spots and schedules can change after the last update. Always confirm in each app before booking. Urban Pass is a private project and isn\'t affiliated with Urban Sports Club or EGYM Wellpass.</div>' +
       '</div>';
   }
 

@@ -1,12 +1,17 @@
 name: Refresh class data
 
+# Run on demand: Actions → "Refresh class data" → Run workflow (also works in the GitHub mobile app).
 on:
-  schedule:
-    - cron: "30 4 * * *"   # every day, 05:30 / 06:30 Berlin time
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      days:
+        description: "How many days ahead"
+        default: "7"
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 concurrency:
   group: refresh-data
@@ -28,11 +33,11 @@ jobs:
           key: crawl-${{ github.run_id }}
           restore-keys: crawl-
 
-      - name: Build 7 days of data
+      - name: Build class data
         env:
           WELLPASS_REFRESH_TOKEN: ${{ secrets.WELLPASS_REFRESH_TOKEN }}
           PYTHONUTF8: "1"
-        run: uv run --no-project --python 3.12 python -m urbanpass --days 7
+        run: uv run --no-project --python 3.12 python -m urbanpass --days "${{ inputs.days || 7 }}"
 
       - name: Commit if changed
         run: |
@@ -46,7 +51,7 @@ jobs:
             git push
           fi
 
-  # Pushes made with GITHUB_TOKEN don't trigger other workflows, so publish explicitly.
-  publish:
+  # Pushes made with GITHUB_TOKEN don't trigger other workflows, so deploy explicitly.
+  deploy:
     needs: refresh
-    uses: ./.github/workflows/publish-plugin.yml
+    uses: ./.github/workflows/deploy-pages.yml
