@@ -16,7 +16,8 @@
 
   var S = {
     index: null, days: {}, date: null, tab: "classes", q: "", time: "", acts: store.get("acts", []),
-    onlyBoth: true, plan: store.get("plan", ""), district: "", wp: store.get("wp", ["app", "external", "checkin"])
+    onlyBoth: true, plan: store.get("plan", ""), district: "", wp: store.get("wp", ["app", "external", "checkin"]),
+    showCourts: store.get("showCourts", true), plus1Only: store.get("plus1Only", false)
   };
 
   function esc(s) {
@@ -45,6 +46,27 @@
 
   /* ---------- helpers on data ---------- */
   function studio(c) { return S.index.studios[c.st] || {}; }
+  function planIncludes(pl) { return !S.plan || (pl || []).indexOf(S.plan) >= 0; }
+  function hasCourtData() { return !!(S.index && Array.isArray(S.index.courts)); }
+  function hasPlus1Data() {
+    if (!S.index) return false;
+    return Object.keys(S.index.studios || {}).some(function (k) { return S.index.studios[k].plus1 != null; }) ||
+      (S.index.plus1_places || []).length > 0 || (S.index.courts || []).some(function (p) { return p.plus1 != null; });
+  }
+  function plus1Matches(place) { return !S.plus1Only || !hasPlus1Data() || !!(place && place.plus1); }
+  function placeMatches(place, allowCourt) {
+    if (!place || (!allowCourt && place.court)) return false;
+    var platforms = place.platforms || [];
+    if (S.plan && platforms.indexOf("USC") >= 0 && platforms.indexOf("Wellpass") < 0 && !planIncludes(place.plans)) return false;
+    if (!plus1Matches(place)) return false;
+    if (S.district && place.district !== S.district) return false;
+    if (S.acts.length && !(place.activities || []).some(function (a) {
+      return S.acts.some(function (selected) { return String(selected).toLowerCase() === String(a).toLowerCase(); });
+    })) return false;
+    var q = S.q.toLowerCase();
+    return !q || (place.name + " " + (place.wp_name || "") + " " + (place.district || "") + " " +
+      (place.street || "") + " " + (place.activities || []).join(" ")).toLowerCase().indexOf(q) >= 0;
+  }
   function lowestPlan(pl) {
     for (var i = 0; i < PLANS.length; i++) if (pl.indexOf(PLANS[i]) >= 0) return PLANS[i];
     return pl[0] || "";
@@ -82,7 +104,7 @@
       if (S.onlyBoth && S.index.wellpass_checked && c.ok !== true) return false;
       if (!bookable(c)) return false;
       if (S.wp.indexOf(st.wp_status) < 0) return false;
-      if (S.plan && c.pl.indexOf(S.plan) < 0) return false;
+      if (!planIncludes(c.pl) || !plus1Matches(st)) return false;
       if (S.district && st.district !== S.district) return false;
       if (!ignoreActs && S.acts.length && S.acts.indexOf(actOf(c)) < 0) return false;
       if (t && (c.s < t[2] || c.s > t[3])) return false;
@@ -152,11 +174,15 @@
   }
 
   function chip(id, label, on, dot) {
-    return '<button class="up-chip" data-chip="' + esc(id) + '" aria-pressed="' + !!on + '">' + (dot ? '<span class="up-dot"></span>' : "") + esc(label) + '</button>';
+    var html = '<button class="up-chip" data-chip="' + esc(id) + '" aria-pressed="' + !!on + '">' + (dot ? '<span class="up-dot"></span>' : "") + esc(label) + '</button>';
+    if (id === "acts") return chip("plan", "USC " + (S.plan || "plan") + " ▾", !!S.plan, !!S.plan) +
+      (hasCourtData() ? chip("courts", S.showCourts ? "Courts" : "Courts hidden", S.showCourts) : "") +
+      (hasPlus1Data() ? chip("plus1", S.plus1Only ? "+1 only" : "Wellpass +1", S.plus1Only) : "") + html;
+    return html;
   }
 
   function chipsHtml(day) {
-    var nFilters = (S.plan ? 1 : 0) + (S.district ? 1 : 0) + (S.wp.length < 3 ? 1 : 0);
+    var nFilters = (S.district ? 1 : 0) + (S.wp.length < 3 ? 1 : 0);
     var actLabel = !S.acts.length ? "All activities" : S.acts.length === 1 ? S.acts[0] : S.acts[0] + " +" + (S.acts.length - 1);
     return chip("acts", actLabel + " ▾", S.acts.length > 0, S.acts.length > 0) +
       (S.index.wellpass_checked ? chip("both", "✓ On both schedules", S.onlyBoth) : "") +
@@ -205,7 +231,7 @@
 
   function classCard(c, i) {
     var st = studio(c);
-    var badges = [];
+    var badges = placeBadges(st);
     if (c.ok === true) badges.push('<span class="up-badge ok">✓ Wellpass' + (c.w != null ? " · " + esc(c.w) + " left" : "") + '</span>');
     else badges.push('<span class="up-badge">' + esc(WP_LABEL[st.wp_status] || "Wellpass") + '</span>');
     badges.push('<span class="up-badge blue">USC ' + esc(lowestPlan(c.pl)) + (c.pl.length > 1 ? "+" : "") + (c.u ? " · " + esc(c.u) + " left" : "") + '</span>');
@@ -220,12 +246,37 @@
       '</button>';
   }
 
+  function placeBadges(place) {
+    var out = [];
+    if (place.plus1) out.push('<span class="up-badge plus1">Wellpass +1</span>');
+    if (place.discount) out.push('<span class="up-badge discount">Discount</span>');
+    if (place.external_booking || place.wp_status === "external") out.push('<span class="up-badge external">↗ External booking</span>');
+    if (place.court) out.push('<span class="up-badge court">Court</span>');
+    return out;
+  }
+
+  function placeCard(place, i, isCourt) {
+    var attr = isCourt ? 'data-court="' + i + '"' : 'data-plus-place="' + i + '"';
+    var platforms = (place.platforms || []).join(" + ");
+    var detail = [place.street, place.district, (place.activities || []).slice(0, 3).join(" · ")].filter(Boolean).join(" · ");
+    return '<button class="up-card up-studio up-place-card" ' + attr + '><div>' +
+      '<div class="up-title">' + (isCourt ? '🎾 ' : '') + esc(place.name) + '</div>' +
+      '<div class="up-sub">' + esc(detail) + '</div><div class="up-badges">' +
+      '<span class="up-badge blue">' + esc(platforms) + '</span>' +
+      (place.plans && place.plans.length ? '<span class="up-badge">USC ' + esc(place.plans.join(" / ")) + '</span>' : "") +
+      (isCourt && place.lat == null ? '<span class="up-badge warn">Map location unavailable</span>' : "") +
+      placeBadges(place).join("") + '</div></div><div class="up-count">' + (isCourt ? "Court" : "+1") + '</div></button>';
+  }
+
   function bindChips(scope) {
     (scope || root).querySelectorAll("[data-chip]").forEach(function (b) {
       b.addEventListener("click", function () {
         var id = b.dataset.chip;
         if (id === "both") S.onlyBoth = !S.onlyBoth;
         else if (id === "filters") return openFilters();
+        else if (id === "plan") return openPlanPicker();
+        else if (id === "courts") { S.showCourts = !S.showCourts; store.set("showCourts", S.showCourts); }
+        else if (id === "plus1") { S.plus1Only = !S.plus1Only; store.set("plus1Only", S.plus1Only); }
         else if (id.indexOf("time:") === 0) S.time = S.time === id.slice(5) ? "" : id.slice(5);
         else if (id === "acts") return openActivities();
         render();
@@ -240,7 +291,8 @@
     var q = S.q.toLowerCase();
     var keys = Object.keys(S.index.studios).filter(function (k) {
       var s = S.index.studios[k];
-      if (S.acts.length && !counts[k] && !studioOffers(s)) return false;
+      if (!planIncludes(s.plans) || !plus1Matches(s)) return false;
+      if (S.acts.length && !counts[k] && !S.acts.some(function (a) { return (s.disciplines || []).indexOf(a) >= 0; })) return false;
       return !q || (s.name + " " + s.wp_name + " " + s.district + " " + s.disciplines.join(" ")).toLowerCase().indexOf(q) >= 0;
     }).sort(function (a, b) { return (counts[b] || 0) - (counts[a] || 0) || S.index.studios[a].name.localeCompare(S.index.studios[b].name, "de"); });
     var html = '<div class="up-chips">' + chipsHtml(day) + '</div>' +
@@ -250,14 +302,30 @@
       html += '<button class="up-card up-studio" data-studio="' + esc(k) + '"><div>' +
         '<div class="up-title">' + esc(s.name) + '</div>' +
         '<div class="up-sub">' + esc(s.street) + ' · ' + esc(s.district) + '</div>' +
-        '<div class="up-badges"><span class="up-badge ' + (s.wp_status === "app" ? "ok" : "") + '">' + esc(s.wp_label) + '</span>' +
+        '<div class="up-badges"><span class="up-badge ' + (s.wp_status === "app" ? "ok" : "") + '">' + esc(s.wp_label) + '</span>' + placeBadges(s).join("") +
         (s.disciplines[0] ? '<span class="up-badge">' + esc(s.disciplines.slice(0, 2).join(" · ")) + '</span>' : "") + '</div></div>' +
         '<div class="up-count">' + (counts[k] || 0) + ' classes</div></button>';
     });
+    var plusPlaces = (S.index.plus1_places || []).filter(function (p) { return placeMatches(p, false); });
+    var courts = S.showCourts ? (S.index.courts || []).filter(function (p) { return placeMatches(p, true); }) : [];
+    if (plusPlaces.length) {
+      html += '<h2 class="up-section-title">Wellpass +1 places</h2>';
+      plusPlaces.forEach(function (p, i) { html += placeCard(p, i, false); });
+    }
+    if (courts.length) {
+      html += '<h2 class="up-section-title">Courts and rentable places</h2>';
+      courts.forEach(function (p, i) { html += placeCard(p, i, true); });
+    }
     $(".up-main").innerHTML = html;
     bindChips();
     root.querySelectorAll("[data-studio]").forEach(function (el) {
       el.addEventListener("click", function () { openStudio(el.dataset.studio); });
+    });
+    root.querySelectorAll("[data-plus-place]").forEach(function (el) {
+      el.addEventListener("click", function () { openPlusPlace(plusPlaces[+el.dataset.plusPlace]); });
+    });
+    root.querySelectorAll("[data-court]").forEach(function (el) {
+      el.addEventListener("click", function () { openCourt(courts[+el.dataset.court]); });
     });
   }
 
@@ -269,6 +337,9 @@
       '<h2>Book together, with different passes</h2>' +
       '<p>Urban Pass shows Berlin classes you can book with <b>Urban Sports Club</b> and with <b>EGYM Wellpass</b>, so you can train with friends on the other platform.</p>' +
       '<h3>What the badges mean</h3><ul>' +
+      '<li><b>Numbered pin</b>: a shared studio; the number is today\'s classes. <b>Court pin</b>: a court or rentable sports venue. Blue labels show platform coverage; blue clusters count map places.</li>' +
+      '<li><b>Wellpass +1</b>: a Wellpass member can bring a guest. <b>Discount</b> shows the short Wellpass offer terms.</li>' +
+      '<li><b>External booking ↗</b>: book on the linked venue or partner site. Hollow pins mark drop-in and Wellpass-only +1 places. A few USC-only courts lack map coordinates and stay in the list.</li>' +
       '<li><b>✓ Wellpass</b>: the same class (same studio, time and name) is on both schedules.</li>' +
       '<li><b>Check in on site</b> / <b>Book via studio link</b>: the studio takes Wellpass without in-app booking. Check with the studio first.</li>' +
       '<li><b>USC Classic+</b>: the lowest Urban Sports Club plan that includes the class.</li></ul>' +
@@ -313,12 +384,16 @@
       wpBox = '<p>✓ This class is on the Wellpass schedule' + (c.w != null ? " · <b>" + esc(c.w) + " spots left</b>" : "") + '.</p><p>Book it in the Wellpass app.</p>';
     } else if (st.wp_status === "external") {
       wpBox = '<p>The studio takes Wellpass with booking on its own page. Check that this class is included.</p>' +
-        (st.booking ? '<a class="up-btn ghost" target="_blank" rel="noopener" href="' + url(st.booking) + '">Studio booking page</a>' : "");
+        (st.booking ? '<a class="up-btn external-link" target="_blank" rel="noopener" href="' + url(st.booking) + '">↗ Book externally</a>' : "");
     } else {
       wpBox = '<p>The studio takes Wellpass by check-in. Check that this class is included.</p>';
     }
+    if (st.wp_status !== "external" && st.external_booking && st.booking) {
+      wpBox += '<a class="up-btn external-link" target="_blank" rel="noopener" href="' + url(st.booking) + '">↗ Book externally</a>';
+    }
     var sh = sheet(
       '<h2>' + esc(c.t) + '</h2>' +
+      '<div class="up-badges up-place-badges">' + placeBadges(st).join("") + '</div>' +
       '<div class="up-sub">' + esc(dayLabel(S.date, true)) + ' · ' + esc(c.s) + '–' + esc(c.e) + (c.c ? ' · ' + esc(c.c) : "") + '</div>' +
       '<div class="up-box"><h3>Studio</h3><p><b>' + esc(st.name) + '</b></p><p>' + esc(st.street) + ', ' + esc(st.district) + '</p>' +
         '<div class="up-nearlist">' + nearHtml(st, true) + '</div>' +
@@ -326,9 +401,10 @@
         '<button class="up-btn ghost" data-open-studio="' + esc(c.st) + '">All classes here</button></div>' +
         '<a class="up-btn ghost" target="_blank" rel="noopener" href="' + url(mapLink(st)) + '">Directions</a></div>' +
       '<div class="up-box"><h3>Urban Sports Club</h3><p>Plans: ' + esc(c.pl.join(", ")) + (c.u ? ' · <b>' + esc(c.u) + ' spots left</b>' : "") + '</p>' +
-        '<a class="up-btn" target="_blank" rel="noopener" href="https://urbansportsclub.com/de/class-details/' + encodeURIComponent(c.id) + '">Open class on Urban Sports Club</a></div>' +
+        '<a class="up-btn" target="_blank" rel="noopener" href="https://urbansportsclub.com/activities?class=' + encodeURIComponent(c.id) + '">Book in Urban Sports Club app</a></div>' +
       '<div class="up-box"><h3>Wellpass</h3>' + wpBox +
-        '<a class="up-btn ghost" target="_blank" rel="noopener" href="' + url(st.wp_url) + '">Studio on Wellpass</a>' +
+        (st.discount_text ? '<p class="up-discount-text">' + esc(st.discount_text) + '</p>' : "") +
+        wpLink(st, 'Open in Wellpass app') +
         (st.terms ? '<details><summary style="margin-top:10px;cursor:pointer;font-size:13px;color:#5c687c">Wellpass terms for this studio</summary><div class="up-terms">' + esc(st.terms) + '</div></details>' : "") +
       '</div>',
       c.img
@@ -356,18 +432,45 @@
     if (dropIn.length && !classes.length) rows += '<p><b>Drop-in:</b> ' + esc(dropIn.join(", ")) + ' without a class. Check opening hours with the studio.</p>';
     var sh = sheet(
       '<h2>' + esc(st.name) + '</h2><div class="up-sub">' + esc(st.street) + ' · ' + esc(st.district) + '</div>' +
+      '<div class="up-badges up-place-badges">' + placeBadges(st).join("") + '</div>' +
       '<div class="up-nearlist">' + nearHtml(st, true) + '</div>' +
       '<div class="up-box"><h3>' + esc(dayLabel(S.date, true)) + '</h3>' + rows + '</div>' +
       '<div class="up-box"><h3>Wellpass</h3><p>' + esc(st.wp_label) + ' · listed as “' + esc(st.wp_name) + '”</p>' +
+        (st.discount_text ? '<p class="up-discount-text">' + esc(st.discount_text) + '</p>' : "") +
+        ((st.external_booking || st.wp_status === "external") && st.booking ? '<a class="up-btn external-link" target="_blank" rel="noopener" href="' + url(st.booking) + '">↗ Book externally</a>' : "") +
         (st.terms ? '<div class="up-terms">' + esc(st.terms) + '</div>' : "") +
-        '<a class="up-btn ghost" target="_blank" rel="noopener" href="' + url(st.wp_url) + '">Studio on Wellpass</a></div>' +
+        wpLink(st, 'Open in Wellpass app') + '</div>' +
       '<div class="up-box"><h3>Urban Sports Club</h3><p>' + esc(st.disciplines.join(" · ")) + '</p><p>Plans: ' + esc(st.plans.join(", ")) + '</p>' +
-        '<a class="up-btn ghost" target="_blank" rel="noopener" href="' + url(st.usc_url) + '">Studio on Urban Sports Club</a></div>' +
+        '<a class="up-btn ghost" target="_blank" rel="noopener" href="' + url(st.usc_url) + '">Open in Urban Sports Club app</a></div>' +
       '<div class="up-row">' + (S.tab === "map" ? "" : '<button class="up-btn ghost" data-show-map="' + esc(key) + '">Show on map</button>') +
       '<a class="up-btn" target="_blank" rel="noopener" href="' + url(mapLink(st)) + '">Directions</a></div>'
     );
     bindSheetLinks(sh);
   }
+
+  function openPlace(place, isCourt) {
+    var platforms = place.platforms || [];
+    var coverage = platforms.map(function (p) { return '<span class="up-badge blue">' + esc(p) + '</span>'; }).join(" ");
+    var booking = place.booking ? '<a class="up-btn external-link" target="_blank" rel="noopener" href="' + url(place.booking) + '">↗ Book externally</a>' : "";
+    var body = '<h2>' + (isCourt ? '🎾 ' : '') + esc(place.name) + '</h2>' +
+      '<div class="up-sub">' + esc([place.street, place.district].filter(Boolean).join(" · ")) + '</div>' +
+      '<div class="up-badges up-place-badges">' + coverage + placeBadges(place).join("") + '</div>' +
+      (place.activities && place.activities.length ? '<p class="up-place-activities">' + esc(place.activities.join(" · ")) + '</p>' : "") +
+      (place.plus1 ? '<div class="up-box"><h3>Wellpass +1</h3><p>The Wellpass member can bring one guest to this place.</p></div>' : "") +
+      (place.discount_text ? '<div class="up-box"><h3>Wellpass discount</h3><p>' + esc(place.discount_text) + '</p></div>' : "") +
+      (isCourt ? '<div class="up-box"><h3>Coverage</h3><p>' + esc(platforms.join(" and ")) +
+        (platforms.indexOf("USC") >= 0 && place.plans && place.plans.length ? ' · USC plans: ' + esc(place.plans.join(", ")) : "") +
+        '</p><p>Both players need access to the court; check the venue for the remaining price and booking conditions.</p></div>' : "") +
+      (booking ? '<div class="up-box"><h3>External booking</h3><p>Use the venue or partner booking page.</p>' + booking + '</div>' : "") +
+      (place.terms && !place.discount_text ? '<div class="up-box"><h3>Wellpass terms</h3><div class="up-terms">' + esc(place.terms) + '</div></div>' : "") +
+      '<div class="up-row">' + (place.usc_url ? '<a class="up-btn ghost" target="_blank" rel="noopener" href="' + url(place.usc_url) + '">Urban Sports Club</a>' : "") +
+      (place.wp_url ? wpLink(place, 'Wellpass app') : "") +
+      '</div><a class="up-btn ghost" target="_blank" rel="noopener" href="' + url(mapLink(place)) + '">Directions</a>';
+    sheet(body);
+  }
+
+  function openCourt(place) { openPlace(place, true); }
+  function openPlusPlace(place) { openPlace(place, false); }
 
   function openActivities() {
     var day = S.days[S.date] || { classes: [] };
@@ -413,13 +516,25 @@
     sh.el.querySelector("[data-done]").addEventListener("click", function () { S.acts = pick; store.set("acts", pick); sh.close(); render(); });
   }
 
+  function openPlanPicker() {
+    var choices = [""].concat(PLANS);
+    var sh = sheet('<h2>Urban Sports Club plan</h2><p class="up-sub">Choose your friend\'s plan. Studios outside it are hidden.</p>' +
+      '<div class="up-planlist">' + choices.map(function (p) {
+        var label = p || "Any plan";
+        return '<button class="up-chip" data-plan="' + esc(p) + '" aria-pressed="' + (S.plan === p) + '">' + esc(label) + '</button>';
+      }).join("") + '</div>');
+    sh.el.querySelectorAll("[data-plan]").forEach(function (b) {
+      b.addEventListener("click", function () {
+        S.plan = b.dataset.plan; store.set("plan", S.plan); sh.close(); render();
+      });
+    });
+  }
+
   function openFilters() {
     var districts = {};
     Object.keys(S.index.studios).forEach(function (k) { districts[S.index.studios[k].district] = 1; });
     var s = sheet(
       '<h2>Filters</h2>' +
-      '<label class="up-field"><span>Your friend\'s Urban Sports Club plan</span><select data-f="plan"><option value="">Any plan</option>' +
-        PLANS.map(function (p) { return '<option' + (S.plan === p ? " selected" : "") + '>' + p + '</option>'; }).join("") + '</select></label>' +
       '<label class="up-field"><span>District</span><select data-f="district"><option value="">All of Berlin</option>' +
         Object.keys(districts).filter(Boolean).sort().map(function (d) { return '<option' + (S.district === d ? " selected" : "") + '>' + esc(d) + '</option>'; }).join("") + '</select></label>' +
       '<div class="up-field"><span>How Wellpass works at the studio</span><div class="up-seg">' +
@@ -428,7 +543,6 @@
       '<div class="up-row" style="margin-top:18px"><button class="up-btn ghost" data-reset>Reset</button><button class="up-btn" data-done>Show classes</button></div>'
     );
     var el = s.el;
-    el.querySelector('[data-f="plan"]').addEventListener("change", function (e) { S.plan = e.target.value; store.set("plan", S.plan); });
     el.querySelector('[data-f="district"]').addEventListener("change", function (e) { S.district = e.target.value; });
     el.querySelectorAll("[data-wp]").forEach(function (b) {
       b.addEventListener("click", function () {
@@ -439,7 +553,8 @@
       });
     });
     el.querySelector("[data-reset]").addEventListener("click", function () {
-      S.plan = ""; S.district = ""; S.wp = ["app", "external", "checkin"]; store.set("plan", ""); store.set("wp", S.wp); s.close(); render();
+      S.plan = ""; S.district = ""; S.wp = ["app", "external", "checkin"]; S.plus1Only = false; S.showCourts = true;
+      store.set("plan", ""); store.set("wp", S.wp); store.set("plus1Only", false); store.set("showCourts", true); s.close(); render();
     });
     el.querySelector("[data-done]").addEventListener("click", function () { s.close(); render(); });
   }
@@ -471,10 +586,13 @@
   function stationIcon(t) {
     return L.divIcon({ className: "up-stmark", html: '<i class="up-st-' + t.toLowerCase() + '">' + t + '</i>', iconSize: [18, 18], iconAnchor: [9, 9] });
   }
-  function pinIcon(n, name, hollow) {
+  function pinIcon(n, name, hollow, flags) {
+    flags = flags || {};
     return L.divIcon({
-      className: "up-pin" + (hollow ? " up-pin-drop" : ""),
-      html: '<span><b>' + (hollow ? "" : n) + '</b></span><em>' + esc(name) + '</em>',
+      className: "up-pin" + (hollow ? " up-pin-drop" : "") + (flags.court ? " up-pin-court" : ""),
+      html: '<span><b>' + (flags.court ? '<i class="up-court-glyph"><svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="1"/><path d="M4 12h16M12 3v18"/></svg></i>' : (hollow ? "" : n)) + '</b></span>' +
+        (flags.plus1 ? '<small class="up-pin-plus">+1</small>' : "") + (flags.external ? '<small class="up-pin-external">↗</small>' : "") +
+        '<em>' + esc(name) + '</em>',
       iconSize: [34, 42], iconAnchor: [17, 40]
     });
   }
@@ -550,7 +668,9 @@
     Object.keys(by).forEach(function (k) {
       var st = S.index.studios[k];
       if (!st || st.lat == null) return;
-      var m = L.marker([st.lat, st.lng], { icon: pinIcon(by[k].length, st.name), title: st.name });
+      var m = L.marker([st.lat, st.lng], { icon: pinIcon(by[k].length, st.name, false, {
+        plus1: !!st.plus1, external: !!st.external_booking
+      }), title: st.name });
       m.on("click", function () { openStudio(k); });
       markers.push(m);
       if (M.focus === k) focusMarker = m;
@@ -560,6 +680,7 @@
       Object.keys(S.index.studios).forEach(function (k) {
         var st = S.index.studios[k];
         if (by[k] || st.lat == null || !studioOffers(st)) return;
+        if (!planIncludes(st.plans) || !plus1Matches(st)) return;
         if (S.district && st.district !== S.district) return;
         if (S.wp.indexOf(st.wp_status) < 0) return;
         var m = L.marker([st.lat, st.lng], { icon: pinIcon(0, st.name, true), title: st.name, zIndexOffset: -500 });
@@ -568,10 +689,32 @@
         nDrop++;
       });
     }
+    var plus1PlaceCount = 0;
+    (S.index.plus1_places || []).filter(function (p) { return placeMatches(p, false); }).forEach(function (p) {
+      if (p.lat == null) return;
+      var m = L.marker([p.lat, p.lng], { icon: pinIcon(0, p.name, true, { plus1: true, external: !!p.external_booking }), title: p.name });
+      m.on("click", function () { openPlusPlace(p); });
+      markers.push(m);
+      plus1PlaceCount++;
+    });
+    var courtCount = 0;
+    if (S.showCourts) (S.index.courts || []).filter(function (p) { return placeMatches(p, true); }).forEach(function (p) {
+      if (p.lat == null) return;
+      var m = L.marker([p.lat, p.lng], { icon: pinIcon(0, p.name, false, {
+        court: true, plus1: !!p.plus1, external: !!p.external_booking
+      }), title: p.name });
+      m.on("click", function () { openCourt(p); });
+      markers.push(m);
+      courtCount++;
+    });
     M.pins.addLayers(markers);
     var nClasses = Object.keys(by).reduce(function (a, k) { return a + by[k].length; }, 0);
     $(".up-mapcount").textContent = (markers.length - nDrop) + " studios · " + nClasses + " classes" +
       (nDrop ? " · " + nDrop + " drop-in" : "") + " · " + dayLabel(S.date, true);
+    if (courtCount || (S.index.plus1_places || []).length) {
+      $(".up-mapcount").textContent = Object.keys(by).length + " studios · " + courtCount + " courts · " + plus1PlaceCount + " Wellpass +1 · " + nClasses + " classes" +
+        (nDrop ? " · " + nDrop + " drop-in" : "") + " · " + dayLabel(S.date, true);
+    }
     if (focusMarker) {
       var k = M.focus;
       M.focus = null;
@@ -584,6 +727,35 @@
     S.tab = "map";
     render();
   }
+
+
+  /* ---------- app links ---------- */
+  var WP_APP = "https://wellpass.egym.link/app"; // opens the Wellpass app (universal link)
+  function isPhone() { return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || (window.matchMedia && matchMedia("(pointer: coarse)").matches); }
+  function wpLink(st, label) {
+    var name = st.wp_name || st.name || "";
+    return '<a class="up-btn ghost" target="_blank" rel="noopener" data-wp-open="' + esc(name) + '" href="' + url(st.wp_url) + '">' + esc(label) + '</a>';
+  }
+  function toast(msg) {
+    var t = document.createElement("div");
+    t.className = "up-toast";
+    t.textContent = msg;
+    document.body.appendChild(t);
+    setTimeout(function () { t.remove(); }, 3500);
+  }
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest && e.target.closest("[data-wp-open]");
+    if (!a || !isPhone()) return;
+    e.preventDefault();
+    var name = a.getAttribute("data-wp-open");
+    var go = function () { window.location.href = WP_APP; };
+    if (navigator.clipboard && name) {
+      navigator.clipboard.writeText(name).then(function () {
+        toast("“" + name + "” copied. Paste it into the Wellpass search.");
+        setTimeout(go, 900);
+      }, go);
+    } else go();
+  });
 
   /* ---------- start ---------- */
   shell();

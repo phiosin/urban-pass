@@ -4,6 +4,8 @@ Find joint places to exercise for people with an **Urban Sports Club** subscript
 
 If you have Wellpass and your partner or friends have Urban Sports Club, finding a studio and class you can *both* book usually means flipping between two apps. Urban Pass shows only the overlap: studios and classes available on both platforms.
 
+The app also lists rentable courts and other sports venues available through either membership, shows Wellpass Plus1 and discount terms, and links directly to external booking pages. Choose the USC plan in the top filter chips to narrow studios and classes.
+
 Scope for now: **Berlin**.
 
 ## How it works
@@ -35,6 +37,8 @@ uv run --no-project --python 3.12 python -m urbanpass --days 7     # build data 
 ```
 
 Then serve the repo (`python -m http.server`) and open `/dev/`.
+
+To verify the catalog helpers against cached responses without network access or class schedules, run `uv run --offline --no-project --python 3.12 python -I dev/check_offline.py`.
 
 ## Update the classes
 

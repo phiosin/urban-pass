@@ -8,7 +8,7 @@ import datetime as dt
 import json
 from pathlib import Path
 
-from . import match, stations, usc, wellpass, wellpass_auth
+from . import catalog, match, stations, usc, wellpass, wellpass_auth
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "wordpress" / "urban-pass" / "data"
@@ -25,11 +25,14 @@ STATIONS = []
 def studio_record(p):
     u, w = p["usc"], p["wellpass"]
     code, label = match.wellpass_status(w)
+    features = catalog.studio_features(u, w)
     return {
         "name": u["name"], "wp_name": w["name"], "street": w["street"] or u["street"], "district": u["district"],
         "lat": w.get("lat"), "lng": w.get("lng"), "disciplines": u["disciplines"], "plans": u["plans"],
         "usc_url": f"{usc.BASE}/venues/{u['slug']}", "wp_url": w["url"], "wp_status": code, "wp_label": label,
-        "booking": w.get("external_booking") or "", "terms": (w.get("terms") or "")[:800],
+        "booking": features["booking"],
+        "website": w.get("website") or "", "terms": (w.get("terms") or "")[:800],
+        "platforms": ["USC", "Wellpass"], **features,
         "gym_id": w.get("gym_id"),
         "near": stations.nearest(w.get("lat"), w.get("lng"), STATIONS),
     }
@@ -104,6 +107,8 @@ def main():
         "generated": dt.datetime.now(dt.timezone.utc).replace(tzinfo=None).strftime("%Y-%m-%dT%H:%MZ"), "city": "Berlin", "wellpass_checked": checked,
         "days": days, "stations": STATIONS, "studios": {k: {kk: vv for kk, vv in v.items() if kk != "gym_id"}
                                   for k, v in studios.items()},
+        "courts": catalog.build_courts(venues, wp, pairs),
+        "plus1_places": catalog.build_plus1_places(wp, pairs),
     }
     (out / "index.json").write_text(json.dumps(index, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
     print(f"Wrote {len(dates)} days to {out}")

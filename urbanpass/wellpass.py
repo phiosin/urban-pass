@@ -32,6 +32,8 @@ def detail(slug):
     a = d.get("address") or {}
     cb = d.get("classBookingConfig") or {}
     ext = d.get("externalBookingInfo") or {}
+    ext_channel = ext.get("channel") or {}
+    memberships = d.get("membershipTypes") or []
     return {
         "slug": d["slug"],
         "name": d.get("alias", ""),
@@ -40,10 +42,13 @@ def detail(slug):
         "lat": (a.get("coordinates") or [None, None])[1],
         "lng": (a.get("coordinates") or [None, None])[0],
         "website": d.get("website") or "",
+        "plus1": "PLUS_1" in memberships or d.get("qualitrainPlusOneGym") is True,
+        "plus1_membership": "PLUS_1" in memberships,
+        "plus1_gym": d.get("qualitrainPlusOneGym") is True,
         "activities": [x.get("activity") or x.get("name") for x in d.get("activities") or [] if isinstance(x, dict)],
         "in_app_booking": bool(cb.get("enabled")),
         "booking_required": bool(cb.get("bookingRequiredForCheckin")),
-        "external_booking": ext.get("link") or "",
+        "external_booking": ext.get("link") or ext_channel.get("link") or "",
         "terms": _strip(d.get("qualitrainOfferDescription")),
         "url": f"https://locations.egym.com/embed/web/wellpass/{d['slug']}",
     }
