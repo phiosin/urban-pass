@@ -762,6 +762,10 @@
     });
     M.pins.addLayers(markers);
     var nClasses = Object.keys(by).reduce(function (a, k) { return a + by[k].length; }, 0);
+    if (S.funnel) {
+      S.funnel = false;
+      showFunnel({ classes: nClasses, places: courtCount + nDrop + plus1PlaceCount });
+    }
     var parts = [];
     var nStudios = Object.keys(by).length;
     if (nClasses) parts.push(nClasses + " classes at " + nStudios + " studios");
@@ -812,6 +816,82 @@
   });
 
 
+
+  /* ---------- statistics ---------- */
+  function fmt(n) { return Math.round(n).toLocaleString("en"); }
+  function overlapStats() {
+    var days = (S.index.days || []).filter(function (d) { return d.usc_total >= 300; }); // skip a nearly finished today
+    if (!days.length) return null;
+    var usc = 0, both = 0, slots = { morning: [0, 0], midday: [0, 0], evening: [0, 0] };
+    days.forEach(function (d) {
+      usc += d.usc_total; both += d.confirmed || 0;
+      ["morning", "midday", "evening"].forEach(function (k) {
+        slots[k][0] += (d.usc_slots || {})[k] || 0; slots[k][1] += (d.both_slots || {})[k] || 0;
+      });
+    });
+    return { usc: usc / days.length, both: both / days.length, share: both / usc, slots: slots, totals: S.index.totals || null };
+  }
+  function pct(x) { return x < 0.1 ? (Math.round(x * 1000) / 10) + "%" : Math.round(x * 100) + "%"; }
+  function statsHtml() {
+    var st = overlapStats();
+    if (!st) return "";
+    var bars = [["morning", "Morning", "before 12:00"], ["midday", "Midday", "12–17"], ["evening", "Evening", "after 17:00"]].map(function (x) {
+      var v = st.slots[x[0]], share = v[0] ? v[1] / v[0] : 0;
+      return '<div class="up-bar-row"><span>' + x[1] + '<small>' + x[2] + '</small></span><div class="up-bar-track"><i style="width:' +
+        Math.max(2, Math.round(share * 100)) + '%"></i></div><b>' + pct(share) + '</b></div>';
+    }).join("");
+    var t = st.totals;
+    return '<div class="up-stats">' +
+      '<div class="up-stat-big"><b>' + pct(st.share) + '</b><span>of Urban Sports Club classes in Berlin can also be booked with Wellpass.</span></div>' +
+      '<p class="up-stat-line">About <b>' + fmt(st.usc) + '</b> classes a day, only <b>' + fmt(st.both) + '</b> on both schedules.</p>' +
+      '<div class="up-bars">' + bars + '</div>' +
+      (t ? '<p class="up-stat-line">' + fmt(t.usc_venues) + ' Urban Sports Club venues · ' + fmt(t.wp_studios) + ' Wellpass studios · only <b>' +
+        fmt(t.shared_studios) + '</b> take both (' + pct(t.shared_studios / t.usc_venues) + ' of USC, ' + pct(t.shared_studios / t.wp_studios) + ' of Wellpass).</p>' : "") +
+      '</div>';
+  }
+
+  function showFunnel(res) {
+    var d = (S.index.days || []).filter(function (x) { return x.date === S.date; })[0] || {};
+    var t = S.index.totals || {};
+    var venues = (t.usc_venues || 0) + (t.wp_studios || 0) - (t.shared_studios || 0);
+    var supply = (d.usc_total || 0) + venues;
+    if (!supply) return;
+    var found = res.classes + res.places;
+    var gone = Math.max(0, 1 - found / supply);
+    var wrap = document.createElement("div");
+    wrap.className = "up-funnel";
+    wrap.innerHTML = '<div class="up-funnel-card">' +
+      '<p class="up-funnel-day">Berlin · ' + esc(dayLabel(S.date, true)) + '</p>' +
+      '<div class="up-funnel-num"><b data-n>' + fmt(supply) + '</b><span data-l>options in Berlin</span></div>' +
+      '<p class="up-funnel-sub">' + fmt(d.usc_total || 0) + ' classes · ' + fmt(venues) + ' studios and places</p>' +
+      '<div class="up-funnel-track"><i></i></div>' +
+      '<p class="up-funnel-out"><b>' + pct(gone) + '</b> filtered out</p>' +
+      '<p class="up-funnel-left">' + (res.classes ? fmt(res.classes) + " classes" : "") + (res.classes && res.places ? " + " : "") +
+        (res.places ? fmt(res.places) + " places" : "") + (found ? " fit your search" : "Nothing fits. Try fewer filters.") + '</p>' +
+      '</div>';
+    document.body.appendChild(wrap);
+    var numEl = wrap.querySelector("[data-n]"), lab = wrap.querySelector("[data-l]"), bar = wrap.querySelector(".up-funnel-track i");
+    var start = null, dur = 1300, from = supply, to = found;
+    var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+    function step(ts) {
+      if (!start) start = ts;
+      var k = reduce ? 1 : Math.min(1, (ts - start) / dur), e = 1 - Math.pow(1 - k, 3);
+      numEl.textContent = fmt(from + (to - from) * e);
+      bar.style.width = (100 * (1 - e * gone)) + "%";
+      if (k < 1) requestAnimationFrame(step);
+      else { lab.textContent = found === 1 ? "option for you" : "options for you"; wrap.classList.add("done"); }
+    }
+    setTimeout(function () { wrap.classList.add("show"); requestAnimationFrame(step); }, 30);
+    var closed = false;
+    function close() {
+      if (closed) return; closed = true;
+      wrap.classList.add("bye");
+      setTimeout(function () { wrap.remove(); }, 450);
+    }
+    wrap.addEventListener("click", close);
+    setTimeout(close, reduce ? 1800 : 3000);
+  }
+
   /* ---------- landing + setup ---------- */
   function allPlaces() {
     var out = [];
@@ -837,6 +917,7 @@
         '<div class="up-landing-top">' + ICON.mark + '<span>Urban Pass</span></div>' +
         '<h1>Train together, even with different passes.</h1>' +
         '<p class="up-lead">You have Wellpass, your friend has Urban Sports Club, or the other way round. Urban Pass shows what you can do <b>together</b> in Berlin, on one map.</p>' +
+        statsHtml() +
         '<ul class="up-points">' +
           '<li><i>✓</i><span><b>Classes on both schedules.</b> Same studio, same time, bookable in both apps.</span></li>' +
           '<li><i>🎾</i><span><b>Courts, pools and gyms.</b> Places where at least one pass gets you in or lowers the fee.</span></li>' +
@@ -941,7 +1022,7 @@
       S.timeMode = draft.timeMode; S.timeVal = draft.timeVal; store.set("timeMode", S.timeMode); store.set("timeVal", S.timeVal);
       store.set("date", draft.date);
       if (accessMode()) { S.showCourts = true; store.set("showCourts", true); }
-      S.q = ""; S.time = ""; S.tab = "map";
+      S.q = ""; S.time = ""; S.tab = "map"; S.funnel = true;
       shell();
       selectDay(draft.date);
     });

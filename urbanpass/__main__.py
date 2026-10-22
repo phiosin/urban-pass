@@ -89,7 +89,8 @@ def main():
     used = set()
     for date in dates:
         print(f"{date}: USC classes ...", flush=True)
-        joint = match.joint_classes(usc.classes(date), pairs)
+        all_usc = usc.classes(date)
+        joint = match.joint_classes(all_usc, pairs)
         n = match.confirm(joint, date, sessions) if checked else 0
         if checked:
             joint = [c for c in joint if c["wellpass"]["confirmed"] is not False]
@@ -98,14 +99,26 @@ def main():
         (out / f"{date}.json").write_text(json.dumps(
             {"date": date, "classes": [compact_class(c) for c in joint]},
             ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
-        days.append({"date": date, "classes": len(joint), "confirmed": n})
+        def slot(t):
+            return "morning" if t < "12:00" else "midday" if t < "17:00" else "evening"
+        usc_slots, both_slots = {"morning": 0, "midday": 0, "evening": 0}, {"morning": 0, "midday": 0, "evening": 0}
+        for c in all_usc:
+            if c["start"]:
+                usc_slots[slot(c["start"])] += 1
+        for c in joint:
+            if c["wellpass"]["confirmed"] and c["start"]:
+                both_slots[slot(c["start"])] += 1
+        days.append({"date": date, "classes": len(joint), "confirmed": n, "usc_total": len(all_usc),
+                     "usc_slots": usc_slots, "both_slots": both_slots})
 
     for old in out.glob("20??-??-??.json"):
         if old.stem not in dates:
             old.unlink()
     index = {
         "generated": dt.datetime.now(dt.timezone.utc).replace(tzinfo=None).strftime("%Y-%m-%dT%H:%MZ"), "city": "Berlin", "wellpass_checked": checked,
-        "days": days, "stations": STATIONS, "studios": {k: {kk: vv for kk, vv in v.items() if kk != "gym_id"}
+        "days": days, "stations": STATIONS,
+        "totals": {"usc_venues": len(venues), "wp_studios": len(wp),
+                   "shared_studios": len({s["wp_url"] for s in studios.values()})}, "studios": {k: {kk: vv for kk, vv in v.items() if kk != "gym_id"}
                                   for k, v in studios.items()},
         "courts": catalog.build_courts(venues, wp, pairs, usc.locations()),
         "plus1_places": catalog.build_plus1_places(wp, pairs),
