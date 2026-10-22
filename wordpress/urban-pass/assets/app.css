@@ -341,3 +341,13 @@ body.up-noscroll { overflow: hidden; overscroll-behavior: none; }
 .up-funnel-out b { color: #fff; font-size: 20px; }
 .up-funnel-left { margin: 4px 0 0; font-size: 14px; color: #fff; font-weight: 600; opacity: 0; transition: opacity .3s; }
 .up-funnel.done .up-funnel-left { opacity: 1; }
+
+/* Landing v3 */
+.up-landing-top .up-mark { width: 40px; height: 40px; }
+.up-landing h1 { font-size: 44px; margin: 56px 0 18px; }
+.up-claim { font-size: 22px; line-height: 1.35; color: #c9d2e1; margin: 0 0 26px; letter-spacing: -0.01em; }
+.up-claim b { color: #fff; }
+.up-claim em { font-style: normal; font-weight: 800; color: #fff; background: var(--up-blue, #2e70ce); padding: 0 8px; border-radius: 8px; }
+.up-facts { border-top: 1px solid rgba(255,255,255,.12); padding-top: 16px; display: flex; flex-direction: column; gap: 10px; }
+.up-facts p { margin: 0; font-size: 14.5px; color: #aab4c5; line-height: 1.4; }
+.up-facts b { color: #fff; font-variant-numeric: tabular-nums; }

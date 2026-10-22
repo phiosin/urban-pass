@@ -899,33 +899,31 @@
     return Object.keys(n).sort(function (a, b) { return n[b] - n[a] || a.localeCompare(b, "de"); });
   }
 
+  function landingStats() {
+    var t = S.index.totals || {};
+    var days = (S.index.days || []).filter(function (d) { return d.usc_total >= 300; }).slice(0, 3);
+    var usc = 0, both = 0;
+    days.forEach(function (d) { usc += d.usc_total; both += d.confirmed || 0; });
+    return { venues: t.usc_venues, shared: t.shared_studios, usc: usc, both: both, nDays: days.length };
+  }
+
   function showLanding() {
+    var st = landingStats();
+    document.body.classList.remove("up-noscroll");
     root.classList.remove("up-on-map");
     root.innerHTML =
       '<section class="up-landing">' +
-        '<div class="up-landing-top">' + ICON.mark + '<span>Urban Pass</span></div>' +
-        '<h1>Train together, even with different passes.</h1>' +
-        statsHtml() +
-        '<p class="up-lead">Urban Pass saves you the hassle of cross-checking both apps and shows only what you can book <b>together</b>, on one map.</p>' +
-        '<button class="up-btn up-go" data-go>Find something to do together</button>' +
+        '<div class="up-landing-top">' + ICON.mark + '</div>' +
+        '<h1>Urban Pass</h1>' +
+        (st.venues ? '<p class="up-claim">Only <em>' + pct(st.shared / st.venues) + '</em> of <b>Urban Sports</b> studios in Berlin can also be booked with <b>Wellpass</b>.</p>' : "") +
+        '<div class="up-facts">' +
+          (st.venues ? '<p><b>' + fmt(st.venues) + '</b> Urban Sports venues · only <b>' + fmt(st.shared) + '</b> take both</p>' : "") +
+          (st.usc ? '<p><b>' + fmt(st.usc) + '</b> Urban Sports classes in the next ' + st.nDays + ' days · only <b>' + fmt(st.both) + '</b> bookable with both</p>' : "") +
+        '</div>' +
+        '<button class="up-btn up-go" data-go>Find classes</button>' +
         '<p class="up-fine">Private project. Not affiliated with Urban Sports Club or EGYM Wellpass.</p>' +
       '</section>';
     $("[data-go]").addEventListener("click", showSetup);
-  }
-
-  function timeRuleText() {
-    if (!S.timeMode || S.timeMode === "any" || !S.timeVal) return "";
-    return (S.timeMode === "at" ? "around " : S.timeMode === "after" ? "from " : "until ") + S.timeVal;
-  }
-  function summaryText() {
-    var parts = [];
-    parts.push(S.acts.length ? S.acts.map(actLabelOf).join(", ") : "Anything");
-    var d = S.index.days.map(function (x) { return x.date; }).indexOf(S.date);
-    parts.push(d === 0 ? "Today" : d === 1 ? "Tomorrow" : dayLabel(S.date) + " " + S.date.slice(8, 10).replace(/^0/, ""));
-    if (timeRuleText()) parts.push(timeRuleText());
-    if (S.plus1Only) parts.push("Wellpass +1 only");
-    else if (S.plan) parts.push("USC " + S.plan);
-    return parts.join(" · ");
   }
 
   function showSetup() {
