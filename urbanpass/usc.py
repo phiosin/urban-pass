@@ -3,6 +3,7 @@ import html
 import json
 import re
 
+from . import http as _http
 from .http import get_json
 
 BASE = "https://urbansportsclub.com/de"
@@ -80,3 +81,11 @@ def locations(city_id=BERLIN):
         if v.get("slug") and loc.get("lat") is not None:
             out[v["slug"]] = (round(loc["lat"], 6), round(loc["lng"], 6))
     return out
+
+
+def use_city(city_id):
+    """Switch the session to a city: USC ignores city_id in list requests and uses the session's city."""
+    import urllib.request
+    req = urllib.request.Request(f"{BASE}/change-city?city={city_id}", headers={"User-Agent": _http.UA, **AJAX})
+    with _http.OPENER.open(req, timeout=60) as r:
+        r.read()

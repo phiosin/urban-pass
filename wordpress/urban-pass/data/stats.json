@@ -1,0 +1,41 @@
+{
+ "generated": "2026-10-22T22:34Z",
+ "dates": [
+  "2026-10-23",
+  "2026-10-24",
+  "2026-10-25"
+ ],
+ "cities": [
+  {
+   "city": "Berlin",
+   "usc_venues": 2211,
+   "wp_studios": 790,
+   "shared_studios": 407,
+   "usc_classes": 7379,
+   "both_classes": 1991
+  },
+  {
+   "city": "Hamburg",
+   "usc_venues": 659,
+   "wp_studios": 726,
+   "shared_studios": 306,
+   "usc_classes": 1788,
+   "both_classes": 1250
+  },
+  {
+   "city": "München",
+   "usc_venues": 778,
+   "wp_studios": 1006,
+   "shared_studios": 370,
+   "usc_classes": 2879,
+   "both_classes": 1780
+  }
+ ],
+ "total": {
+  "usc_venues": 3648,
+  "wp_studios": 2522,
+  "shared_studios": 1083,
+  "usc_classes": 12046,
+  "both_classes": 5021
+ }
+}

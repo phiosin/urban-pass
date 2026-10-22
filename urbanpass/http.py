@@ -2,6 +2,7 @@
 import hashlib
 import json
 import time
+import http.cookiejar
 import urllib.request
 from pathlib import Path
 
@@ -10,6 +11,8 @@ CACHE = Path(__file__).resolve().parent.parent / "data" / "raw"
 DELAY = 0.8  # seconds between live requests
 
 _last = 0.0
+# Session cookies (USC keeps the selected city in its session).
+OPENER = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(http.cookiejar.CookieJar()))
 
 
 def get(url, headers=None, max_age=None):
@@ -25,7 +28,7 @@ def get(url, headers=None, max_age=None):
     req = urllib.request.Request(url, headers={"User-Agent": UA, **(headers or {})})
     for attempt in range(3):
         try:
-            with urllib.request.urlopen(req, timeout=60) as r:
+            with OPENER.open(req, timeout=60) as r:
                 body = r.read().decode("utf-8")
             break
         except urllib.error.HTTPError as e:

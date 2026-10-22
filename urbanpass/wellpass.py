@@ -63,3 +63,15 @@ def berlin():
             d["activities"] = d["activities"] or [a["a"] for a in g.get("ac", [])]
             out.append(d)
     return out
+
+
+def in_box(box):
+    """Studios with details inside a lat/lng box (same records as berlin())."""
+    out = []
+    for g in studios(box):
+        d = detail(g["slug"])
+        if d:
+            d["gym_id"] = g.get("g") or g["id"]
+            d["activities"] = d["activities"] or [a["a"] for a in g.get("ac", [])]
+            out.append(d)
+    return out
