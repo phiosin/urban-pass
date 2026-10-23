@@ -769,7 +769,13 @@
     if (S.funnel) {
       // Pins appear as the "filtered out" pop-up fades, so the map feels like the payoff, not a wait.
       S.funnel = false;
-      showFunnel({ classes: nClasses, places: courtCount + nDrop + plus1PlaceCount }, function () { M.pins.addLayers(markers); });
+      var nothing = !markers.length;
+      var tried = summaryText();
+      showFunnel({ classes: nClasses, places: courtCount + nDrop + plus1PlaceCount }, function () {
+        // Nothing to show: go straight back to the search instead of leaving an empty map.
+        if (nothing) showSetup({ noResults: tried });
+        else M.pins.addLayers(markers);
+      });
     } else {
       M.pins.addLayers(markers);
     }
@@ -887,7 +893,7 @@
       setTimeout(function () { wrap.remove(); }, 450);
     }
     wrap.addEventListener("click", close);
-    setTimeout(close, reduce ? 1800 : 3000);
+    setTimeout(close, found ? (reduce ? 1800 : 3000) : 2200);
   }
 
   /* ---------- landing + setup ---------- */
@@ -951,7 +957,8 @@
     return parts.join(" · ");
   }
 
-  function showSetup() {
+  function showSetup(opts) {
+    var noResults = opts && opts.noResults; // also called as a click handler, so opts may be an event
     var opts = activityOptions();
     var draft = {
       acts: S.acts.slice(), plan: S.plan, plus1: S.plus1Only, date: S.date || S.index.days[0].date,
@@ -962,6 +969,8 @@
     root.innerHTML =
       '<section class="up-setup">' +
         '<header class="up-setup-top">' + ICON.mark + '<div><h1>What are you looking for?</h1><p>Everything except the activity is optional.</p></div></header>' +
+        (typeof noResults === "string" ? '<div class="up-noresults"><b>Nothing found</b> for ' + esc(noResults) +
+          '. Try another day, a wider time' + (S.plus1Only ? ', more activities or turn off “+1 only”.' : ' or more activities.') + '</div>' : "") +
         '<div class="up-step"><h2><b>1</b> Activities <small>pick one or more</small></h2>' +
           '<input class="up-actsearch" type="search" placeholder="Search: yoga, padel, swimming…">' +
           '<div class="up-seg up-setup-acts"></div><p class="up-hint" hidden></p></div>' +

@@ -360,3 +360,5 @@ body.up-noscroll { overflow: hidden; overscroll-behavior: none; }
     #00112c;
 }
 .up-claim { text-shadow: 0 1px 12px rgba(0,17,44,.6); }
+.up-noresults { margin: 14px 16px 0; padding: 12px 14px; border-radius: 12px; background: var(--up-amber-bg, #fcefd9); color: var(--up-amber, #9a5800); font-size: 14px; line-height: 1.4; }
+.up-noresults b { color: inherit; }
