@@ -177,8 +177,13 @@
     renderDays();
     if (S.days[date]) return render();
     $(".up-main").innerHTML = '<div class="up-loading">Loading classes…</div>';
-    fetchJSON(date + ".json").then(function (d) { S.days[date] = d; render(); })
-      .catch(function () { $(".up-main").innerHTML = '<div class="up-empty"><b>Couldn\'t load this day.</b>Try again later.</div>'; });
+    // Only a failed download shows "couldn't load"; a drawing bug is reported in the console instead.
+    fetchJSON(date + ".json").then(function (d) {
+      S.days[date] = d;
+      try { render(); } catch (e) { console.error(e); }
+    }, function () {
+      $(".up-main").innerHTML = '<div class="up-empty"><b>Couldn\'t load this day.</b>Check your connection and try again.</div>';
+    });
   }
 
   /* ---------- views ---------- */
@@ -925,6 +930,21 @@
         '<p class="up-fine">Private project. Not affiliated with Urban Sports Club or EGYM Wellpass.</p>' +
       '</section>';
     $("[data-go]").addEventListener("click", showSetup);
+  }
+
+  function timeRuleText() {
+    if (!S.timeMode || S.timeMode === "any" || !S.timeVal) return "";
+    return (S.timeMode === "at" ? "around " : S.timeMode === "after" ? "from " : "until ") + S.timeVal;
+  }
+  function summaryText() {
+    var parts = [];
+    parts.push(S.acts.length ? S.acts.map(actLabelOf).join(", ") : "Anything");
+    var d = S.index.days.map(function (x) { return x.date; }).indexOf(S.date);
+    parts.push(d === 0 ? "Today" : d === 1 ? "Tomorrow" : dayLabel(S.date) + " " + S.date.slice(8, 10).replace(/^0/, ""));
+    if (timeRuleText()) parts.push(timeRuleText());
+    if (S.plus1Only) parts.push("Wellpass +1 only");
+    else if (S.plan) parts.push("USC " + S.plan);
+    return parts.join(" · ");
   }
 
   function showSetup() {

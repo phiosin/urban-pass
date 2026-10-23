@@ -6,6 +6,12 @@
       "runtimeExecutable": "uv",
       "runtimeArgs": ["run", "--no-project", "--python", "3.12", "python", "-m", "http.server", "8765", "--bind", "127.0.0.1", "--directory", "."],
       "port": 8765
+    },
+    {
+      "name": "site-node",
+      "runtimeExecutable": "C:/Program Files/nodejs/node.exe",
+      "runtimeArgs": ["dev/serve.mjs", "8766"],
+      "port": 8766
     }
   ]
 }
