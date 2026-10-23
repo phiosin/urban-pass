@@ -5,7 +5,7 @@
 - Simple static GitHub Pages app (https://phiosin.github.io/urban-pass/), mobile first. Berlin is the scope; Hamburg/Munich only for statistics.
 
 ## Last step
-- _Claude — 2026-10-23_: fixed "Couldn't load this day" on every day. The landing rewrite had deleted `summaryText()`/`timeRuleText()` in `app.js`; `render()` threw and `selectDay()` showed the error as a failed download. Restored the helpers; `selectDay()` now only says "couldn't load" when the download fails (draw errors go to the console). Added `dev/serve.mjs` (Node preview server) because `uv`/Python stopped running in this shell.
+- _Claude — 2026-10-23_: map pins now appear as the "filtered out" pop-up fades (showFunnel(res, done)); "+1 only" verified working. Earlier the same day: fixed "Couldn't load this day" on every day. The landing rewrite had deleted `summaryText()`/`timeRuleText()` in `app.js`; `render()` threw and `selectDay()` showed the error as a failed download. Restored the helpers; `selectDay()` now only says "couldn't load" when the download fails (draw errors go to the console). Added `dev/serve.mjs` (Node preview server) because `uv`/Python stopped running in this shell.
 - Before that (2026-10-22/23): landing page (16% claim, Kreuzberg-style `assets/landing-bg.svg`), setup screen (several activities, USC plan, +1 only, day, optional time rule), full-screen map with back button, "filtered out" pop-up, 3-city stats (`urbanpass/stats_cities.py` → `data/stats.json`).
 
 ## Current state

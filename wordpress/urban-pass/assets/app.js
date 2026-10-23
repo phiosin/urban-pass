@@ -765,11 +765,13 @@
       markers.push(m);
       courtCount++;
     });
-    M.pins.addLayers(markers);
     var nClasses = Object.keys(by).reduce(function (a, k) { return a + by[k].length; }, 0);
     if (S.funnel) {
+      // Pins appear as the "filtered out" pop-up fades, so the map feels like the payoff, not a wait.
       S.funnel = false;
-      showFunnel({ classes: nClasses, places: courtCount + nDrop + plus1PlaceCount });
+      showFunnel({ classes: nClasses, places: courtCount + nDrop + plus1PlaceCount }, function () { M.pins.addLayers(markers); });
+    } else {
+      M.pins.addLayers(markers);
     }
     var parts = [];
     var nStudios = Object.keys(by).length;
@@ -844,12 +846,13 @@
       '<span>Only this share of Urban Sports Club classes in Berlin can also be booked with Wellpass.</span></div></div>';
   }
 
-  function showFunnel(res) {
+  function showFunnel(res, done) {
+    done = done || function () {};
     var d = (S.index.days || []).filter(function (x) { return x.date === S.date; })[0] || {};
     var t = S.index.totals || {};
     var venues = (t.usc_venues || 0) + (t.wp_studios || 0) - (t.shared_studios || 0);
     var supply = (d.usc_total || 0) + venues;
-    if (!supply) return;
+    if (!supply) { done(); return; }
     var found = res.classes + res.places;
     var gone = Math.max(0, 1 - found / supply);
     var wrap = document.createElement("div");
@@ -880,6 +883,7 @@
     function close() {
       if (closed) return; closed = true;
       wrap.classList.add("bye");
+      try { done(); } catch (e) { console.error(e); }
       setTimeout(function () { wrap.remove(); }, 450);
     }
     wrap.addEventListener("click", close);
