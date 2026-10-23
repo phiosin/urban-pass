@@ -2,6 +2,25 @@
 (function () {
   "use strict";
   var CFG = window.URBAN_PASS || { data: "data/", v: "" };
+  // Folder this script was loaded from (works on Pages, the local preview and the WordPress plugin).
+  var ASSET_BASE = (function () {
+    var src = document.currentScript && document.currentScript.src;
+    return src ? src.replace(/[^\/?#]*([?#].*)?$/, "") : "assets/";
+  })();
+  // Show problems on screen (phones have no console), once per message.
+  var shownErrors = {};
+  function showError(msg) {
+    msg = String(msg || "Unknown error").slice(0, 160);
+    if (shownErrors[msg]) return;
+    shownErrors[msg] = 1;
+    var b = document.createElement("div");
+    b.className = "up-errorbar";
+    b.textContent = "Something went wrong: " + msg + " (tap to hide)";
+    b.addEventListener("click", function () { b.remove(); });
+    document.body.appendChild(b);
+  }
+  window.addEventListener("error", function (e) { showError(e.message); });
+  window.addEventListener("unhandledrejection", function (e) { showError(e.reason && (e.reason.message || e.reason)); });
   var root = document.getElementById("urban-pass-app");
   if (!root) return;
 
@@ -180,7 +199,7 @@
     // Only a failed download shows "couldn't load"; a drawing bug is reported in the console instead.
     fetchJSON(date + ".json").then(function (d) {
       S.days[date] = d;
-      try { render(); } catch (e) { console.error(e); }
+      try { render(); } catch (e) { console.error(e); showError(e.message); }
     }, function () {
       $(".up-main").innerHTML = '<div class="up-empty"><b>Couldn\'t load this day.</b>Check your connection and try again.</div>';
     });
@@ -618,6 +637,7 @@
 
   /* ---------- map ---------- */
   var CDN = "https://cdnjs.cloudflare.com/ajax/libs/";
+  var VENDOR = ASSET_BASE + "vendor/";
   var M = { map: null, pins: null, stations: null, me: null, loading: null, focus: null };
 
   function loadAsset(tag, attrs) {
@@ -628,15 +648,22 @@
       document.head.appendChild(el);
     });
   }
+  // Map library: our own copy in assets/vendor first (content blockers on phones can block CDNs), cdnjs as backup.
+  function loadLeafletFrom(leafletBase, clusterBase) {
+    return Promise.all([
+      loadAsset("link", { rel: "stylesheet", href: leafletBase + "leaflet.min.css" }),
+      loadAsset("link", { rel: "stylesheet", href: clusterBase + "MarkerCluster.min.css" }),
+      window.L ? Promise.resolve() : loadAsset("script", { src: leafletBase + "leaflet.min.js" })
+    ]).then(function () {
+      return window.L && window.L.markerClusterGroup ? null : loadAsset("script", { src: clusterBase + "leaflet.markercluster.min.js" });
+    });
+  }
   function loadLeaflet() {
     if (M.loading) return M.loading;
-    M.loading = Promise.all([
-      loadAsset("link", { rel: "stylesheet", href: CDN + "leaflet/1.9.4/leaflet.min.css" }),
-      loadAsset("link", { rel: "stylesheet", href: CDN + "leaflet.markercluster/1.5.3/MarkerCluster.min.css" }),
-      loadAsset("script", { src: CDN + "leaflet/1.9.4/leaflet.min.js" })
-    ]).then(function () {
-      return loadAsset("script", { src: CDN + "leaflet.markercluster/1.5.3/leaflet.markercluster.min.js" });
+    M.loading = loadLeafletFrom(VENDOR, VENDOR).catch(function () {
+      return loadLeafletFrom(CDN + "leaflet/1.9.4/", CDN + "leaflet.markercluster/1.5.3/");
     });
+    M.loading.catch(function () { M.loading = null; }); // allow a retry
     return M.loading;
   }
 
@@ -657,10 +684,15 @@
   function initMap() {
     var el = $(".up-map");
     M.map = L.map(el, { zoomControl: false }).setView([52.515, 13.405], 12);
-    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    // OpenStreetMap tiles; if they keep failing (blocked or overloaded), switch to the German OSM mirror.
+    var tiles = L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
       maxZoom: 19, className: "up-tiles",
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(M.map);
+    var tileErrors = 0;
+    tiles.on("tileerror", function () {
+      if (++tileErrors === 4) tiles.setUrl("https://tile.openstreetmap.de/{z}/{x}/{y}.png");
+    });
     M.stations = L.layerGroup();
     (S.index.stations || []).forEach(function (s) {
       L.marker([s.lat, s.lng], { icon: stationIcon(s.t), keyboard: false, zIndexOffset: -1000 })
@@ -711,9 +743,22 @@
     $(".up-mapview").style.setProperty("--up-top-h", $(".up-top").getBoundingClientRect().height + "px");
     if (!window.L || !window.L.markerClusterGroup) {
       $(".up-mapcount").textContent = "Loading map…";
-      loadLeaflet().then(function () { if (!M.map) initMap(); renderMap(); })
-        .catch(function () { $(".up-mapcount").textContent = "Couldn't load the map. Check your connection."; });
+      loadLeaflet().then(function () {
+        // drawing errors are real bugs: show them, don't blame the connection
+        try { if (!M.map) initMap(); renderMap(); } catch (e) { console.error(e); showError(e.message); }
+      }, function () {
+        $(".up-mapcount").textContent = "Couldn't load the map. Check your connection and go back to try again.";
+        showError("the map library could not be loaded");
+      });
       return;
+    }
+    // Going back to the search rebuilds the page; a map bound to the old (removed) element must be recreated.
+    if (M.map && M.map.getContainer() !== $(".up-map")) {
+      var view = { c: M.map.getCenter(), z: M.map.getZoom() };
+      M.map.remove();
+      M.map = M.pins = M.stations = M.me = null;
+      initMap();
+      M.map.setView(view.c, view.z);
     }
     if (!M.map) initMap();
     M.map.invalidateSize();

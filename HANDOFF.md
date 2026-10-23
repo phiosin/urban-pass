@@ -5,7 +5,7 @@
 - Simple static GitHub Pages app (https://phiosin.github.io/urban-pass/), mobile first. Berlin is the scope; Hamburg/Munich only for statistics.
 
 ## Last step
-- _Claude — 2026-10-23_: map pins now appear as the "filtered out" pop-up fades (showFunnel(res, done)); a search with no results returns to the setup with a notice (showSetup({noResults})); "+1 only" verified working. Earlier the same day: fixed "Couldn't load this day" on every day. The landing rewrite had deleted `summaryText()`/`timeRuleText()` in `app.js`; `render()` threw and `selectDay()` showed the error as a failed download. Restored the helpers; `selectDay()` now only says "couldn't load" when the download fails (draw errors go to the console). Added `dev/serve.mjs` (Node preview server) because `uv`/Python stopped running in this shell.
+- _Claude — 2026-10-23_: fixed blank map after "back" + new search (Leaflet stayed bound to the removed .up-map; renderMap now recreates it). Map library bundled in assets/vendor (CDN only as fallback), OSM tile fallback to tile.openstreetmap.de, on-screen error bar (showError). Also: map pins now appear as the "filtered out" pop-up fades (showFunnel(res, done)); a search with no results returns to the setup with a notice (showSetup({noResults})); "+1 only" verified working. Earlier the same day: fixed "Couldn't load this day" on every day. The landing rewrite had deleted `summaryText()`/`timeRuleText()` in `app.js`; `render()` threw and `selectDay()` showed the error as a failed download. Restored the helpers; `selectDay()` now only says "couldn't load" when the download fails (draw errors go to the console). Added `dev/serve.mjs` (Node preview server) because `uv`/Python stopped running in this shell.
 - Before that (2026-10-22/23): landing page (16% claim, Kreuzberg-style `assets/landing-bg.svg`), setup screen (several activities, USC plan, +1 only, day, optional time rule), full-screen map with back button, "filtered out" pop-up, 3-city stats (`urbanpass/stats_cities.py` → `data/stats.json`).
 
 ## Current state
@@ -19,6 +19,7 @@
 2. Consider a tiny smoke test (node) that loads `app.js` with sample data and calls `render()` for each tab, so a missing helper is caught before deploy.
 
 ## Problems so far
+- Any code path that rebuilds root.innerHTML (showSetup, shell) detaches the Leaflet map; renderMap checks M.map.getContainer(). Never report drawing errors as "couldn't load" (that hid two bugs).
 - Big string/slice patches of `app.js` can silently delete neighbouring functions; check with `node --check` AND for undefined calls before pushing.
 - In the Claude shell, `uv run … python` and the uv Python exited 127/2 silently on 2026-10-23; patches "applied" but nothing was written. Verify edits with grep. Use `node dev/serve.mjs 8766` for the preview.
 - Matcher has a few false matches; Padel City Wellpass deal is ¼ of the 90-min court rent (not ½).

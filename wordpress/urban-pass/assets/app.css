@@ -362,3 +362,4 @@ body.up-noscroll { overflow: hidden; overscroll-behavior: none; }
 .up-claim { text-shadow: 0 1px 12px rgba(0,17,44,.6); }
 .up-noresults { margin: 14px 16px 0; padding: 12px 14px; border-radius: 12px; background: var(--up-amber-bg, #fcefd9); color: var(--up-amber, #9a5800); font-size: 14px; line-height: 1.4; }
 .up-noresults b { color: inherit; }
+.up-errorbar { position: fixed; left: 12px; right: 12px; top: calc(12px + env(safe-area-inset-top)); z-index: 100002; background: #b42318; color: #fff; font: 600 13.5px/1.35 -apple-system, "Segoe UI", Roboto, sans-serif; padding: 10px 12px; border-radius: 12px; box-shadow: 0 6px 20px rgba(0,0,0,.3); }
